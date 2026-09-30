@@ -1,0 +1,300 @@
+<%- layout("layout/adminLayout") %>
+
+<div class="professional-dashboard">
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <span class="dashboard-label">
+                REVIEW MANAGEMENT
+            </span>
+
+            <h1>
+                Reviews
+            </h1>
+
+            <p>
+                Monitor customer feedback and reviews
+                across the NIRNAY platform.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-badge">
+
+            <i class="fa-solid fa-star"></i>
+
+            <%= reviews.length %> Reviews
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         REVIEWS TABLE
+    =========================================== -->
+
+    <div class="admin-table-card">
+
+        <div class="admin-table-header">
+
+            <div>
+
+                <h3>
+                    All Reviews
+                </h3>
+
+                <p>
+                    Recently submitted reviews appear first.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             EMPTY STATE
+        =========================================== -->
+
+        <% if (reviews.length === 0) { %>
+
+            <div class="admin-empty-state">
+
+                <div class="admin-empty-icon">
+
+                    <i class="fa-regular fa-star"></i>
+
+                </div>
+
+                <h3>
+                    No Reviews Found
+                </h3>
+
+                <p>
+                    There are currently no customer reviews
+                    on the platform.
+                </p>
+
+            </div>
+
+        <% } else { %>
+
+
+            <!-- ==========================================
+                 REVIEWS TABLE
+            =========================================== -->
+
+            <div class="admin-table-wrapper">
+
+                <table class="admin-table admin-reviews-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Customer</th>
+
+                            <th>Service</th>
+
+                            <th>Professional</th>
+
+                            <th>Rating</th>
+
+                            <th>Review</th>
+
+                            <th>Created</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <% reviews.forEach(review => { %>
+
+                            <tr>
+
+
+                                <!-- CUSTOMER -->
+
+                                <td>
+
+                                    <% if (review.customer) { %>
+
+                                        <div class="admin-user-cell">
+
+                                            <div class="admin-user-avatar">
+
+                                                <i class="fa-solid fa-user"></i>
+
+                                            </div>
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= review.customer.name %>
+                                                </strong>
+
+                                                <span>
+                                                    <%= review.customer.email %>
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    <% } else { %>
+
+                                        <span class="admin-muted">
+                                            Customer unavailable
+                                        </span>
+
+                                    <% } %>
+
+                                </td>
+
+
+                                <!-- SERVICE -->
+
+                                <td>
+
+                                    <% if (review.service) { %>
+
+                                        <div class="admin-professional-cell">
+
+                                            <i class="fa-solid fa-briefcase"></i>
+
+                                            <span>
+                                                <%= review.service.name %>
+                                            </span>
+
+                                        </div>
+
+                                    <% } else { %>
+
+                                        <span class="admin-muted">
+                                            Service unavailable
+                                        </span>
+
+                                    <% } %>
+
+                                </td>
+
+
+                                <!-- PROFESSIONAL -->
+
+                                <td>
+
+                                    <% if (review.professional) { %>
+
+                                        <div class="admin-professional-cell">
+
+                                            <i class="fa-solid fa-user-tie"></i>
+
+                                            <span>
+                                                <%= review.professional.name %>
+                                            </span>
+
+                                        </div>
+
+                                    <% } else { %>
+
+                                        <span class="admin-muted">
+                                            Professional unavailable
+                                        </span>
+
+                                    <% } %>
+
+                                </td>
+
+
+                                <!-- RATING -->
+
+                                <td>
+
+                                    <div class="admin-review-rating">
+
+                                        <% for (let i = 1; i <= 5; i++) { %>
+
+                                            <i
+                                                class="
+                                                    fa-solid fa-star
+                                                    <%= i <= review.rating
+                                                        ? 'review-star-active'
+                                                        : 'review-star-inactive'
+                                                    %>
+                                                "
+                                            ></i>
+
+                                        <% } %>
+
+                                        <span>
+                                            <%= review.rating %>/5
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+
+                                <!-- COMMENT -->
+
+                                <td>
+
+                                    <div class="admin-review-comment">
+
+                                        <%= review.comment || "No comment provided." %>
+
+                                    </div>
+
+                                </td>
+
+
+                                <!-- CREATED DATE -->
+
+                                <td>
+
+                                    <div class="admin-date-cell">
+
+                                        <i class="fa-solid fa-calendar"></i>
+
+                                        <span>
+
+                                            <%= review.createdAt
+                                                ? new Date(
+                                                    review.createdAt
+                                                ).toLocaleDateString("en-IN")
+                                                : "N/A"
+                                            %>
+
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+
+                            </tr>
+
+                        <% }) %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+</div>

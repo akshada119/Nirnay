@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        <%= typeof pageTitle !== "undefined"
+            ? pageTitle 
+            : "Nirnay"
+        %>
+    </title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="/css/style2.css"
+    >
+
+    <link rel="stylesheet" href="/css/service-images.css">
+
+    <!-- Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- Favicon -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/images/nirnay-icon.png"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         NAVBAR
+    =============================== -->
+
+    <%- include("../includes/navbar") %>
+
+
+    <!-- ==============================
+         SUCCESS MESSAGE
+    =============================== -->
+
+    <% if (
+        typeof success !== "undefined" &&
+        success &&
+        success.length > 0
+    ) { %>
+
+        <div class="flash-message flash-success">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <strong>
+                    Success!
+                </strong>
+
+                <span>
+                    <%= success[0] %>
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="flash-close"
+                aria-label="Close message"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    <% } %>
+
+
+    <!-- ==============================
+         ERROR MESSAGE
+    =============================== -->
+
+    <% if (
+        typeof error !== "undefined" &&
+        error &&
+        error.length > 0
+    ) { %>
+
+        <div class="flash-message flash-error">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <div>
+
+                <strong>
+                    Oops!
+                </strong>
+
+                <span>
+                    <%= error[0] %>
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="flash-close"
+                aria-label="Close message"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    <% } %>
+
+
+    <!-- ==============================
+         MAIN CONTENT
+    =============================== -->
+
+    <main>
+
+        <%- body %>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+
+    <%- include("../includes/footer") %>
+
+
+    <!-- ==============================
+         ANIMATIONS
+    =============================== -->
+
+    <script src="/js/animations.js"></script>
+
+
+    <!-- ==============================
+         FLASH MESSAGE SCRIPT
+    =============================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                const messages =
+                    document.querySelectorAll(
+                        ".flash-message"
+                    );
+
+
+                messages.forEach(
+                    message => {
+
+                        const closeButton =
+                            message.querySelector(
+                                ".flash-close"
+                            );
+
+
+                        if (closeButton) {
+
+                            closeButton.addEventListener(
+                                "click",
+                                () => {
+
+                                    closeFlashMessage(
+                                        message
+                                    );
+
+                                }
+                            );
+
+                        }
+
+
+                        setTimeout(
+                            () => {
+
+                                closeFlashMessage(
+                                    message
+                                );
+
+                            },
+                            4000
+                        );
+
+                    }
+                );
+
+
+                function closeFlashMessage(
+                    message
+                ) {
+
+                    if (
+                        !message ||
+                        message.classList.contains(
+                            "flash-hide"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    message.classList.add(
+                        "flash-hide"
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            message.remove();
+
+                        },
+                        300
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+</body>
+
+</html>

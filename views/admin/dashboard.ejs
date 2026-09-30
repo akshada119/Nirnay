@@ -1,0 +1,640 @@
+<%- layout("layout/adminLayout") %> 
+ 
+    <div class="professional-dashboard"> 
+ 
+        <!-- ========================================== 
+         DASHBOARD HEADER 
+    =========================================== --> 
+ 
+        <div class="dashboard-header"> 
+ 
+            <div> 
+ 
+                <span class="dashboard-label"> 
+                    ADMIN PANEL 
+                </span> 
+ 
+                <h1> 
+                    Welcome, <span>Admin</span> 
+                </h1> 
+ 
+                <p> 
+                    Manage users, professionals, services and bookings 
+                    from one place. 
+                </p> 
+ 
+            </div> 
+ 
+            <div class="dashboard-badge"> 
+ 
+                <i class="fa-solid fa-user-shield"></i> 
+ 
+                Administrator 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <!-- ========================================== 
+         DASHBOARD CARDS 
+    =========================================== --> 
+ 
+        <div class="dashboard-grid"> 
+ 
+ 
+            <!-- ====================================== 
+             CUSTOMERS 
+        ======================================= --> 
+ 
+            <div class="dashboard-card"> 
+ 
+                <div class="card-top"> 
+ 
+                    <div class="dashboard-icon"> 
+                        <i class="fa-solid fa-users"></i> 
+                    </div> 
+ 
+                    <span class="card-number"> 
+                        <h2 class="dashboard-count"><%= customerCount %></h2> 
+                    </span> 
+ 
+                </div> 
+ 
+                <div class="card-content"> 
+ 
+                    <h3> 
+                        Customers 
+                    </h3> 
+ 
+                    <p> 
+                        View and manage registered customers 
+                        on the NIRNAY platform. 
+                    </p> 
+ 
+                    <a href="/admin/customers" class="dashboard-link"> 
+ 
+                        Manage Customers 
+ 
+                        <i class="fa-solid fa-arrow-right"></i> 
+ 
+                    </a> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- ====================================== 
+             PROFESSIONALS 
+        ======================================= --> 
+ 
+            <div class="dashboard-card"> 
+ 
+                <div class="card-top"> 
+ 
+                    <div class="dashboard-icon"> 
+                        <i class="fa-solid fa-user-tie"></i> 
+                    </div> 
+ 
+                    <span class="card-number"> 
+                        <h2 class="dashboard-count"><%= professionalCount %></h2> 
+                    </span> 
+ 
+                </div> 
+ 
+                <div class="card-content"> 
+ 
+                    <h3> 
+                        Professionals 
+                    </h3> 
+ 
+                    <p> 
+                        Manage professionals and their consultancy 
+                        profiles on NIRNAY. 
+                    </p> 
+ 
+                    <a href="/admin/professionals" class="dashboard-link"> 
+ 
+                        Manage Professionals 
+ 
+                        <i class="fa-solid fa-arrow-right"></i> 
+ 
+                    </a> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- ====================================== 
+             SERVICES 
+        ======================================= --> 
+ 
+            <div class="dashboard-card"> 
+ 
+                <div class="card-top"> 
+ 
+                    <div class="dashboard-icon"> 
+                        <i class="fa-solid fa-briefcase"></i> 
+                    </div> 
+ 
+                    <span class="card-number"> 
+                        <h2 class="dashboard-count"><%= serviceCount %></h2> 
+                    </span> 
+ 
+                </div> 
+ 
+                <div class="card-content"> 
+ 
+                    <h3> 
+                        Services 
+                    </h3> 
+ 
+                    <p> 
+                        Review and manage all consultancy services 
+                        available on the platform. 
+                    </p> 
+ 
+                    <a href="/admin/services" class="dashboard-link"> 
+ 
+                        Manage Services 
+ 
+                        <i class="fa-solid fa-arrow-right"></i> 
+ 
+                    </a> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+        </div> 
+ 
+ 
+        <!-- ========================================== 
+              BOOKING MANAGEMENT SECTION 
+              =========================================== --> 
+ 
+        <div class="admin-dashboard-section"> 
+ 
+ 
+            <!-- ====================================== 
+             SECTION HEADER 
+              ======================================= --> 
+            <div class="admin-dashboard-section"> 
+ 
+                <!-- SECTION HEADER --> 
+ 
+                <div class="admin-section-header"> 
+ 
+                    <div> 
+ 
+                        <% if (isSearchActive) { %> 
+ 
+                            <span class="admin-section-label"> 
+                                SEARCH RESULTS 
+                            </span> 
+ 
+                            <h2>Booking Search</h2> 
+ 
+                            <p> 
+                                Bookings matching 
+                                "<strong> 
+                                    <%= search %> 
+                                </strong>" 
+                            </p> 
+ 
+                            <% } else { %> 
+ 
+                                <span class="admin-section-label"> 
+                                    TODAY 
+                                </span> 
+ 
+                                <h2>Today's Bookings</h2> 
+ 
+                                <p> 
+                                    Bookings scheduled for today. 
+                                </p> 
+ 
+                                <% } %> 
+ 
+                    </div> 
+ 
+ 
+                    <div class="admin-section-count"> 
+ 
+                        <i class="fa-solid fa-calendar-day"></i> 
+ 
+                        <%= upcomingBookings.length %> 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+ 
+                <!-- BOOKING SEARCH --> 
+ 
+                <form action="/admin/bookings" method="GET" class="admin-booking-search   nirnay-validation-form"
+                    id="adminDashboardBookingSearch" novalidate> 
+ 
+                    <div class="admin-search-field"> 
+ 
+                        <i class="fa-solid fa-magnifying-glass"></i> 
+ 
+                        <input type="text" name="search" value="<%= search || '' %>" 
+                            placeholder="Customer, professional, service..." autocomplete="off"
+                            maxlength="100"   data-validation="search"> 
+ 
+                    </div> 
+ 
+ 
+                    <div class="admin-search-field admin-date-range"> 
+ 
+                        <i class="fa-solid fa-calendar"></i> 
+ 
+                        <input type="date" name="startDate" value="<%= startDate || '' %>" aria-label="Start date"> 
+ 
+                        <span class="date-range-text"> 
+                            to 
+                        </span> 
+ 
+                        <input type="date" name="endDate" value="<%= endDate || '' %>" aria-label="End date"> 
+ 
+                    </div> 
+ 
+ 
+                    <button type="submit" class="admin-search-btn"> 
+ 
+                        <i class="fa-solid fa-search"></i> 
+ 
+                        Search 
+ 
+                    </button> 
+ 
+ 
+                    <% if (search || startDate || endDate) { %> 
+ 
+                        <a href="/admin/bookings" class="admin-search-clear"> 
+ 
+                            <i class="fa-solid fa-xmark"></i> 
+ 
+                            Clear 
+ 
+                        </a> 
+ 
+                        <% } %> 
+ 
+                </form> 
+ 
+ 
+                <!-- NEW BOOKINGS --> 
+ 
+                <% if (!isSearchActive) { %> 
+ 
+                    <div class="admin-new-bookings-summary"> 
+ 
+                        <div class="new-bookings-summary-left"> 
+ 
+                            <div class="new-bookings-summary-icon"> 
+ 
+                                <i class="fa-solid fa-bell"></i> 
+ 
+                            </div> 
+ 
+                            <div> 
+ 
+                                <strong> 
+                                    New Bookings 
+                                </strong> 
+ 
+                                <span> 
+                                    Bookings you haven't viewed yet 
+                                </span> 
+ 
+                            </div> 
+ 
+                        </div> 
+ 
+ 
+                        <div class="new-bookings-summary-count"> 
+ 
+                            <%= newBookingsCount %> 
+ 
+                        </div> 
+ 
+                    </div> 
+ 
+                    <% } %> 
+ 
+ 
+                        <!-- BOOKINGS --> 
+ 
+                        <% if (upcomingBookings.length===0) { %> 
+ 
+                            <div class="admin-empty-state"> 
+ 
+                                <div class="admin-empty-icon"> 
+ 
+                                    <i class="fa-regular fa-calendar-xmark"></i> 
+ 
+                                </div> 
+ 
+ 
+                                <% if (isSearchActive) { %> 
+ 
+                                    <h3>No Bookings Found</h3> 
+ 
+                                    <p> 
+                                        No bookings match your search criteria. 
+                                    </p> 
+ 
+                                    <% } else { %> 
+ 
+                                        <h3>No bookings today</h3> 
+ 
+                                        <p> 
+                                            There are no bookings scheduled for today. 
+                                        </p> 
+ 
+                                        <% } %> 
+ 
+                            </div> 
+ 
+ 
+                            <% } else { %> 
+ 
+ 
+                                <div class="today-bookings-list"> 
+ 
+                                    <% upcomingBookings.forEach(booking=> { %> 
+ 
+                                        <div 
+                                            class="today-booking-card <%= !booking.adminSeen ? 'booking-unseen' : '' %>"> 
+ 
+ 
+                                            <!-- TIME --> 
+ 
+                                            <div class="booking-time"> 
+ 
+                                                <i class="fa-regular fa-clock"></i> 
+ 
+                                                <span> 
+ 
+                                                    <%= new Date( booking.bookingDate ).toLocaleTimeString( "en-IN" , { 
+                                                        hour: "2-digit" , minute: "2-digit" } ) %> 
+ 
+                                                </span> 
+ 
+                                            </div> 
+ 
+ 
+                                            <!-- CUSTOMER --> 
+ 
+                                            <div class="today-booking-info"> 
+ 
+                                                <div class="today-booking-avatar"> 
+ 
+                                                    <i class="fa-solid fa-user"></i> 
+ 
+                                                </div> 
+ 
+ 
+                                                <div> 
+ 
+                                                    <h3> 
+ 
+                                                        <%= booking.customer ? booking.customer.name 
+                                                            : "Unknown Customer" %> 
+ 
+                                                    </h3> 
+ 
+                                                    <span> 
+ 
+                                                        <%= booking.customer ? booking.customer.email : "" %> 
+ 
+                                                    </span> 
+ 
+                                                </div> 
+ 
+                                            </div> 
+ 
+ 
+                                            <!-- SERVICE --> 
+ 
+                                            <div class="today-booking-service"> 
+ 
+                                                <span class="booking-info-label"> 
+                                                    SERVICE 
+                                                </span> 
+ 
+                                                <strong> 
+ 
+                                                    <%= booking.service ? booking.service.name : "Service unavailable" 
+                                                        %> 
+ 
+                                                </strong> 
+ 
+                                            </div> 
+ 
+ 
+                                            <!-- PROFESSIONAL --> 
+ 
+                                            <div class="today-booking-professional"> 
+ 
+                                                <span class="booking-info-label"> 
+                                                    PROFESSIONAL 
+                                                </span> 
+ 
+                                                <strong> 
+ 
+                                                    <%= booking.professional ? booking.professional.name 
+                                                        : "Not assigned" %> 
+ 
+                                                </strong> 
+ 
+                                            </div> 
+ 
+ 
+                                            <!-- STATUS --> 
+ 
+                                            <div class="today-booking-status"> 
+ 
+                                                <span class="booking-status booking-status-<%= booking.status %>"> 
+ 
+                                                    <i class="fa-solid fa-circle"></i> 
+ 
+                                                    <%= booking.status %> 
+ 
+                                                </span> 
+ 
+ 
+                                                <% if (!booking.adminSeen) { %> 
+ 
+                                                    <span class="booking-new-badge"> 
+ 
+                                                        <i class="fa-solid fa-sparkles"></i> 
+ 
+                                                        NEW 
+ 
+                                                    </span> 
+ 
+                                                    <% } %> 
+ 
+                                            </div> 
+ 
+ 
+                                            <!-- VIEW --> 
+ 
+                                            <a href="/admin/bookings/<%= booking._id %>" class="today-booking-view" 
+                                                title="View Booking"> 
+ 
+                                                <i class="fa-solid fa-arrow-right"></i> 
+ 
+                                            </a> 
+ 
+                                        </div> 
+ 
+                                        <% }) %> 
+ 
+                                </div> 
+ 
+                                <% } %> 
+ 
+ 
+            </div> 
+ 
+ 
+ 
+            <!-- ========================================== 
+         BOOKING CTA 
+    =========================================== --> 
+ 
+            <div class="dashboard-cta"> 
+ 
+                <div class="cta-icon"> 
+ 
+                    <i class="fa-solid fa-calendar-check"></i> 
+ 
+                </div> 
+ 
+ 
+                <div> 
+ 
+                    <h3> 
+                        Manage platform bookings 
+                    </h3> 
+ 
+                    <p> 
+                        Monitor customer bookings and keep track 
+                        of their current status. 
+                    </p> 
+ 
+                </div> 
+ 
+ 
+                <a href="/admin/bookings"> 
+ 
+                    View All Bookings 
+ 
+                    <i class="fa-solid fa-arrow-right"></i> 
+ 
+                </a> 
+ 
+            </div> 
+ 
+ 
+        </div>
+
+
+       <script>
+
+    // ===============================
+    // ADMIN DASHBOARD BOOKING SEARCH
+    // DATE RANGE VALIDATION
+    // ===============================
+
+    const adminDashboardBookingSearch =
+        document.getElementById("adminDashboardBookingSearch");
+
+    const dashboardStartDate =
+        adminDashboardBookingSearch.querySelector('input[name="startDate"]');
+
+    const dashboardEndDate =
+        adminDashboardBookingSearch.querySelector('input[name="endDate"]');
+
+
+    // ===============================
+    // DATE RANGE VALIDATION
+    // ===============================
+
+    adminDashboardBookingSearch.addEventListener("submit", function (event) {
+
+        if (
+            dashboardStartDate.value &&
+            dashboardEndDate.value &&
+            dashboardEndDate.value < dashboardStartDate.value
+        ) {
+
+            event.preventDefault();
+
+            dashboardEndDate.classList.add("is-invalid");
+
+            let error =
+                dashboardEndDate.parentNode.querySelector(".invalid-feedback");
+
+            if (!error) {
+
+                error = document.createElement("div");
+
+                error.className = "invalid-feedback";
+
+                dashboardEndDate.insertAdjacentElement(
+                    "afterend",
+                    error
+                );
+
+            }
+
+            error.textContent =
+                "End date cannot be earlier than the start date.";
+
+        }
+
+    });
+
+
+    // ===============================
+    // CLEAR DATE ERROR
+    // ===============================
+
+    dashboardStartDate.addEventListener("change", function () {
+
+        dashboardEndDate.classList.remove("is-invalid");
+
+        const error =
+            dashboardEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.remove();
+        }
+
+    });
+
+
+    dashboardEndDate.addEventListener("change", function () {
+
+        dashboardEndDate.classList.remove("is-invalid");
+
+        const error =
+            dashboardEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.remove();
+        }
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

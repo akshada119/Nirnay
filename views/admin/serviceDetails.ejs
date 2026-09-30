@@ -1,0 +1,624 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    SERVICE DETAILS
+                </span>
+
+                <h1>
+                    <span>
+                        <%= service.name %>
+                    </span>
+                </h1>
+
+                <p>
+                    View complete service information,
+                    professional details and booking activity.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-briefcase"></i>
+
+                Service
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         BACK
+    =========================================== -->
+
+        <a href="/admin/services" class="admin-back-link">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Services
+
+        </a>
+
+
+        <!-- ==========================================
+         SERVICE + PROFESSIONAL
+    =========================================== -->
+
+        <div class="admin-details-grid">
+
+
+            <!-- SERVICE INFORMATION -->
+
+            <div class="admin-detail-card">
+
+                <div class="admin-detail-icon">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+                <span class="admin-detail-label">
+                    SERVICE INFORMATION
+                </span>
+
+                <h3>
+                    <%= service.name %>
+                </h3>
+
+
+                <div class="admin-detail-list">
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        <div>
+
+                            <span>Category</span>
+
+                            <strong>
+                                <%= service.category || "Not specified" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                        <div>
+
+                            <span>Price</span>
+
+                            <strong>
+                                ₹<%= service.price || 0 %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DURATION -->
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <div>
+
+                            <span>Duration</span>
+
+                            <strong>
+                                <%= service.duration || "Not specified" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CREATED -->
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <div>
+
+                            <span>Created</span>
+
+                            <strong>
+
+                                <%= service.createdAt ? new Date(service.createdAt).toLocaleDateString("en-IN") : "N/A"
+                                    %>
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFESSIONAL -->
+
+            <div class="admin-detail-card">
+
+                <div class="admin-detail-icon">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+                <span class="admin-detail-label">
+                    PROFESSIONAL
+                </span>
+
+
+                <% if (service.professional) { %>
+
+                    <h3>
+                        <a href="/professional/<%= service.professional.slug %>">
+                            <%= service.professional.name %>
+                        </a>
+                    </h3>
+
+
+                    <div class="admin-detail-list">
+
+
+                        <div class="admin-detail-row">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <div>
+
+                                <span>Email</span>
+
+                                <strong>
+                                    <%= service.professional.email %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-detail-row">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <div>
+
+                                <span>Mobile</span>
+
+                                <strong>
+                                    <%= service.professional.mobile || "Not provided" %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-detail-row">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            <div>
+
+                                <span>Consultancy</span>
+
+                                <strong>
+                                    <%= service.professional.consultancy || "Not specified" %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-detail-row">
+
+                            <i class="fa-solid fa-award"></i>
+
+                            <div>
+
+                                <span>Experience</span>
+
+                                <strong>
+                                    <%= service.professional.experience || "Not specified" %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <% } else { %>
+
+                        <div class="admin-company-empty">
+
+                            <div class="admin-empty-icon">
+
+                                <i class="fa-solid fa-user-xmark"></i>
+
+                            </div>
+
+                            <h3>
+                                Professional Unavailable
+                            </h3>
+
+                            <p>
+                                The professional associated with
+                                this service is no longer available.
+                            </p>
+
+                        </div>
+
+                        <% } %>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         DESCRIPTION
+    =========================================== -->
+
+        <div class="admin-description-card">
+
+            <div class="admin-description-icon">
+
+                <i class="fa-solid fa-align-left"></i>
+
+            </div>
+
+            <div>
+
+                <span class="admin-detail-label">
+                    SERVICE DESCRIPTION
+                </span>
+
+                <h3>
+                    About This Service
+                </h3>
+
+                <p>
+                    <%= service.description || "No description available." %>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         COMPANY
+    =========================================== -->
+
+        <div class="admin-detail-card admin-company-details-card">
+
+            <div class="admin-detail-icon">
+
+                <i class="fa-solid fa-building"></i>
+
+            </div>
+
+            <span class="admin-detail-label">
+                COMPANY
+            </span>
+
+
+            <% if (service.company) { %>
+
+                <h3>
+                    <%= service.company.name %>
+                </h3>
+
+
+                <div class="admin-company-info-grid">
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        <div>
+
+                            <span>Category</span>
+
+                            <strong>
+                                <%= service.company.category %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <div>
+
+                            <span>Email</span>
+
+                            <strong>
+                                <%= service.company.email %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <div>
+
+                            <span>Mobile</span>
+
+                            <strong>
+                                <%= service.company.mobile %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+
+                            <span>City</span>
+
+                            <strong>
+                                <%= service.company.city %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-globe"></i>
+
+                        <div>
+
+                            <span>Website</span>
+
+                            <strong>
+                                <%= service.company.website || "Not provided" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-company-info-item">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        <div>
+
+                            <span>Address</span>
+
+                            <strong>
+                                <%= service.company.address %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <% } else { %>
+
+                    <div class="admin-company-empty">
+
+                        <div class="admin-empty-icon">
+
+                            <i class="fa-solid fa-building-circle-xmark"></i>
+
+                        </div>
+
+                        <h3>
+                            Company Unavailable
+                        </h3>
+
+                        <p>
+                            No company is currently associated
+                            with this service.
+                        </p>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+
+        <!-- ==========================================
+         BOOKINGS
+    =========================================== -->
+
+        <div class="admin-table-card admin-section-card">
+
+            <div class="admin-table-header">
+
+                <div>
+
+                    <h3>
+                        Service Bookings
+                    </h3>
+
+                    <p>
+                        Customers who have booked this service.
+                    </p>
+
+                </div>
+
+                <div class="dashboard-badge">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <%= bookings.length %>
+
+                </div>
+
+            </div>
+
+
+            <% if (bookings.length===0) { %>
+
+                <div class="admin-empty-state">
+
+                    <div class="admin-empty-icon">
+
+                        <i class="fa-solid fa-calendar-xmark"></i>
+
+                    </div>
+
+                    <h3>
+                        No Bookings
+                    </h3>
+
+                    <p>
+                        No customers have booked this service yet.
+                    </p>
+
+                </div>
+
+
+                <% } else { %>
+
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Customer</th>
+
+                                    <th>Email</th>
+
+                                    <th>Booking Date</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% bookings.forEach(booking=> { %>
+
+                                    <tr>
+
+                                        <td>
+
+                                            <% if (booking.customer) { %>
+
+                                                <div class="admin-professional-cell">
+
+                                                    <i class="fa-solid fa-user"></i>
+
+                                                    <span>
+                                                        <%= booking.customer.name %>
+                                                    </span>
+
+                                                </div>
+
+                                                <% } else { %>
+
+                                                    Not available
+
+                                                    <% } %>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <%= booking.customer ? booking.customer.email : "Not available" %>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <%= booking.bookingDate ? new
+                                                Date(booking.bookingDate).toLocaleDateString("en-IN") : "N/A" %>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="admin-status status-<%= booking.status %>">
+
+                                                <%= booking.status %>
+
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <% } %>
+
+        </div>
+
+    </div>

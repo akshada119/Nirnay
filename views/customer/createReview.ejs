@@ -1,0 +1,673 @@
+<%- layout("layout/boilerplate") %>
+
+    <link rel="stylesheet" href="/css/review.css">
+
+    <div class="review-page">
+
+        <div class="review-container">
+
+            <!-- =========================================
+             BACK TO BOOKINGS
+        ========================================== -->
+
+            <a href="/customer/bookings" class="review-back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to My Bookings</span>
+            </a>
+
+
+            <!-- =========================================
+             MAIN REVIEW CARD
+        ========================================== -->
+
+            <div class="review-card">
+
+
+                <!-- =====================================
+                 HEADER
+            ====================================== -->
+
+                <div class="review-card-header">
+
+                    <div class="review-header-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <span class="review-label">
+                        SHARE YOUR EXPERIENCE
+                    </span>
+
+                    <h1>
+                        How was your experience?
+                    </h1>
+
+                    <p>
+                        Your feedback helps other customers make
+                        better decisions and helps professionals
+                        improve their services.
+                    </p>
+
+                </div>
+
+
+                <!-- =====================================
+                 SERVICE INFORMATION
+            ====================================== -->
+
+                <div class="review-service-card">
+
+                    <div class="review-service-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+
+                    <div class="review-service-info">
+
+                        <span class="review-service-label">
+                            SERVICE
+                        </span>
+
+                        <h2>
+                            <%= booking.service.name %>
+                        </h2>
+
+
+                        <% if (booking.professional) { %>
+
+                            <div class="review-professional">
+
+                                <span class="review-professional-icon">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </span>
+
+                                <span>
+                                    <%= booking.professional.name %>
+                                </span>
+
+                            </div>
+
+                            <% } %>
+
+
+                                <% if (booking.company) { %>
+
+                                    <div class="review-company">
+
+                                        <i class="fa-solid fa-building"></i>
+
+                                        <span>
+                                            <%= booking.company.name %>
+                                        </span>
+
+                                    </div>
+
+                                    <% } %>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================
+                 REVIEW FORM
+            ====================================== -->
+
+                <form action="/review/create/<%= booking._id %>" method="POST"
+                    class="review-form     nirnay-validation-form" id="reviewForm" novalidate>
+
+
+                    <!-- =================================
+                     RATING SECTION
+                ================================== -->
+
+                    <section class="review-rating-section">
+
+                        <div class="review-section-heading">
+
+                            <span class="review-field-label">
+                                RATE YOUR EXPERIENCE
+                            </span>
+
+                            <h3>
+                                How satisfied were you?
+                            </h3>
+
+                            <p>
+                                Select a rating from 1 to 5 stars.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Stars -->
+
+                        <div class="review-stars" id="reviewStars" role="radiogroup" aria-label="Service rating">
+
+                            <% for (let i=1; i <=5; i++) { %>
+
+                                <button type="button" class="review-star" data-rating="<%= i %>"
+                                    aria-label="<%= i %> star<%= i > 1 ? 's' : '' %>" aria-checked="false" role="radio">
+
+                                    <i class="fa-solid fa-star"></i>
+
+                                </button>
+
+                                <% } %>
+
+                        </div>
+
+
+                        <!-- Rating result -->
+
+                        <div class="review-rating-result" id="ratingResult">
+
+                            <span class="review-rating-result-icon">
+                                <i class="fa-regular fa-star"></i>
+                            </span>
+
+                            <span id="ratingResultText">
+                                Tap a star to rate your experience
+                            </span>
+
+                        </div>
+
+
+                        <!-- Hidden rating -->
+
+                        <input type="hidden" name="rating" id="ratingInput" value="" required>
+                    </section>
+
+
+                    <!-- =================================
+                     COMMENT SECTION
+                ================================== -->
+
+                    <section class="review-comment-section">
+
+                        <div class="review-comment-heading">
+
+                            <div>
+
+                                <span class="review-field-label">
+                                    YOUR REVIEW
+                                </span>
+
+                                <h3>
+                                    Tell us about your experience
+                                </h3>
+
+                                <p>
+                                    Share what you liked or what could
+                                    be improved.
+                                </p>
+
+                            </div>
+
+
+                            <span class="review-character-count" id="characterCount">
+
+                                0 / 500
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-textarea-wrapper" id="reviewTextareaWrapper">
+
+                            <div class="review-textarea-icon">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </div>
+
+
+                            <textarea name="comment" id="reviewComment" maxlength="500" minlength="5"
+                                placeholder="Share your experience with this service..." required></textarea>
+
+                        </div>
+
+
+                        <div class="review-comment-helper">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            <span>
+                                Please write at least 5 characters.
+                            </span>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================
+                     SUBMIT
+                ================================== -->
+
+                    <button type="submit" class="review-submit-btn" id="reviewSubmitBtn">
+
+                        <span>
+                            Submit Review
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- =================================
+                     TRUST NOTE
+                ================================== -->
+
+                    <div class="review-security-note">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Your feedback helps maintain the quality
+                            of services on Nirnay.
+                        </span>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =============================================
+     REVIEW PAGE JAVASCRIPT
+============================================= -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* =========================================
+           ELEMENTS
+        ========================================== */
+
+        const reviewForm =
+            document.getElementById("reviewForm");
+
+        const stars =
+            document.querySelectorAll(".review-star");
+
+        const reviewStars =
+            document.getElementById("reviewStars");
+
+        const ratingInput =
+            document.getElementById("ratingInput");
+
+        const ratingResult =
+            document.getElementById("ratingResult");
+
+        const ratingResultText =
+            document.getElementById("ratingResultText");
+
+        const ratingResultIcon =
+            document.querySelector(".review-rating-result-icon");
+
+        const comment =
+            document.getElementById("reviewComment");
+
+        const characterCount =
+            document.getElementById("characterCount");
+
+        const textareaWrapper =
+            document.getElementById("reviewTextareaWrapper");
+
+        const submitButton =
+            document.getElementById("reviewSubmitBtn");
+
+
+        /* =========================================
+           RATING LABELS
+        ========================================== */
+
+        const ratingLabels = {
+
+            1: "Poor",
+            2: "Fair",
+            3: "Good",
+            4: "Very Good",
+            5: "Excellent"
+
+        };
+
+
+        const ratingDescriptions = {
+
+            1: "We are sorry your experience was not better.",
+            2: "We appreciate your honest feedback.",
+            3: "Thank you for sharing your experience.",
+            4: "Great! We are glad you had a good experience.",
+            5: "Excellent! We are happy you had a great experience."
+
+        };
+
+
+        let selectedRating = 0;
+
+
+        /* =========================================
+           UPDATE STARS
+        ========================================== */
+
+        function updateStars(rating) {
+
+            stars.forEach(function (star) {
+
+                const value =
+                    Number(star.dataset.rating);
+
+                const isActive =
+                    value <= rating;
+
+                star.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                star.setAttribute(
+                    "aria-checked",
+                    value === rating
+                        ? "true"
+                        : "false"
+                );
+
+            });
+
+        }
+
+
+        /* =========================================
+           UPDATE RATING RESULT
+        ========================================== */
+
+        function updateRatingResult(rating) {
+
+            if (!rating) {
+
+                ratingResult.classList.remove(
+                    "has-rating"
+                );
+
+                ratingResult.classList.remove(
+                    "rating-error"
+                );
+
+                ratingResultIcon.innerHTML =
+                    '<i class="fa-regular fa-star"></i>';
+
+                ratingResultText.textContent =
+                    "Tap a star to rate your experience";
+
+                return;
+            }
+
+
+            ratingResult.classList.add(
+                "has-rating"
+            );
+
+            ratingResult.classList.remove(
+                "rating-error"
+            );
+
+
+            ratingResultIcon.innerHTML =
+                '<i class="fa-solid fa-star"></i>';
+
+
+            ratingResultText.innerHTML =
+                "<strong>" +
+                rating + " / 5 — " +
+                ratingLabels[rating] +
+                "</strong>" +
+                "<small>" +
+                ratingDescriptions[rating] +
+                "</small>";
+
+        }
+
+
+        /* =========================================
+           STAR HOVER
+        ========================================== */
+
+        stars.forEach(function (star) {
+
+            star.addEventListener(
+                "mouseenter",
+                function () {
+
+                    const rating =
+                        Number(
+                            star.dataset.rating
+                        );
+
+                    updateStars(rating);
+
+                    updateRatingResult(rating);
+
+                }
+            );
+
+
+            /* =====================================
+               STAR CLICK
+            ====================================== */
+
+            star.addEventListener(
+                "click",
+                function () {
+
+                    selectedRating =
+                        Number(
+                            star.dataset.rating
+                        );
+
+
+                    ratingInput.value =
+                        selectedRating;
+
+
+                    updateStars(
+                        selectedRating
+                    );
+
+
+                    updateRatingResult(
+                        selectedRating
+                    );
+
+
+                    reviewStars.classList.remove(
+                        "rating-required"
+                    );
+
+                }
+            );
+
+
+            /* =====================================
+               KEYBOARD SUPPORT
+            ====================================== */
+
+            star.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+                        star.click();
+
+                    }
+
+                }
+            );
+
+        });
+
+
+        /* =========================================
+           STAR MOUSE LEAVE
+        ========================================== */
+
+        reviewStars.addEventListener(
+            "mouseleave",
+            function () {
+
+                updateStars(
+                    selectedRating
+                );
+
+                updateRatingResult(
+                    selectedRating
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           COMMENT CHARACTER COUNT
+        ========================================== */
+
+        function updateCharacterCount() {
+
+            const length =
+                comment.value.length;
+
+            characterCount.textContent =
+                length + " / 500";
+
+
+            characterCount.classList.remove(
+                "character-warning"
+            );
+
+            characterCount.classList.remove(
+                "character-danger"
+            );
+
+
+            if (length >= 400 && length < 480) {
+
+                characterCount.classList.add(
+                    "character-warning"
+                );
+
+            }
+
+
+            if (length >= 480) {
+
+                characterCount.classList.add(
+                    "character-danger"
+                );
+
+            }
+
+        }
+
+
+        comment.addEventListener(
+            "input",
+            function () {
+
+                updateCharacterCount();
+
+                textareaWrapper.classList.remove(
+                    "textarea-error"
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           TEXTAREA FOCUS
+        ========================================== */
+
+        comment.addEventListener(
+            "focus",
+            function () {
+
+                textareaWrapper.classList.add(
+                    "is-focused"
+                );
+
+            }
+        );
+
+
+        comment.addEventListener(
+            "blur",
+            function () {
+
+                textareaWrapper.classList.remove(
+                    "is-focused"
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           SUBMIT STATE
+        ========================================== */
+
+        reviewForm.addEventListener(
+            "submit",
+            function () {
+
+                submitButton.classList.add(
+                    "is-submitting"
+                );
+
+
+                submitButton.querySelector(
+                    "span"
+                ).textContent =
+                    "Submitting...";
+
+
+                submitButton.querySelector(
+                    "i"
+                ).className =
+                    "fa-solid fa-spinner fa-spin";
+
+
+                submitButton.disabled = true;
+
+            }
+        );
+
+
+        /* =========================================
+           INITIAL STATE
+        ========================================== */
+
+        updateCharacterCount();
+
+        updateStars(0);
+
+        updateRatingResult(0);
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

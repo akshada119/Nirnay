@@ -1,0 +1,135 @@
+<!-- ==========================================
+     MOBILE SIDEBAR MENU BUTTON
+========================================== -->
+
+<button class="admin-mobile-menu-btn" id="adminMobileMenuBtn" type="button" aria-label="Open menu">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<aside class="admin-sidebar" id="adminSidebar">
+
+    <div class="admin-sidebar-brand">
+
+        <a href="/admin/dashboard" class="admin-brand-link">
+
+            <div class="admin-brand-icon">
+                <i class="fa-solid fa-compass"></i>
+            </div>
+
+            <div>
+                <span class="admin-brand-name">NIRNAY</span>
+                <small>ADMIN PANEL</small>
+            </div>
+
+        </a>
+
+    </div>
+
+
+    <nav class="admin-navigation">
+
+        <div class="admin-nav-section">
+
+            <span class="admin-nav-title">
+                MAIN
+            </span>
+
+            <a href="/admin/dashboard"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'dashboard' ? 'active' : '' %>">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+        </div>
+
+
+        <div class="admin-nav-section">
+
+            <span class="admin-nav-title">
+                USERS
+            </span>
+
+            <a href="/admin/customers"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'users' ? 'active' : '' %>">
+                <i class="fa-solid fa-users"></i>
+                <span>Customers</span>
+            </a>
+
+            <a href="/admin/professionals"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'professionals' ? 'active' : '' %>">
+                <i class="fa-solid fa-user-tie"></i>
+                <span>Professionals</span>
+            </a>
+
+        </div>
+
+
+        <div class="admin-nav-section">
+
+            <span class="admin-nav-title">
+                MANAGEMENT
+            </span>
+
+            <a href="/admin/services"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'services' ? 'active' : '' %>">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Services</span>
+            </a>
+
+            <a href="/admin/bookings"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'bookings' ? 'active' : '' %>">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+
+            <a href="/admin/reviews"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'reviews' ? 'active' : '' %>">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </a>
+
+        </div>
+
+
+        <div class="admin-nav-section">
+
+            <span class="admin-nav-title">
+                SYSTEM
+            </span>
+
+            <a href="/admin/settings"
+                class="admin-nav-link <%= typeof activePage !== 'undefined' && activePage === 'settings' ? 'active' : '' %>">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="admin-sidebar-bottom">
+
+        <a href="/" class="admin-nav-link">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Visit Website</span>
+
+        </a>
+
+
+        <a href="/logout" class="admin-logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+<!-- ==========================================
+     MOBILE SIDEBAR OVERLAY
+========================================== -->
+
+<div class="admin-sidebar-overlay" id="adminSidebarOverlay"></div>

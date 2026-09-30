@@ -1,0 +1,513 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard admin-settings-page">
+
+        <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    PLATFORM MANAGEMENT
+                </span>
+
+                <h1>
+                    Admin Settings
+                </h1>
+
+                <p>
+                    Manage platform, booking and user settings
+                    for the NIRNAY platform.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         SETTINGS FORM
+    =========================================== -->
+
+        <form action="/admin/settings" method="POST" class="admin-settings-form nirnay-validation-form" id="adminSettingsForm" novalidate>
+
+
+            <!-- ======================================
+             PLATFORM SETTINGS
+        ======================================= -->
+
+            <div class="admin-settings-card">
+
+                <div class="admin-settings-card-header">
+
+                    <div class="admin-settings-icon">
+
+                        <i class="fa-solid fa-building"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Platform Settings
+                        </h2>
+
+                        <p>
+                            Manage general information about Nirnay.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-settings-grid">
+
+
+                    <!-- PLATFORM NAME -->
+
+                    <div class="admin-setting-field">
+
+                        <label for="platformName">
+                            Platform Name
+                        </label>
+
+                        <input type="text" id="platformName" name="platformName"
+                            value="<%= platformSettings.platformName || '' %>" required minlength="2" maxlength="100"  data-validation="name">
+
+                    </div>
+
+
+                    <!-- SUPPORT EMAIL -->
+
+                    <div class="admin-setting-field">
+
+                        <label for="supportEmail">
+                            Support Email
+                        </label>
+
+                        <input type="email" id="supportEmail" name="supportEmail"
+                            value="<%= platformSettings.supportEmail || '' %>" maxlength="100">
+
+                    </div>
+
+
+                    <!-- SUPPORT PHONE -->
+
+                    <div class="admin-setting-field">
+
+                        <label for="supportPhone">
+                            Support Phone
+                        </label>
+
+                        <input type="text" id="supportPhone" name="supportPhone"
+                            value="<%= platformSettings.supportPhone || '' %>" minlength="10" maxlength="10"
+                            pattern="[6-9][0-9]{9}"
+                            title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.">
+
+                    </div>
+
+
+                    <!-- PLATFORM ADDRESS -->
+
+                    <div class="admin-setting-field">
+
+                        <label for="platformAddress">
+                            Platform Address
+                        </label>
+
+                        <input type="text" id="platformAddress" name="platformAddress"
+                            value="<%= platformSettings.platformAddress || '' %>" minlength="5" maxlength="250">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+             BOOKING SETTINGS
+        ======================================= -->
+
+            <div class="admin-settings-card">
+
+                <div class="admin-settings-card-header">
+
+                    <div class="admin-settings-icon">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Booking Settings
+                        </h2>
+
+                        <p>
+                            Control how bookings work on the Nirnay platform.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-settings-grid">
+
+
+                    <!-- DEFAULT BOOKING STATUS -->
+
+                    <div class="admin-setting-field">
+
+                        <label for="defaultBookingStatus">
+                            Default Booking Status
+                        </label>
+
+                        <select id="defaultBookingStatus" name="defaultBookingStatus">
+
+                            <option value="pending" <%=platformSettings.defaultBookingStatus==="pending" ? "selected"
+                                : "" %>
+                                >
+                                Pending
+                            </option>
+
+
+                            <option value="confirmed" <%=platformSettings.defaultBookingStatus==="confirmed"
+                                ? "selected" : "" %>
+                                >
+                                Confirmed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOOKING TOGGLES -->
+
+                <div class="admin-settings-toggles">
+
+
+                    <!-- ALLOW NEW BOOKINGS -->
+
+                    <label class="admin-setting-toggle">
+
+                        <div class="admin-setting-toggle-content">
+
+                            <strong>
+                                Allow New Bookings
+                            </strong>
+
+                            <span>
+                                Customers can create new bookings on Nirnay.
+                            </span>
+
+                        </div>
+
+
+                        <input type="checkbox" name="allowBookings" <%=platformSettings.allowBookings ? "checked" : ""
+                            %>
+                        >
+
+                        <span class="admin-toggle-slider"></span>
+
+                    </label>
+
+
+                    <!-- CUSTOMER CANCELLATION -->
+
+                    <label class="admin-setting-toggle">
+
+                        <div class="admin-setting-toggle-content">
+
+                            <strong>
+                                Allow Customer Cancellation
+                            </strong>
+
+                            <span>
+                                Customers can cancel their existing bookings.
+                            </span>
+
+                        </div>
+
+
+                        <input type="checkbox" name="allowCustomerCancellation"
+                            <%=platformSettings.allowCustomerCancellation ? "checked" : "" %>
+                        >
+
+                        <span class="admin-toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-2 align-items-center cancellation-limit-control">
+
+                <input type="number" name="cancellationLimitValue" class="form-control cancellation-limit-value" min="1"
+                    max="365" value="<%= platformSettings.cancellationLimitValue || 24 %>" required>
+
+                <select name="cancellationLimitUnit" class="form-select cancellation-limit-unit" required>
+
+                    <option value="hours" <%=platformSettings.cancellationLimitUnit==="hours" ? "selected" : "" %>
+                        >
+                        Hours
+                    </option>
+
+                    <option value="days" <%=platformSettings.cancellationLimitUnit==="days" ? "selected" : "" %>
+                        >
+                        Days
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- ======================================
+             USER SETTINGS
+        ======================================= -->
+
+            <div class="admin-settings-card">
+
+                <div class="admin-settings-card-header">
+
+                    <div class="admin-settings-icon">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            User Settings
+                        </h2>
+
+                        <p>
+                            Manage registration and professional access.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-settings-toggles">
+
+
+                    <!-- CUSTOMER REGISTRATION -->
+
+                    <label class="admin-setting-toggle">
+
+                        <div class="admin-setting-toggle-content">
+
+                            <strong>
+                                Allow Customer Registration
+                            </strong>
+
+                            <span>
+                                New customers can create accounts on Nirnay.
+                            </span>
+
+                        </div>
+
+
+                        <input type="checkbox" name="allowCustomerRegistration"
+                            <%=platformSettings.allowCustomerRegistration ? "checked" : "" %>
+                        >
+
+                        <span class="admin-toggle-slider"></span>
+
+                    </label>
+
+
+                    <!-- PROFESSIONAL REGISTRATION -->
+
+                    <label class="admin-setting-toggle">
+
+                        <div class="admin-setting-toggle-content">
+
+                            <strong>
+                                Allow Professional Registration
+                            </strong>
+
+                            <span>
+                                New professionals can register on Nirnay.
+                            </span>
+
+                        </div>
+
+
+                        <input type="checkbox" name="allowProfessionalRegistration"
+                            <%=platformSettings.allowProfessionalRegistration ? "checked" : "" %>
+                        >
+
+                        <span class="admin-toggle-slider"></span>
+
+                    </label>
+
+
+                    <!-- PROFESSIONAL APPROVAL -->
+
+                    <label class="admin-setting-toggle">
+
+                        <div class="admin-setting-toggle-content">
+
+                            <strong>
+                                Require Professional Approval
+                            </strong>
+
+                            <span>
+                                New professionals require admin approval before accessing the platform.
+                            </span>
+
+                        </div>
+
+
+                        <input type="checkbox" name="requireProfessionalApproval"
+                            <%=platformSettings.requireProfessionalApproval ? "checked" : "" %>
+                        >
+
+                        <span class="admin-toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+             SAVE SETTINGS
+        ======================================= -->
+
+            <div class="admin-settings-actions">
+
+                <button type="submit" class="admin-settings-save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Settings
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+  <script>
+
+    // ==========================================
+    // ADMIN SETTINGS FRONTEND
+    // ==========================================
+
+    const adminSettingsForm =
+        document.getElementById("adminSettingsForm");
+
+    const supportPhone =
+        document.getElementById("supportPhone");
+
+    const cancellationLimitValue =
+        document.querySelector('input[name="cancellationLimitValue"]');
+
+
+    // ==========================================
+    // ALLOW ONLY DIGITS IN SUPPORT PHONE
+    // ==========================================
+
+    supportPhone.addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+    // ==========================================
+    // CANCELLATION LIMIT VALIDATION
+    // ==========================================
+
+    adminSettingsForm.addEventListener("submit", function (event) {
+
+        const cancellationValue =
+            Number(cancellationLimitValue.value);
+
+        if (
+            !Number.isInteger(cancellationValue) ||
+            cancellationValue < 1 ||
+            cancellationValue > 365
+        ) {
+
+            event.preventDefault();
+
+            cancellationLimitValue.classList.add("is-invalid");
+
+            let error =
+                cancellationLimitValue.parentNode
+                    .querySelector(".invalid-feedback");
+
+            if (!error) {
+
+                error = document.createElement("div");
+
+                error.className = "invalid-feedback";
+
+                cancellationLimitValue.insertAdjacentElement(
+                    "afterend",
+                    error
+                );
+
+            }
+
+            error.textContent =
+                "Cancellation limit must be between 1 and 365.";
+
+        }
+
+    });
+
+
+    // ==========================================
+    // CLEAR CANCELLATION LIMIT ERROR
+    // ==========================================
+
+    cancellationLimitValue.addEventListener("input", function () {
+
+        this.classList.remove("is-invalid");
+
+        const error =
+            this.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.remove();
+        }
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

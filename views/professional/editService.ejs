@@ -1,0 +1,537 @@
+<%- layout("/layout/boilerplate") %>
+
+
+    <div class="create-service-page">
+
+
+        <div class="create-service-container">
+
+            <div class="create-service-wrapper">
+
+                <!-- Page Header -->
+                <div class="create-service-header">
+
+                    <span class="create-service-badge">
+                        <i class="fa-solid fa-briefcase"></i>
+                        PROFESSIONAL PANEL
+                    </span>
+
+                    <h1 class="create-service-heading">
+                        Edit Service
+                    </h1>
+
+                    <p class="create-service-description">
+                        Update your service details and keep your information accurate.
+                    </p>
+
+                </div>
+
+
+                <!-- Form Card -->
+                <div class="create-service-card">
+
+                    <form action="/professional/services/<%= service._id %>/edit" method="POST"
+                        enctype="multipart/form-data" class="create-service-form nirnay-validation-form"
+                        id="editServiceForm" novalidate>
+
+                        <!-- Service Name -->
+                        <div class="create-service-field">
+
+                            <label class="create-service-label">
+                                Service Name
+                            </label>
+
+                            <div class="create-service-input-wrapper">
+
+                                <i class="fa-solid fa-tag create-service-input-icon"></i>
+
+                                <input type="text" name="name" class="create-service-input"
+                                    placeholder="Enter service name" value="<%= service.name %>" required minlength="2"
+                                    maxlength="150" data-validation="service-name">
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Category -->
+                        <div class="create-service-field">
+
+                            <label for="category" class="create-service-label">
+
+                                Service Category
+
+                            </label>
+
+                            <div class="create-service-input-wrapper">
+
+                                <i class="fa-solid fa-layer-group create-service-input-icon"></i>
+
+                                <select name="category" id="category" class="create-service-select" required>
+
+                                    <option value="">
+                                        Select Category
+                                    </option>
+
+                                    <option value="it" <%=service.category==="it" ? "selected" : "" %>>
+                                        IT Consultancy
+                                    </option>
+
+                                    <option value="finance" <%=service.category==="finance" ? "selected" : "" %>>
+                                        Finance Consultancy
+                                    </option>
+
+                                    <option value="healthcare" <%=service.category==="healthcare" ? "selected" : "" %>>
+                                        Healthcare Consultancy
+                                    </option>
+
+                                    <option value="education" <%=service.category==="education" ? "selected" : "" %>>
+                                        Education Consultancy
+                                    </option>
+
+                                    <option value="research" <%=service.category==="research" ? "selected" : "" %>>
+                                        Research Consultancy
+                                    </option>
+
+                                    <option value="business" <%=service.category==="business" ? "selected" : "" %>>
+                                        Business Consultancy
+                                    </option>
+
+                                    <option value="hr" <%=service.category==="hr" ? "selected" : "" %>>
+                                        HR Consultancy
+                                    </option>
+
+                                    <option value="legal" <%=service.category==="legal" ? "selected" : "" %>>
+                                        Legal Consultancy
+                                    </option>
+
+                                    <option value="agriculture" <%=service.category==="agriculture" ? "selected" : "" %>
+                                        >
+                                        Agriculture Consultancy
+                                    </option>
+
+                                    <option value="manufacturing" <%=service.category==="manufacturing" ? "selected"
+                                        : "" %>>
+                                        Manufacturing Consultancy
+                                    </option>
+
+                                    <option value="realEstate" <%=service.category==="realEstate" ? "selected" : "" %>>
+                                        Real Estate Consultancy
+                                    </option>
+
+                                    <option value="marketing" <%=service.category==="marketing" ? "selected" : "" %>>
+                                        Marketing Consultancy
+                                    </option>
+
+                                    <option value="career" <%=service.category==="career" ? "selected" : "" %>>
+                                        Career Consultancy
+                                    </option>
+
+                                    <option value="environmental" <%=service.category==="environmental" ? "selected"
+                                        : "" %>>
+                                        Environmental Consultancy
+                                    </option>
+
+                                    <option value="engineering" <%=service.category==="engineering" ? "selected" : "" %>
+                                        >
+                                        Engineering Consultancy
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="create-service-field">
+
+                            <label class="create-service-label">
+                                Service Description
+                            </label>
+
+                            <div class="create-service-textarea-wrapper">
+
+                                <i class="fa-solid fa-align-left create-service-textarea-icon"></i>
+
+                                <textarea name="description" class="create-service-textarea" rows="5"
+                                    placeholder="Describe your service..." required minlength="10"
+                                    maxlength="2000"><%= service.description %></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Price + Duration -->
+                        <div class="create-service-row">
+
+
+                            <!-- Price -->
+                            <div class="create-service-half-field">
+
+                                <label class="create-service-label">
+                                    Price (₹)
+                                </label>
+
+                                <div class="create-service-input-wrapper">
+
+                                    <i class="fa-solid fa-indian-rupee-sign create-service-input-icon"></i>
+
+                                    <input type="number" name="price" class="create-service-input"
+                                        placeholder="Enter price" min="0" max="100000000" step="any"
+                                        value="<%= service.price %>" required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Duration -->
+                            <div class="create-service-half-field">
+
+                                <label class="create-service-label">
+                                    Duration
+                                </label>
+
+                                <div class="create-service-input-wrapper">
+
+                                    <i class="fa-regular fa-clock create-service-input-icon"></i>
+
+                                    <input type="text" name="duration" class="create-service-input"
+                                        placeholder="e.g. 60 minutes" value="<%= service.duration %>" required
+                                        maxlength="100">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Company -->
+                        <div class="create-service-field">
+
+                            <!-- Service Images -->
+                            <div class="create-service-field">
+
+                                <label class="create-service-label">
+                                    Service Images
+                                </label>
+
+                                <div class="service-image-management">
+
+                                    <% if (service.images && service.images.length> 0) { %>
+
+                                        <div class="service-image-grid">
+
+                                            <% service.images.forEach((image)=> { %>
+
+                                                <div class="service-image-item">
+
+                                                    <div class="service-image-preview">
+
+                                                        <img src="<%= image.url %>" alt="<%= service.name %>">
+
+                                                        <% if ( service.priorityImage &&
+                                                            service.priorityImage.public_id===image.public_id ) { %>
+
+                                                            <span class="service-priority-badge">
+                                                                <i class="fa-solid fa-star"></i>
+                                                                Priority
+                                                            </span>
+
+                                                            <% } %>
+
+                                                    </div>
+
+                                                    <div class="service-image-actions">
+
+                                                        <% if ( !service.priorityImage ||
+                                                            service.priorityImage.public_id !==image.public_id ) { %>
+
+                                                            <button type="button"
+                                                                class="service-image-btn service-image-priority-btn"
+                                                                onclick="setPriorityImage('<%= service._id %>', '<%= image.public_id %>')">
+
+                                                                <i class="fa-solid fa-star"></i>
+                                                                Set Priority
+
+                                                            </button>
+
+                                                            <% } %>
+
+                                                                <button type="button"
+                                                                    class="service-image-btn service-image-delete-btn"
+                                                                    onclick="deleteServiceImage('<%= service._id %>', '<%= image.public_id %>')">
+
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                    Delete
+
+                                                                </button>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <% }) %>
+
+                                        </div>
+
+                                        <% } else { %>
+
+                                            <div class="service-no-images">
+
+                                                <i class="fa-regular fa-image"></i>
+
+                                                <span>
+                                                    No images added yet.
+                                                </span>
+
+                                            </div>
+
+                                            <% } %>
+
+
+                                                <!-- Add Images -->
+
+                                                <% if (!service.images || service.images.length < 10) { %>
+
+                                                    <div class="service-image-upload">
+
+                                                        <div class="service-image-upload-icon">
+                                                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                        </div>
+
+                                                        <div class="service-image-upload-content">
+
+                                                            <strong>
+                                                                Add More Images
+                                                            </strong>
+
+                                                            <span>
+                                                                JPG, PNG or WEBP · Maximum 5MB per image
+                                                            </span>
+
+                                                        </div>
+
+                                                        <label class="service-image-upload-btn">
+
+                                                            <i class="fa-solid fa-plus"></i>
+                                                            Choose Images
+
+                                                            <input type="file" name="images"
+                                                                accept="image/jpeg,image/png,image/webp" multiple
+                                                                hidden>
+
+                                                        </label>
+
+                                                    </div>
+
+                                                    <small class="service-image-count">
+                                                        <%= service.images ? service.images.length : 0 %> / 10 images
+                                                            used
+                                                    </small>
+
+                                                    <% } else { %>
+
+                                                        <div class="service-image-limit">
+
+                                                            <i class="fa-solid fa-circle-info"></i>
+
+                                                            You have reached the maximum limit of 10 images.
+
+                                                        </div>
+
+                                                        <% } %>
+
+                                </div>
+
+                            </div>
+
+
+                            <label class="create-service-label">
+                                Company
+                            </label>
+
+                            <div class="create-service-company">
+
+                                <div class="create-service-company-icon">
+
+                                    <i class="fa-solid fa-building"></i>
+
+                                </div>
+
+                                <div class="create-service-company-info">
+
+                                    <span>
+                                        Your Company
+                                    </span>
+
+                                    <strong>
+                                        <%= service.company.name %>
+                                    </strong>
+
+                                </div>
+
+                                <i class="fa-solid fa-circle-check create-service-company-check"></i>
+
+                            </div>
+
+                            <p class="create-service-company-note">
+
+                                <i class="fa-solid fa-circle-info"></i>
+
+                                This service will remain linked
+                                to your company.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- Buttons -->
+                        <div class="create-service-actions">
+
+                            <button type="submit" class="create-service-submit">
+
+                                <i class="fa-solid fa-pen-to-square"></i>
+
+                                Update Service
+
+                            </button>
+
+
+                            <a href="/professional/services" class="create-service-cancel">
+
+                                <i class="fa-solid fa-arrow-left"></i>
+
+                                Cancel
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+   <script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form =
+            document.getElementById("editServiceForm");
+
+        /*
+         * No custom validation is needed here.
+         * Validation is handled by nirnay-validation.js.
+         */
+
+    });
+
+
+    /*
+     * =================================
+     * SET PRIORITY IMAGE
+     * =================================
+     */
+
+    function setPriorityImage(serviceId, publicId) {
+
+        fetch(
+            `/professional/services/${serviceId}/priority-image`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+                body:
+                    `public_id=${encodeURIComponent(publicId)}`
+            }
+        )
+            .then(response => {
+
+                if (response.ok) {
+
+                    window.location.reload();
+
+                } else {
+
+                    alert("Unable to set priority image.");
+
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                alert("Something went wrong.");
+
+            });
+
+    }
+
+
+    /*
+     * =================================
+     * DELETE SERVICE IMAGE
+     * =================================
+     */
+
+    function deleteServiceImage(serviceId, publicId) {
+
+        const confirmed = confirm(
+            "Are you sure you want to delete this image?"
+        );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        fetch(
+            `/professional/services/${serviceId}/images/${encodeURIComponent(publicId)}/delete`,
+            {
+                method: "POST"
+            }
+        )
+            .then(response => {
+
+                if (response.ok) {
+
+                    window.location.reload();
+
+                } else {
+
+                    alert("Unable to delete image.");
+
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                alert("Something went wrong.");
+
+            });
+
+    }
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

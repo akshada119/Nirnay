@@ -1,0 +1,130 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="customer-dashboard">
+
+        <!-- Header -->
+        <div class="customer-header">
+
+            <div>
+                <span class="customer-label">CUSTOMER PANEL</span>
+
+                <h1>
+                    Welcome to your Dashboard
+                    <span><%= currentUser.name %></span>
+                </h1>
+
+                <p>
+                    Discover trusted professionals and find the right
+                    consultancy services for your needs.
+                </p>
+            </div>
+
+            <div class="customer-badge">
+                <i class="fa-solid fa-user"></i>
+                Customer
+            </div>
+
+        </div>
+
+
+        <!-- Dashboard Options -->
+        <div class="customer-grid">
+
+            <!-- Browse Services -->
+            <div class="customer-card animate-on-scroll">
+
+                <div class="customer-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+
+                <span class="customer-number">01</span>
+
+                <h3>Browse Services</h3>
+
+                <p>
+                    Explore consultancy services offered by
+                    experienced professionals.
+                </p>
+
+                <a href="/services" class="customer-link">
+                    Explore Services
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- My Bookings -->
+            <div class="customer-card animate-on-scroll">
+
+                <div class="customer-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <span class="customer-number">02</span>
+
+                <h3>My Bookings</h3>
+
+                <p>
+                    View and manage the consultancy services
+                    you have booked.
+                </p>
+
+                <a href="/customer/bookings" class="customer-link">
+                    My Bookings
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- Profile -->
+            <div class="customer-card animate-on-scroll">
+
+                <div class="customer-icon">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+
+                <span class="customer-number">03</span>
+
+                <h3>My Profile</h3>
+
+                <p>
+                    Manage your personal information and
+                    account details.
+                </p>
+
+                <a href="/customer/profile" class="customer-link">
+                    My Profile
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CTA -->
+        <div class="customer-cta animate-on-scroll">
+
+            <div class="customer-cta-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div>
+                <h3>Looking for the right consultant?</h3>
+
+                <p>
+                    Explore our services and find professionals
+                    who can help you achieve your goals.
+                </p>
+            </div>
+
+            <a href="/services">
+                Explore Services
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </div>

@@ -1,0 +1,318 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="customer-edit-profile-page">
+
+
+<div class="customer-edit-profile-container">
+
+    <!-- Header -->
+    <div class="customer-edit-profile-header">
+
+        <div>
+
+            <span class="customer-edit-profile-label">
+                CUSTOMER PROFILE
+            </span>
+
+            <h1>
+                Edit <span>Profile</span>
+            </h1>
+
+            <p>
+                Update your personal information and account details.
+            </p>
+
+        </div>
+
+        <a
+            href="/customer/profile"
+            class="customer-edit-profile-back"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Profile
+
+        </a>
+
+    </div>
+
+
+    <!-- Form Card -->
+    <div class="customer-edit-profile-card">
+
+        <form
+            action="/customer/profile/edit"
+            method="POST"
+            class="customer-edit-profile-form nirnay-validation-form"
+            id="customerEditProfileForm"
+            novalidate
+        >
+
+            <!-- Personal Information -->
+            <div class="customer-edit-profile-section">
+
+                <div class="customer-edit-profile-section-heading">
+
+                    <div class="customer-edit-profile-section-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Update your basic personal details.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="customer-edit-profile-grid">
+
+                    <!-- Full Name -->
+                    <div class="customer-edit-profile-field">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="customer-edit-profile-input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value="<%= user.name %>"
+                                required
+                                minlength="2"
+                                   data-validation="name"
+                                maxlength="50"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,50}"
+                                title="Name must be 2 to 50 characters and contain only letters, spaces, apostrophes, periods, or hyphens."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="customer-edit-profile-field">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="customer-edit-profile-input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="<%= user.email %>"
+                                required
+                                maxlength="100"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Mobile -->
+                    <div class="customer-edit-profile-field">
+
+                        <label for="mobile">
+                            Mobile Number
+                        </label>
+
+                        <div class="customer-edit-profile-input-wrapper">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="mobile"
+                                name="mobile"
+                                value="<%= user.mobile %>"
+                                required
+                                minlength="10"
+                                maxlength="10"
+                                pattern="[6-9][0-9]{9}"
+                                title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="customer-edit-profile-field">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <div class="customer-edit-profile-input-wrapper">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                value="<%= user.location || '' %>"
+                                placeholder="City, State"
+                                maxlength="150"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Address -->
+                    <div class="customer-edit-profile-field">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <div class="customer-edit-profile-input-wrapper">
+
+                            <i class="fa-solid fa-house"></i>
+
+                            <input
+                                type="text"
+                                id="address"
+                                name="address"
+                                value="<%= user.address %>"
+                                required
+                                minlength="5"
+                                maxlength="250"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Account Information -->
+            <div class="customer-edit-profile-divider"></div>
+
+            <div class="customer-edit-profile-section">
+
+                <div class="customer-edit-profile-section-heading">
+
+                    <div class="customer-edit-profile-section-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Account Information
+                        </h2>
+
+                        <p>
+                            Your account type cannot be changed here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="customer-edit-profile-account">
+
+                    <div class="customer-edit-profile-account-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Account Type
+                        </span>
+
+                        <strong>
+                            Customer
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+            <div class="customer-edit-profile-footer">
+
+                <a
+                    href="/customer/profile"
+                    class="customer-edit-profile-cancel"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="customer-edit-profile-save"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+
+    const customerEditProfileForm =
+        document.getElementById("customerEditProfileForm");
+
+    const mobileInput = document.getElementById("mobile");
+
+
+    /* Allow only digits in mobile field */
+    mobileInput.addEventListener("input", function () {
+
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
+
+    });
+
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

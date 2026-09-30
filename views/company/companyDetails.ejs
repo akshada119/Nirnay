@@ -1,0 +1,168 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="container my-5">
+
+        <a href="/services" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Services
+        </a>
+
+        <div class="professional-details-card">
+
+            <div class="professional-details-header">
+
+                <div class="professional-avatar">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <div>
+
+                    <span class="professional-label">
+                        COMPANY
+                    </span>
+
+                    <h1>
+                        <%= company.name %>
+                    </h1>
+
+                    <% if (company.category) { %>
+
+                        <p>
+                            <%= company.category %>
+                        </p>
+
+                        <% } %>
+
+                </div>
+
+            </div>
+
+
+            <div class="professional-information">
+
+                <% if (company.email) { %>
+
+                    <div class="professional-info-item">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <div>
+
+                            <span>Email</span>
+
+                            <strong>
+                                <%= company.email %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <% } %>
+
+
+                        <% if (company.mobile) { %>
+
+                            <div class="professional-info-item">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                                <div>
+
+                                    <span>Mobile</span>
+
+                                    <strong>
+                                        <%= company.mobile %>
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <% } %>
+
+
+                                <% if (company.city) { %>
+
+                                    <div class="professional-info-item">
+
+                                        <i class="fa-solid fa-location-dot"></i>
+
+                                        <div>
+
+                                            <span>City</span>
+
+                                            <strong>
+                                                <%= company.city %>
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+                                    <% } %>
+
+            </div>
+
+
+            <% if (company.description) { %>
+
+                <div class="professional-description">
+
+                    <h3>
+                        About the Company
+                    </h3>
+
+                    <p>
+                        <%= company.description %>
+                    </p>
+
+                </div>
+
+                <% } %>
+
+
+                    <div class="professional-skills">
+
+                        <h3>
+                            Services Offered
+                        </h3>
+
+
+                        <% if (services.length===0) { %>
+
+                            <p>
+                                No services available for this company.
+                            </p>
+
+                            <% } else { %>
+
+                                <% services.forEach(service=> { %>
+                                    <% if (service.priorityImage && service.priorityImage.url) { %>
+
+                                        <img src="<%= service.priorityImage.url %>" alt="<%= service.name %>"
+                                            class="service-card-image">
+
+                                        <% } %>
+
+                                            <p>
+
+                                                <a href="/services/<%= service._id %>" class="admin-details-link">
+
+                                                    <%= service.name %>
+
+                                                </a>
+
+                                            </p>
+
+                                            <% }) %>
+
+                                                <% } %>
+
+                    </div>
+
+        </div>
+
+    </div>

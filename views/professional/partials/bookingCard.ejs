@@ -1,0 +1,200 @@
+<div class="professional-booking-card">
+
+    <!-- Left -->
+
+    <div class="professional-booking-main">
+
+
+        <% if (!booking.professionalSeen) { %>
+            <span class="booking-new-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                NEW
+            </span>
+            <% } %>
+
+                <div class="professional-booking-icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+
+                <div class="professional-booking-info">
+
+                    <h3>
+                        <%= booking.service?.name || "Service unavailable" %>
+                    </h3>
+
+                    <p class="professional-booking-customer">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <%= booking.customer?.name || "Customer unavailable" %>
+
+                    </p>
+
+                    <% if (booking.customer?.email) { %>
+
+                        <p class="professional-booking-email">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <%= booking.customer.email %>
+
+                        </p>
+
+                        <% } %>
+
+                </div>
+
+    </div>
+
+    <!-- Date & Time -->
+
+    <div class="professional-booking-date">
+
+        <span>
+            <i class="fa-solid fa-calendar-days"></i>
+        </span>
+
+        <div>
+
+            <strong>
+                <%= new Date(booking.bookingDate).toLocaleDateString( "en-IN" , { day: "2-digit" , month: "short" ,
+                    year: "numeric" } ) %>
+            </strong>
+
+            <small>
+                <i class="fa-regular fa-clock"></i>
+
+                <%= new Date(booking.bookingDate).toLocaleTimeString( "en-IN" , { hour: "2-digit" , minute: "2-digit" ,
+                    hour12: true } ) %>
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Status -->
+
+    <div class="professional-booking-status">
+
+        <% if (booking.status==="pending" ) { %>
+
+            <span class="professional-status-badge status-pending">
+
+                <i class="fa-solid fa-clock"></i>
+
+                Pending
+
+            </span>
+
+            <% } else if (booking.status==="confirmed" ) { %>
+
+                <span class="professional-status-badge status-confirmed">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Confirmed
+
+                </span>
+
+                <% } else if (booking.status==="completed" ) { %>
+
+                    <span class="professional-status-badge status-completed">
+
+                        <i class="fa-solid fa-check-double"></i>
+
+                        Completed
+
+                    </span>
+
+                    <% } else if (booking.status==="cancelled" ) { %>
+
+                        <span class="professional-status-badge status-cancelled">
+
+                            <i class="fa-solid fa-circle-xmark"></i>
+
+                            Cancelled
+
+                        </span>
+
+                        <% } %>
+
+    </div>
+
+
+    <!-- Actions -->
+
+    <div class="professional-booking-actions">
+
+        <!-- View Booking Details -->
+        <a href="/professional/bookings/<%= booking._id %>" class="professional-booking-action view-action">
+            <i class="fa-solid fa-eye"></i>
+            View Details
+        </a>
+
+        <% if (booking.status==="pending" ) { %>
+
+            <!-- Confirm -->
+            <form action="/professional/bookings/<%= booking._id %>/confirm" method="POST"
+                class="nirnay-validation-form" novalidate>
+                <button type="submit" class="professional-booking-action confirm-action">
+                    <i class="fa-solid fa-check"></i>
+                    Confirm
+                </button>
+            </form>
+
+            <!-- Cancel -->
+            <form action="/professional/bookings/<%= booking._id %>/cancel" method="POST" class="nirnay-validation-form"
+                novalidate>
+                <button type="submit" class="professional-booking-action cancel-action">
+                    <i class="fa-solid fa-xmark"></i>
+                    Cancel
+                </button>
+            </form>
+
+            <% } else if (booking.status==="confirmed" ) { %>
+
+                <!-- Complete -->
+                <form action="/professional/bookings/<%= booking._id %>/complete" method="POST"
+                    class="nirnay-validation-form" novalidate>
+                    <button type="submit" class="professional-booking-action complete-action">
+                        <i class="fa-solid fa-check-double"></i>
+                        Complete
+                    </button>
+                </form>
+
+                <!-- Cancel -->
+                <form action="/professional/bookings/<%= booking._id %>/cancel" method="POST"
+                    class="nirnay-validation-form" novalidate>
+                    <button type="submit" class="professional-booking-action cancel-action">
+                        <i class="fa-solid fa-xmark"></i>
+                        Cancel
+                    </button>
+                </form>
+
+                <% } else if (booking.status==="completed" ) { %>
+
+                    <span class="professional-booking-action locked-action">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Completed
+                    </span>
+
+                    <% } else if (booking.status==="cancelled" ) { %>
+
+                        <span class="professional-booking-action locked-action">
+                            <i class="fa-solid fa-ban"></i>
+                            Cancelled
+                        </span>
+
+                        <% } %>
+
+    </div>
+
+</div>
+
+<script src="/js/nirnay-validation.js"></script>

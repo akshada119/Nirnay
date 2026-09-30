@@ -1,0 +1,289 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="container my-5">
+
+        <div class="booking-page">
+
+            <!-- Back -->
+            <a href="/services/<%=service.slug %>" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Service
+            </a>
+
+
+            <div class="row g-5 mt-3">
+
+                <!-- =========================
+                 SERVICE SUMMARY
+            ========================== -->
+
+                <div class="col-lg-5">
+
+                    <div class="booking-service-card">
+
+                        <span class="service-category">
+                            <%= service.category %>
+                        </span>
+
+                        <h2 class="mt-3">
+                            <%= service.name %>
+                        </h2>
+
+                        <p class="text-muted">
+                            <%= service.description %>
+                        </p>
+
+                        <hr>
+
+
+                        <!-- Price -->
+
+                        <div class="booking-detail">
+
+                            <div class="booking-detail-icon">
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                            </div>
+
+                            <div>
+                                <small>Service Price</small>
+
+                                <strong>
+                                    ₹<%= service.price %>
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Duration -->
+
+                        <div class="booking-detail">
+
+                            <div class="booking-detail-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <small>Duration</small>
+
+                                <strong>
+                                    <%= service.duration %>
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Company -->
+
+                        <% if (service.company) { %>
+
+                            <div class="booking-detail">
+
+                                <div class="booking-detail-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+
+                                <div>
+                                    <small>Company</small>
+
+                                    <strong>
+                                        <%= service.company.name %>
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <% } %>
+
+
+                                <!-- Professional -->
+
+                                <% if (service.professional) { %>
+
+                                    <div class="booking-detail">
+
+                                        <div class="booking-detail-icon">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                        </div>
+
+                                        <div>
+                                            <small>Professional</small>
+
+                                            <strong>
+                                                <a href="/professional/<%= service.professional.slug %>">
+                                                    <%= service.professional.name %>
+                                                </a>
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+                                    <% } %>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                 BOOKING FORM
+            ========================== -->
+
+                <div class="col-lg-7">
+
+                    <div class="booking-form-card">
+
+                        <span class="services-label">
+                            BOOK A SERVICE
+                        </span>
+
+                        <h1>
+                            Schedule your
+                            <span>consultation</span>
+                        </h1>
+
+                        <p class="text-muted">
+                            Choose a convenient date and tell the professional
+                            how they can help you.
+                        </p>
+
+
+                        <form action="/customer/book/<%= service.slug %>" method="POST" class="nirnay-validation-form"
+                            id="bookingForm" novalidate>
+
+                            <!-- Date -->
+
+                            <div class="mb-4">
+
+                                <label for="bookingDate" class="form-label">
+                                    Preferred Date
+                                </label>
+
+                                <input type="datetime-local" class="form-control" id="bookingDate" name="bookingDate"
+                                      data-validation="booking-date" required>
+
+                                <small class="text-muted">
+                                    Select a future date for your consultation.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Message -->
+
+                            <div class="mb-4">
+
+                                <label for="message" class="form-label">
+                                    Message
+                                </label>
+
+                                <textarea class="form-control" id="message" name="message" rows="5" maxlength="1000"
+                                    placeholder="Tell the professional what you need help with..."></textarea>
+
+                                <small class="text-muted">
+                                    You can include your requirements, questions,
+                                    or any important details.
+                                </small>
+                            </div>
+
+
+                            <!-- Submit -->
+
+                            <button type="submit" class="btn btn-primary booking-submit-btn">
+
+                                <i class="fa-solid fa-calendar-check"></i>
+
+                                Confirm Booking
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Prevent past dates + Frontend Validation -->
+
+   <script>
+
+    const bookingForm =
+        document.getElementById("bookingForm");
+
+    const bookingDate =
+        document.getElementById("bookingDate");
+
+    const message =
+        document.getElementById("message");
+
+
+    // ==========================================
+    // SET MINIMUM BOOKING DATE/TIME
+    // ==========================================
+
+    function setMinimumBookingDate() {
+
+        const now = new Date();
+
+        const year =
+            now.getFullYear();
+
+        const month =
+            String(now.getMonth() + 1).padStart(2, "0");
+
+        const day =
+            String(now.getDate()).padStart(2, "0");
+
+        const hours =
+            String(now.getHours()).padStart(2, "0");
+
+        const minutes =
+            String(now.getMinutes()).padStart(2, "0");
+
+        bookingDate.min =
+            `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    }
+
+    setMinimumBookingDate();
+
+
+    // ==========================================
+    // BOOKING DATE - KEEP MINIMUM UPDATED
+    // ==========================================
+
+    bookingDate.addEventListener("focus", function () {
+
+        setMinimumBookingDate();
+
+    });
+
+
+    // ==========================================
+    // MESSAGE LENGTH RESTRICTION
+    // ==========================================
+
+    message.addEventListener("input", function () {
+
+        if (this.value.length > 1000) {
+
+            this.value =
+                this.value.substring(0, 1000);
+
+        }
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

@@ -1,0 +1,664 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <!-- HEADER -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    BOOKING MANAGEMENT
+                </span>
+
+                <h1>
+                    Bookings
+                </h1>
+
+                <p>
+                    View and manage all bookings created
+                    across the NIRNAY platform.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <%= bookings.length %> Bookings
+
+            </div>
+
+        </div>
+
+        <!-- BOOKINGS TABLE CARD -->
+
+        <div class="admin-table-card">
+
+            <!-- TABLE HEADER -->
+
+            <div class="admin-table-header">
+
+                <div>
+
+                    <h3>
+                        All Bookings
+                    </h3>
+
+                    <p>
+                        Search and manage all platform bookings.
+                    </p>
+
+                </div>
+
+                <!-- BOOKING SEARCH FORM -->
+
+                <form action="/admin/bookings" method="GET" class="admin-booking-search nirnay-validation-form" id="adminBookingSearchForm" novalidate>
+
+                    <!-- TEXT SEARCH -->
+
+                    <div class="admin-search-field">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="text" name="search" value="<%= search || '' %>"
+                            placeholder="Customer, professional, service..." autocomplete="off"   data-validation="search" maxlength="100">
+
+                    </div>
+
+                    <!-- DATE RANGE SEARCH -->
+
+                    <div class="admin-search-field admin-date-range">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <input type="date" name="startDate" value="<%= startDate || '' %>" aria-label="Start date">
+
+                        <span class="date-range-text">to</span>
+
+                        <input type="date" name="endDate" value="<%= endDate || '' %>" aria-label="End date">
+
+                    </div>
+
+                    <!-- SEARCH BUTTON -->
+                    <button type="submit" class="admin-search-btn">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        Search
+
+                    </button>
+
+                    <!-- CLEAR BUTTON -->
+                    <% if (search || startDate || endDate) { %>
+
+                        <a href="/admin/bookings" class="admin-search-clear">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            Clear
+
+                        </a>
+
+                        <% } %>
+                </form>
+
+            </div>
+
+
+
+
+            <!-- ========================================== 
+     ACTIVE FILTER INFO 
+========================================== -->
+
+            <% if (search || startDate || endDate) { %>
+
+                <div class="admin-active-filters">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    <span>
+                        Showing filtered bookings
+                    </span>
+
+
+                    <!-- TEXT SEARCH -->
+
+                    <% if (search) { %>
+
+                        <strong>
+
+                            Search: "<%= search %>"
+
+                        </strong>
+
+                        <% } %>
+
+
+                            <!-- FROM DATE -->
+
+                            <% if (startDate) { %>
+
+                                <strong>
+
+                                    From:
+                                    <%= startDate %>
+
+                                </strong>
+
+                                <% } %>
+
+
+                                    <!-- TO DATE -->
+
+                                    <% if (endDate) { %>
+
+                                        <strong>
+
+                                            To:
+                                            <%= endDate %>
+
+                                        </strong>
+
+                                        <% } %>
+
+                </div>
+
+                <% } %>
+
+
+
+
+                    <!-- ========================================== 
+     EMPTY STATE 
+========================================== -->
+
+                    <% if (bookings.length===0) { %>
+
+                        <div class="admin-empty-state">
+
+                            <div class="admin-empty-icon">
+
+                                <i class="fa-solid fa-calendar-xmark"></i>
+
+                            </div>
+
+                            <h3>
+                                No Bookings Found
+                            </h3>
+
+                            <p>
+
+                                <% if (search || startDate || endDate) { %>
+
+                                    No bookings match your search
+                                    or selected date range.
+
+                                    <% } else { %>
+
+                                        There are currently no bookings
+                                        on the platform.
+
+                                        <% } %>
+
+                            </p>
+
+                        </div>
+
+
+                        <% } else { %>
+
+
+
+                            <!-- ========================================== 
+                 BOOKINGS TABLE 
+            =========================================== -->
+
+                            <div class="admin-table-wrapper">
+
+                                <table class="admin-table admin-bookings-table">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>
+                                                Customer
+                                            </th>
+
+                                            <th>
+                                                Service
+                                            </th>
+
+                                            <th>
+                                                Professional
+                                            </th>
+
+                                            <th>
+                                                Company
+                                            </th>
+
+                                            <th>
+                                                Booking Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+
+                                            <th>
+                                                Action
+                                            </th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+
+                                        <% bookings.forEach(booking=> { %>
+
+
+                                            <% const bookingDate=booking.bookingDate ? new Date(booking.bookingDate) :
+                                                null; const today=new Date(); let isToday=false; if (bookingDate) {
+                                                isToday=bookingDate.getDate()===today.getDate() &&
+                                                bookingDate.getMonth()===today.getMonth() &&
+                                                bookingDate.getFullYear()===today.getFullYear(); } %>
+
+
+                                                <!-- ========================================== 
+                                 BOOKING ROW 
+                            =========================================== -->
+
+                                                <tr class=" 
+                                    <%= !booking.adminSeen 
+                                        ? 'booking-new-row' 
+                                        : '' %> 
+ 
+                                    <%= isToday 
+                                        ? 'booking-today-row' 
+                                        : '' %> 
+                                ">
+
+
+                                                    <!-- ====================================== 
+                                     CUSTOMER 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <% if (booking.customer) { %>
+
+                                                            <div class="admin-user-cell">
+
+                                                                <div class="admin-user-avatar">
+
+                                                                    <i class="fa-solid fa-user"></i>
+
+                                                                </div>
+
+                                                                <div>
+
+                                                                    <strong>
+                                                                        <%= booking.customer.name %>
+                                                                    </strong>
+
+                                                                    <span>
+                                                                        <%= booking.customer.email %>
+                                                                    </span>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <% } else { %>
+
+                                                                <span class="admin-muted">
+                                                                    Customer unavailable
+                                                                </span>
+
+                                                                <% } %>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     SERVICE 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <% if (booking.service) { %>
+
+                                                            <div class="admin-booking-service">
+
+                                                                <div class="admin-service-icon">
+
+                                                                    <i class="fa-solid fa-briefcase"></i>
+
+                                                                </div>
+
+                                                                <div>
+
+                                                                    <strong>
+                                                                        <%= booking.service.name %>
+                                                                    </strong>
+
+                                                                    <span>
+                                                                        ₹<%= booking.service.price || 0 %>
+                                                                    </span>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <% } else { %>
+
+                                                                <span class="admin-muted">
+                                                                    Service unavailable
+                                                                </span>
+
+                                                                <% } %>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     PROFESSIONAL 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <% if (booking.professional) { %>
+
+                                                            <div class="admin-professional-cell">
+
+                                                                <i class="fa-solid fa-user-tie"></i>
+
+                                                                <span>
+                                                                    <%= booking.professional.name %>
+                                                                </span>
+
+                                                            </div>
+
+                                                            <% } else { %>
+
+                                                                <span class="admin-muted">
+                                                                    Not available
+                                                                </span>
+
+                                                                <% } %>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     COMPANY 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <% if (booking.company) { %>
+
+                                                            <div class="admin-company-cell">
+
+                                                                <i class="fa-solid fa-building"></i>
+
+                                                                <span>
+                                                                    <%= booking.company.name %>
+                                                                </span>
+
+                                                            </div>
+
+                                                            <% } else { %>
+
+                                                                <span class="admin-muted">
+                                                                    Not available
+                                                                </span>
+
+                                                                <% } %>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     BOOKING DATE 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <div class="admin-date-cell">
+
+                                                            <i class="fa-solid fa-calendar"></i>
+
+                                                            <div>
+
+                                                                <% if (bookingDate) { %>
+
+                                                                    <!-- DATE -->
+
+                                                                    <strong>
+
+                                                                        <%= bookingDate.toLocaleDateString( "en-IN" , {
+                                                                            day: "2-digit" , month: "2-digit" ,
+                                                                            year: "numeric" } ) %>
+
+                                                                    </strong>
+
+
+                                                                    <!-- TIME -->
+
+                                                                    <span>
+
+                                                                        <%= bookingDate.toLocaleTimeString( "en-IN" , {
+                                                                            hour: "2-digit" , minute: "2-digit" } ) %>
+
+                                                                    </span>
+
+
+                                                                    <!-- BADGES -->
+
+                                                                    <div class="booking-badges">
+
+
+                                                                        <!-- NEW -->
+
+                                                                        <% if (!booking.adminSeen) { %>
+
+                                                                            <span class="booking-new-badge">
+
+                                                                                <i class="fa-solid fa-sparkles"></i>
+
+                                                                                NEW
+
+                                                                            </span>
+
+                                                                            <% } %>
+
+
+                                                                                <!-- TODAY -->
+
+                                                                                <% if (isToday) { %>
+
+                                                                                    <span class="booking-today-badge">
+
+                                                                                        <i
+                                                                                            class="fa-solid fa-calendar-day"></i>
+
+                                                                                        TODAY
+
+                                                                                    </span>
+
+                                                                                    <% } %>
+
+
+                                                                    </div>
+
+                                                                    <% } else { %>
+
+                                                                        <span class="admin-muted">
+                                                                            Date unavailable
+                                                                        </span>
+
+                                                                        <% } %>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     STATUS 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <span class=" admin-booking-status  
+                                           admin-status-select-<%= booking.status %>">
+
+                                                            <%= booking.status %>
+
+                                                        </span>
+
+                                                    </td>
+
+
+                                                    <!-- ====================================== 
+                                     ACTION 
+                                ======================================= -->
+
+                                                    <td>
+
+                                                        <a href="/admin/bookings/<%= booking._id %>"
+                                                            class="admin-view-btn">
+
+                                                            View
+
+                                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                                        </a>
+
+                                                    </td>
+
+
+                                                </tr>
+
+
+                                                <% }) %>
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+                            <% } %>
+
+
+        </div>
+
+    </div>
+
+
+   <script>
+
+    // ===============================
+    // ADMIN BOOKING SEARCH
+    // ===============================
+
+    const adminBookingSearchForm =
+        document.getElementById("adminBookingSearchForm");
+
+    const adminSearchInput =
+        adminBookingSearchForm.querySelector('input[name="search"]');
+
+    const adminStartDate =
+        adminBookingSearchForm.querySelector('input[name="startDate"]');
+
+    const adminEndDate =
+        adminBookingSearchForm.querySelector('input[name="endDate"]');
+
+
+    // ===============================
+    // DATE RANGE VALIDATION
+    // ===============================
+
+    adminStartDate.addEventListener("change", function () {
+
+        adminEndDate.classList.remove("is-invalid");
+
+        const error =
+            adminEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.remove();
+        }
+
+    });
+
+
+    adminEndDate.addEventListener("change", function () {
+
+        adminEndDate.classList.remove("is-invalid");
+
+        const error =
+            adminEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.remove();
+        }
+
+    });
+
+
+    // ===============================
+    // ADMIN BOOKING SEARCH
+    // ===============================
+
+    adminBookingSearchForm.addEventListener("submit", function (event) {
+
+        if (
+            adminStartDate.value &&
+            adminEndDate.value &&
+            adminEndDate.value < adminStartDate.value
+        ) {
+
+            event.preventDefault();
+
+            adminEndDate.classList.add("is-invalid");
+
+            let error =
+                adminEndDate.parentNode.querySelector(".invalid-feedback");
+
+            if (!error) {
+
+                error = document.createElement("div");
+
+                error.className = "invalid-feedback";
+
+                adminEndDate.insertAdjacentElement(
+                    "afterend",
+                    error
+                );
+
+            }
+
+            error.textContent =
+                "End date cannot be earlier than the start date.";
+
+        }
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

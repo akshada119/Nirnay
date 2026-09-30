@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        <%= pageTitle || "Admin Panel" %> | Nirnay
+    </title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="stylesheet" href="/css/style2.css">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <!-- icon font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="/images/nirnay-icon.png">
+</head>
+
+
+<body class="admin-body">
+
+
+    <!-- Sidebar -->
+
+    <%- include("../includes/adminSidebar") %>
+
+        <% if (success && success.length> 0) { %>
+            <div class="flash-message flash-success">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                    <strong>Success!</strong>
+                    <span>
+                        <%= success[0] %>
+                    </span>
+                </div>
+                <button type="button" class="flash-close" aria-label="Close message">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <% } %>
+
+                <% if (error && error.length> 0) { %>
+                    <div class="flash-message flash-error">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div>
+                            <strong>Oops!</strong>
+                            <span>
+                                <%= error[0] %>
+                            </span>
+                        </div>
+                        <button type="button" class="flash-close" aria-label="Close message">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <% } %>
+
+                        <!-- Main Area -->
+
+                        <div class="admin-main">
+
+
+                            <!-- Page Content -->
+
+                            <main class="admin-content">
+
+                                <%- body %>
+
+                            </main>
+
+
+                        </div>
+
+
+                        <!-- Bootstrap JS -->
+
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+                        </script>
+
+
+                        <!-- Admin JS -->
+
+                        <script>
+
+                            document.querySelectorAll(".flash-message").forEach(message => {
+                                const closeButton = message.querySelector(".flash-close");
+
+                                closeButton.addEventListener("click", () => {
+                                    message.classList.add("flash-hide");
+                                    setTimeout(() => message.remove(), 300);
+                                });
+
+                                setTimeout(() => {
+                                    message.classList.add("flash-hide");
+                                    setTimeout(() => message.remove(), 300);
+                                }, 4000);
+                            });
+
+                            const menuBtn =
+                                document.getElementById("adminMenuBtn");
+
+                            const sidebar =
+                                document.getElementById("adminSidebar");
+
+
+                            if (menuBtn && sidebar) {
+
+                                menuBtn.addEventListener("click", () => {
+
+                                    sidebar.classList.toggle("show");
+
+                                });
+
+                            }
+
+                        </script>
+
+                        <script>
+
+    const adminMobileMenuBtn =
+        document.getElementById(
+            "adminMobileMenuBtn"
+        );
+
+    const adminSidebar =
+        document.getElementById(
+            "adminSidebar"
+        );
+
+    const adminSidebarOverlay =
+        document.getElementById(
+            "adminSidebarOverlay"
+        );
+
+
+    /* ==========================================
+       OPEN / CLOSE SIDEBAR
+    ========================================== */
+
+    function toggleAdminSidebar() {
+
+        adminSidebar.classList.toggle(
+            "admin-sidebar-active"
+        );
+
+        adminSidebarOverlay.classList.toggle(
+            "admin-overlay-active"
+        );
+
+        document.body.classList.toggle(
+            "admin-sidebar-open"
+        );
+
+    }
+
+
+    /* ==========================================
+       CLOSE SIDEBAR
+    ========================================== */
+
+    function closeAdminSidebar() {
+
+        adminSidebar.classList.remove(
+            "admin-sidebar-active"
+        );
+
+        adminSidebarOverlay.classList.remove(
+            "admin-overlay-active"
+        );
+
+        document.body.classList.remove(
+            "admin-sidebar-open"
+        );
+
+    }
+
+
+    /* ==========================================
+       MENU BUTTON
+    ========================================== */
+
+    if (adminMobileMenuBtn) {
+
+        adminMobileMenuBtn.addEventListener(
+            "click",
+            toggleAdminSidebar
+        );
+
+    }
+
+
+    /* ==========================================
+       OVERLAY CLICK
+    ========================================== */
+
+    if (adminSidebarOverlay) {
+
+        adminSidebarOverlay.addEventListener(
+            "click",
+            closeAdminSidebar
+        );
+
+    }
+
+
+    /* ==========================================
+       CLOSE AFTER CLICKING A MENU LINK
+    ========================================== */
+
+    const adminSidebarLinks =
+        document.querySelectorAll(
+            ".admin-sidebar a"
+        );
+
+
+    adminSidebarLinks.forEach((link) => {
+
+        link.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    window.innerWidth <= 991
+                ) {
+
+                    closeAdminSidebar();
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* ==========================================
+       RESET SIDEBAR ON DESKTOP
+    ========================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (
+                window.innerWidth > 991
+            ) {
+
+                closeAdminSidebar();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>

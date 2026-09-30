@@ -1,0 +1,288 @@
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+
+
+<div class="container">
+
+    <!-- BRAND -->
+    <a class="navbar-brand" href="/">
+        Nirnay
+    </a>
+
+
+    <!-- MOBILE TOGGLE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+
+    <!-- NAVBAR CONTENT -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- NAVIGATION -->
+        <ul class="navbar-nav me-auto align-items-lg-center">
+
+            <!-- HOME -->
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    Home
+                </a>
+            </li>
+
+
+            <!-- ABOUT -->
+            <li class="nav-item">
+                <a class="nav-link" href="/about">
+                    About
+                </a>
+            </li>
+
+
+
+
+
+            <!-- CONTACT -->
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="navbar-right">
+
+            <!-- SEARCH -->
+            <form action="/search" method="GET" class="navbar-search nirnay-validation-form" id="navbarSearchForm" novalidate>
+
+                <input
+                    type="search"
+                    name="q"
+                    class="form-control"
+                    placeholder="Search services..."
+                    aria-label="Search services"
+                    maxlength="100"
+                    id="navbarSearchInput"
+                       data-validation="search"
+                >
+
+                <button type="submit" class="btn btn-primary">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- ================================= -->
+            <!-- NOT LOGGED IN -->
+            <!-- ================================= -->
+
+            <% if (!userId) { %>
+
+                <div class="navbar-auth">
+
+                    <a class="nav-link" href="/login">
+                        Login
+                    </a>
+
+                    <a class="nav-link register-nav-btn" href="/register">
+                        Register
+                    </a>
+
+                </div>
+
+                <% } %>
+
+
+                    <!-- ================================= -->
+                    <!-- CUSTOMER -->
+                    <!-- ================================= -->
+
+                    <% if (userId && role==="customer" ) { %>
+
+                        <div class="dropdown user-dropdown">
+
+                            <button class="btn user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                                <i class="fa-solid fa-user me-2"></i>
+                                My Account
+
+                            </button>
+
+
+                            <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <li>
+                                    <a class="dropdown-item" href="/customer/profile">
+
+                                        <i class="fa-solid fa-user me-2"></i>
+                                        My Profile
+
+                                    </a>
+                                </li>
+
+                                <!-- DASHBOARD -->
+                                <li>
+                                    <a class="dropdown-item" href="/customer/dashboard">
+
+                                        <i class="fa-solid fa-house me-2"></i>
+                                        Dashboard
+
+                                    </a>
+                                </li>
+
+
+                                <!-- BROWSE SERVICES -->
+                                <li>
+                                    <a class="dropdown-item" href="/services">
+
+                                        <i class="fa-solid fa-magnifying-glass me-2"></i>
+                                        Browse Services
+
+                                    </a>
+                                </li>
+
+
+                                <!-- BOOKINGS -->
+                                <li>
+                                    <a class="dropdown-item" href="/customer/bookings">
+
+                                        <i class="fa-solid fa-calendar-check me-2"></i>
+                                        My Bookings
+
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+
+                                <!-- LOGOUT -->
+                                <li>
+                                    <a class="dropdown-item text-danger" href="/logout">
+
+                                        <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                        Logout
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <% } %>
+
+
+                            <!-- ================================= -->
+                            <!-- PROFESSIONAL -->
+                            <!-- ================================= -->
+                            <% if (userId && role==="professional" ) { %>
+
+                                <div class="dropdown user-dropdown">
+
+                                    <button class="btn user-btn dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown">
+
+                                        <i class="fa-solid fa-briefcase me-2"></i>
+                                        Professional
+
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+
+                                        <!-- MY PROFILE -->
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="<%= role === 'professional' ? '/professional/profile' : '/customer/profile' %>">
+                                                <i class="fa-solid fa-user"></i>
+                                                Profile
+                                            </a>
+                                        </li>
+
+                                        <!-- DASHBOARD -->
+                                        <li>
+                                            <a class="dropdown-item" href="/professional/dashboard">
+
+                                                <i class="fa-solid fa-house me-2"></i>
+                                                Dashboard
+
+                                            </a>
+                                        </li>
+
+                                        <!-- COMPANY -->
+                                        <li>
+                                            <a class="dropdown-item" href="/professional/company">
+
+                                                <i class="fa-solid fa-building me-2"></i>
+                                                My Company
+
+                                            </a>
+                                        </li>
+
+                                        <!-- SERVICES -->
+                                        <li>
+                                            <a class="dropdown-item" href="/professional/services">
+
+                                                <i class="fa-solid fa-briefcase me-2"></i>
+                                                My Services
+
+                                            </a>
+                                        </li>
+
+                                        <!-- BOOKINGS -->
+                                        <li>
+                                            <a class="dropdown-item" href="/professional/bookings">
+
+                                                <i class="fa-solid fa-calendar-check me-2"></i>
+                                                Bookings
+
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <!-- LOGOUT -->
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="/logout">
+
+                                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                                Logout
+
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                                <% } %>
+        </div>
+
+    </div>
+
+</div>
+
+</nav>
+
+<script>
+
+    const navbarSearchForm =
+        document.getElementById("navbarSearchForm");
+
+    const navbarSearchInput =
+        document.getElementById("navbarSearchInput");
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

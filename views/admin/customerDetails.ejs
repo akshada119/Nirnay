@@ -1,0 +1,433 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    CUSTOMER DETAILS
+                </span>
+
+                <h1>
+                    <span>
+                        <%= customer.name %>
+                    </span>
+                </h1>
+
+                <p>
+                    View customer information and booking history
+                    on the NIRNAY platform.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-user"></i>
+
+                Customer
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         BACK BUTTON
+    =========================================== -->
+
+        <a href="/admin/customers" class="admin-back-link">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Customers
+
+        </a>
+
+
+        <!-- ==========================================
+         CUSTOMER INFORMATION
+    =========================================== -->
+
+        <div class="admin-details-grid">
+
+
+            <!-- PROFILE CARD -->
+
+            <div class="admin-detail-card">
+
+                <div class="admin-detail-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <span class="admin-detail-label">
+                    CUSTOMER PROFILE
+                </span>
+
+                <h3>
+                    <%= customer.name %>
+                </h3>
+
+                <div class="admin-detail-list">
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <div>
+
+                            <span>Email</span>
+
+                            <strong>
+                                <%= customer.email %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <div>
+
+                            <span>Mobile</span>
+
+                            <strong>
+                                <%= customer.mobile || "Not provided" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+
+                            <span>Address</span>
+
+                            <strong>
+                                <%= customer.address || "Not provided" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-detail-row">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <div>
+
+                            <span>Registered</span>
+
+                            <strong>
+                                <%= customer.createdAt ? new Date(customer.createdAt).toLocaleDateString("en-IN")
+                                    : "N/A" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING SUMMARY -->
+
+            <div class="admin-detail-card">
+
+                <div class="admin-detail-icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+                <span class="admin-detail-label">
+                    BOOKING SUMMARY
+                </span>
+
+                <h3>
+                    <%= bookings.length %>
+                </h3>
+
+                <p class="admin-detail-description">
+                    Total bookings created by this customer.
+                </p>
+
+
+                <div class="admin-booking-stats">
+
+                    <div>
+
+                        <strong>
+                            <%= bookings.filter(b=> b.status === "pending").length %>
+                        </strong>
+
+                        <span>
+                            Pending
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            <%= bookings.filter(b=> b.status === "confirmed").length %>
+                        </strong>
+
+                        <span>
+                            Confirmed
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            <%= bookings.filter(b=> b.status === "completed").length %>
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            <%= bookings.filter(b=> b.status === "cancelled").length %>
+                        </strong>
+
+                        <span>
+                            Cancelled
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+         BOOKING HISTORY
+    =========================================== -->
+
+        <div class="admin-table-card admin-bookings-card">
+
+            <div class="admin-table-header">
+
+                <div>
+
+                    <h3>
+                        Booking History
+                    </h3>
+
+                    <p>
+                        Services booked by this customer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <% if (bookings.length===0) { %>
+
+
+                <div class="admin-empty-state">
+
+                    <div class="admin-empty-icon">
+
+                        <i class="fa-solid fa-calendar-xmark"></i>
+
+                    </div>
+
+                    <h3>
+                        No Bookings Yet
+                    </h3>
+
+                    <p>
+                        This customer has not created any bookings.
+                    </p>
+
+                </div>
+
+
+                <% } else { %>
+
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Service
+                                    </th>
+
+                                    <th>
+                                        Professional
+                                    </th>
+
+                                    <th>
+                                        Booking Date
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% bookings.forEach(booking=> { %>
+
+                                    <tr>
+
+                                        <!-- SERVICE -->
+
+                                        <td>
+
+                                            <% if (booking.service) { %>
+
+                                                <a href="/services/<%= booking.service._id %>"
+                                                    class="admin-details-link">
+                                                    <%= booking.service.name %>
+                                                </a>
+
+                                                <% } else { %>
+
+                                                    Service unavailable
+
+                                                    <% } %>
+
+                                        </td>
+
+                                        <td>
+                                        <% if (booking.company) { %>
+
+                                            <a href="/company/<%= booking.company.slug %>" class="admin-details-link">
+                                                <%= booking.company.name %>
+                                            </a>
+
+                                            <% } else { %>
+
+                                                Company unavailable
+
+                                                <% } %>
+                                           </td>     
+
+
+                                                    <!-- PROFESSIONAL -->
+
+                                                    <td>
+
+                                                        <% if (booking.professional) { %>
+
+                                                            <div class="admin-professional-cell">
+
+                                                                <i class="fa-solid fa-user-tie"></i>
+
+                                                                <span>
+                                                                    <%= booking.professional.name %>
+                                                                </span>
+
+                                                            </div>
+
+                                                            <% } else { %>
+
+                                                                Not available
+
+                                                                <% } %>
+
+                                                    </td>
+
+
+                                                    <!-- DATE -->
+
+                                                    <td>
+
+                                                        <div class="admin-date-cell">
+
+                                                            <strong>
+
+                                                                <%= booking.bookingDate ? new
+                                                                    Date(booking.bookingDate).toLocaleDateString("en-IN")
+                                                                    : "N/A" %>
+
+                                                            </strong>
+
+                                                            <span>
+
+                                                                <%= booking.bookingDate ? new
+                                                                    Date(booking.bookingDate).toLocaleTimeString( "en-IN"
+                                                                    , { hour: "2-digit" , minute: "2-digit" } ) : "" %>
+
+                                                            </span>
+
+                                                        </div>
+
+                                                    </td>
+
+
+                                                    <!-- STATUS -->
+
+                                                    <td>
+
+                                                        <span class="admin-status status-<%= booking.status %>">
+
+                                                            <%= booking.status %>
+
+                                                        </span>
+
+                                                    </td>
+
+                                    </tr>
+
+                                    <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <% } %>
+
+        </div>
+
+    </div>

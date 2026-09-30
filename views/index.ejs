@@ -1,0 +1,465 @@
+<%- layout("layout/boilerplate") %>
+    <!-- index-main-div-->
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    <i class="fa-solid fa-handshake"></i>
+                    Trusted Professional Consultancy
+                </span>
+
+                <h1 class="index-heading">
+                    Expert Guidance.<br>
+                    <span>Better Decisions.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Nirnay connects you with verified professionals across
+                    multiple industries, making it easier to find the right
+                    expertise and get professional guidance with confidence.
+                </p>
+
+
+                <!-- search bar -->
+                <form action="/search" method="GET" class="home-search nirnay-validation-form" novalidate>
+
+                    <div class="home-search-box">
+
+                        <div class="home-search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                        <div class="home-search-content">
+
+                            <span class="home-search-label">
+                                WHAT ARE YOU LOOKING FOR?
+                            </span>
+
+                            <input type="text" name="q"  data-validation="search" placeholder="Search consultancy, services or expertise..."
+                                autocomplete="off" required minlength="2">
+
+                        </div>
+
+                        <button type="submit" class="home-search-btn">
+                            <span>Search</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="home-search-popular">
+                        <span>Popular:</span>
+
+                        <button type="button" onclick="setSearch('IT')">
+                            IT
+                        </button>
+
+                        <button type="button" onclick="setSearch('Finance')">
+                            Finance
+                        </button>
+
+                        <button type="button" onclick="setSearch('Business')">
+                            Business
+                        </button>
+
+                        <button type="button" onclick="setSearch('Career')">
+                            Career
+                        </button>
+                    </div>
+
+                </form>
+
+                <script>
+                    function setSearch(value) {
+                        const input = document.querySelector('.home-search-content input');
+
+                        input.value = value;
+                        input.focus();
+                    }
+                </script>
+
+
+
+
+                <div class="index-btn">
+                    <a href="/services" class="btn btn-primary btn-lg">
+                        Find a Consultant
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="/register" class="btn btn-outline-light btn-lg ms-3">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="hero-features">
+                    <span>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified Professionals
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Multiple Industries
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Easy Booking
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- services -->
+    <!-- SERVICES SECTION -->
+    <section class="services-section py-5">
+
+        <div class="container">
+
+            <div class="section-heading text-center mb-5">
+                <span class="section-badge">WHAT WE OFFER</span>
+
+                <h2>
+                    Find the Right Expertise
+                </h2>
+
+                <p>
+                    Explore professional consultancy services designed to help
+                    you make better decisions and achieve your goals.
+                </p>
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- IT -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="service-card h-100">
+
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+
+                        <h5>IT Consultancy</h5>
+
+                        <p>
+                            Get expert technology guidance, software solutions,
+                            digital transformation, and technical support.
+                        </p>
+
+                        <a href="/consultancy/it">
+                            Explore IT
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- FINANCE -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="service-card h-100">
+
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+
+                        <h5>Finance Consultancy</h5>
+
+                        <p>
+                            Get professional financial guidance for planning,
+                            investment, budgeting, and better financial decisions.
+                        </p>
+
+                        <a href="/consultancy/finance">
+                            Explore Finance
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- BUSINESS -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="service-card h-100">
+
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <h5>Business Consultancy</h5>
+
+                        <p>
+                            Improve your business strategy, operations, growth,
+                            marketing, and overall performance.
+                        </p>
+
+                        <a href="/consultancy/business">
+                            Explore Business
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SEE ALL -->
+            <div class="text-center mt-5">
+
+                <a href="/services" class="btn btn-primary btn-lg">
+                    Explore All Services
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- HOW NIRNAY WORKS -->
+    <section class="how-section py-5">
+
+        <div class="container">
+
+            <div class="section-heading text-center mb-5">
+
+                <span class="section-badge">HOW IT WORKS</span>
+
+                <h2>Get Expert Help in 3 Simple Steps</h2>
+
+                <p>
+                    Finding the right professional is simple with Nirnay.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- STEP 1 -->
+                <div class="col-12 col-md-4">
+                    <div class="process-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="process-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                        <h5>Find a Service</h5>
+
+                        <p>
+                            Explore different consultancy services and find
+                            the expertise that matches your needs.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- STEP 2 -->
+                <div class="col-12 col-md-4">
+                    <div class="process-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="process-icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+
+                        <h5>Choose a Professional</h5>
+
+                        <p>
+                            Compare available professionals, their services,
+                            pricing, and experience.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- STEP 3 -->
+                <div class="col-12 col-md-4">
+                    <div class="process-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="process-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <h5>Book a Consultation</h5>
+
+                        <p>
+                            Select a convenient date and send your booking
+                            request directly to the professional.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- WHY CHOOSE NIRNAY -->
+    <section class="why-section py-5">
+
+        <div class="container">
+
+            <div class="section-heading text-center mb-5">
+
+                <span class="section-badge">WHY NIRNAY</span>
+
+                <h2>Why Choose Nirnay?</h2>
+
+                <p>
+                    We make it easier to find the right expertise and get
+                    professional guidance with confidence.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- FEATURE 1 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+
+                        <h5>Trusted Professionals</h5>
+
+                        <p>
+                            Connect with professionals who offer expertise
+                            across different industries.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- FEATURE 2 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+
+                        <h5>Easy Discovery</h5>
+
+                        <p>
+                            Quickly explore services and find the right
+                            consultancy for your requirements.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- FEATURE 3 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <h5>Simple Booking</h5>
+
+                        <p>
+                            Choose a service, select a date, and send your
+                            consultation request easily.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- FEATURE 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+
+                        <h5>Multiple Industries</h5>
+
+                        <p>
+                            Find professional guidance across IT, finance,
+                            business, healthcare, and more.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section py-5">
+
+        <div class="container">
+
+            <div class="cta-box text-center">
+
+                <div class="cta-icon">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+
+                <h2>Ready to Make a Better Decision?</h2>
+
+                <p>
+                    Find the right professional, explore expert services,
+                    and take the next step with confidence.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a href="/services" class="btn btn-light btn-lg">
+                        Explore Services
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="/register" class="btn btn-outline-light btn-lg ms-2">
+                        Join Nirnay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="/js/nirnay-validation.js"></script>

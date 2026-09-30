@@ -1,0 +1,493 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <!-- ============================= -->
+        <!-- PAGE HEADER -->
+        <!-- ============================= -->
+        <div class="dashboard-header">
+
+            <div class="dashboard-header-content">
+
+                <div>
+                    <span class="services-label">
+                        ADMIN PANEL
+                    </span>
+
+                    <h1>
+                        Service Management
+                    </h1>
+
+                    <p>
+                        Manage and monitor all consultancy services available on Nirnay.
+                    </p>
+                </div>
+
+                <div class="dashboard-header-badge">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>
+                        <%= services.length %> Services
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- SERVICE SUMMARY -->
+        <!-- ============================= -->
+        <div class="dashboard-grid mb-5">
+
+            <!-- Total Services -->
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="card-content">
+                    <span class="card-label">
+                        Total Services
+                    </span>
+
+                    <h2 class="card-number">
+                        <%= services.length %>
+                    </h2>
+
+                    <span class="dashboard-count">
+                        Services on Nirnay
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Available Services -->
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        Available
+                    </span>
+
+                    <h2 class="card-number">
+                        <%= services.filter(service=> service.isAvailable !== false).length %>
+                    </h2>
+
+                    <span class="dashboard-count">
+                        Active services
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Booking Available -->
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div class="card-content">
+
+                    <span class="card-label">
+                        Bookable
+                    </span>
+
+                    <h2 class="card-number">
+                        <%= services.filter(service=> service.isBookingAvailable !== false).length %>
+                    </h2>
+
+                    <span class="dashboard-count">
+                        Accepting bookings
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- SERVICE MANAGEMENT SECTION -->
+        <!-- ============================= -->
+        <div class="admin-dashboard-section">
+
+            <!-- Section Header -->
+            <div class="admin-section-header">
+
+                <div>
+
+                    <span class="admin-section-label">
+                        SERVICE MANAGEMENT
+                    </span>
+
+                    <h2>
+                        All Services
+                    </h2>
+
+                    <p>
+                        View service details, providers, companies and availability.
+                    </p>
+
+                </div>
+
+                <div class="admin-section-count">
+                    <%= services.length %>
+                        <span>Services</span>
+                </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- SEARCH -->
+            <!-- ============================= -->
+            <div class="admin-booking-search admin-service-search">
+
+                <div class="admin-search-field">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text" id="serviceSearch"
+                        placeholder="Search service, category, professional or company..." autocomplete="off">
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- SERVICES -->
+            <!-- ============================= -->
+
+            <% if (services.length===0) { %>
+
+                <!-- Empty State -->
+                <div class="admin-empty-state">
+
+                    <div class="admin-empty-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <h3>
+                        No Services Found
+                    </h3>
+
+                    <p>
+                        There are currently no consultancy services available on Nirnay.
+                    </p>
+
+                </div>
+
+                <% } else { %>
+
+                    <div class="admin-services-list" id="servicesList">
+
+                        <% services.forEach((service)=> { %>
+
+                            <div class="admin-service-card" data-search="
+                        <%= service.name || '' %>
+                        <%= service.category || '' %>
+                        <%= service.professional ? service.professional.name : '' %>
+                        <%= service.professional ? service.professional.email : '' %>
+                        <%= service.company ? service.company.name : '' %>
+                        <%= service.company ? service.company.category : '' %>
+                        <%= service.company ? service.company.city : '' %>
+                    ">
+
+                                <!-- Service Main Information -->
+                                <div class="admin-service-main">
+
+                                    <div class="admin-service-icon">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                    </div>
+
+                                    <div class="admin-service-info">
+
+                                        <div class="admin-service-title-row">
+
+                                            <h3>
+                                                <%= service.name %>
+                                            </h3>
+
+                                            <% if (service.isAvailable !==false) { %>
+
+                                                <span class="admin-service-status available">
+                                                    <i class="fa-solid fa-circle"></i>
+                                                    Available
+                                                </span>
+
+                                                <% } else { %>
+
+                                                    <span class="admin-service-status unavailable">
+                                                        <i class="fa-solid fa-circle"></i>
+                                                        Unavailable
+                                                    </span>
+
+                                                    <% } %>
+
+                                        </div>
+
+
+                                        <div class="admin-service-meta">
+
+                                            <span>
+                                                <i class="fa-solid fa-tag"></i>
+                                                <%= service.category %>
+                                            </span>
+
+                                            <% if (service.company) { %>
+
+                                                <span>
+                                                    <i class="fa-solid fa-building"></i>
+                                                    <%= service.company.name %>
+                                                </span>
+
+                                                <% } %>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Professional -->
+                                <div class="admin-service-provider">
+
+                                    <span class="admin-service-label">
+                                        PROFESSIONAL
+                                    </span>
+
+                                    <% if (service.professional) { %>
+
+                                        <div class="admin-service-provider-info">
+
+                                            <div class="admin-service-provider-avatar">
+                                                <i class="fa-solid fa-user-tie"></i>
+                                            </div>
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= service.professional.name %>
+                                                </strong>
+
+                                                <small>
+                                                    <%= service.professional.email %>
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                        <% } else { %>
+
+                                            <span class="admin-service-muted">
+                                                Professional unavailable
+                                            </span>
+
+                                            <% } %>
+
+                                </div>
+
+
+                                <!-- Company -->
+                                <div class="admin-service-company">
+
+                                    <span class="admin-service-label">
+                                        COMPANY
+                                    </span>
+
+                                    <% if (service.company) { %>
+
+                                        <strong>
+                                            <%= service.company.name %>
+                                        </strong>
+
+                                        <% if (service.company.city) { %>
+
+                                            <small>
+                                                <i class="fa-solid fa-location-dot"></i>
+                                                <%= service.company.city %>
+                                            </small>
+
+                                            <% } %>
+
+                                                <% } else { %>
+
+                                                    <span class="admin-service-muted">
+                                                        Company unavailable
+                                                    </span>
+
+                                                    <% } %>
+
+                                </div>
+
+
+                                <!-- Price -->
+                                <div class="admin-service-price">
+
+                                    <span class="admin-service-label">
+                                        PRICE
+                                    </span>
+
+                                    <strong>
+                                        ₹<%= service.price %>
+                                    </strong>
+
+                                    <small>
+                                        <%= service.duration %>
+                                    </small>
+
+                                </div>
+
+
+                                <!-- Booking Status -->
+                                <div class="admin-service-booking">
+
+                                    <span class="admin-service-label">
+                                        BOOKING
+                                    </span>
+
+                                    <% if (service.isBookingAvailable !==false) { %>
+
+                                        <span class="admin-service-booking-status">
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                            Open
+                                        </span>
+
+                                        <% } else { %>
+
+                                            <span class="admin-service-booking-status closed">
+                                                <i class="fa-solid fa-calendar-xmark"></i>
+                                                Closed
+                                            </span>
+
+                                            <% } %>
+
+                                </div>
+
+
+                                <!-- Action -->
+                                <div class="admin-service-action">
+
+                                    <a href="/services/<%= service.slug %>" class="dashboard-link" target="_blank"
+                                        rel="noopener noreferrer">
+                                        View
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <% }) %>
+
+                    </div>
+
+
+                    <!-- No Search Results -->
+                    <div class="admin-empty-state" id="noServiceResults" style="display: none;">
+
+                        <div class="admin-empty-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                        <h3>
+                            No Matching Services
+                        </h3>
+
+                        <p>
+                            Try searching with a different service, category,
+                            professional or company name.
+                        </p>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+       
+
+    </div>
+
+    <!-- ============================= -->
+
+    <!-- SERVICE SEARCH -->
+
+    <!-- ============================= -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const searchInput = document.getElementById("serviceSearch");
+            const serviceCards = document.querySelectorAll(".admin-service-card");
+            const noResults = document.getElementById("noServiceResults");
+
+            if (!searchInput) {
+                return;
+            }
+
+            searchInput.addEventListener("input", function () {
+
+                const searchValue = this.value
+                    .toLowerCase()
+                    .trim();
+
+                let visibleCount = 0;
+
+                serviceCards.forEach(function (card) {
+
+                    const searchableText =
+                        card.dataset.search.toLowerCase();
+
+                    if (
+                        searchValue === "" ||
+                        searchableText.includes(searchValue)
+                    ) {
+
+                        card.style.display = "";
+
+                        visibleCount++;
+
+                    } else {
+
+                        card.style.display = "none";
+
+                    }
+
+                });
+
+
+                if (noResults) {
+
+                    if (visibleCount === 0 && searchValue !== "") {
+
+                        noResults.style.display = "block";
+
+                    } else {
+
+                        noResults.style.display = "none";
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    </script>

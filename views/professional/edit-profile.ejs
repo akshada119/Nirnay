@@ -1,0 +1,528 @@
+<%- layout("/layout/boilerplate") %>
+
+
+<div class="create-service-page">
+
+    <div class="create-service-container">
+
+        <div class="create-service-wrapper">
+
+            <!-- Page Header -->
+            <div class="create-service-header">
+
+                <span class="create-service-badge">
+                    <i class="fa-solid fa-briefcase"></i>
+                    PROFESSIONAL PANEL
+                </span>
+
+                <h1 class="create-service-heading">
+                    Create New Service
+                </h1>
+
+                <p class="create-service-description">
+                    Add a service that your company provides.
+                </p>
+
+            </div>
+
+
+            <!-- Form Card -->
+            <div class="create-service-card">
+
+                <form action="/professional/services/create" method="POST" enctype="multipart/form-data"
+                    class="create-service-form nirnay-validation-form" id="createServiceForm" novalidate>
+
+
+                    <!-- Service Name -->
+                    <div class="create-service-field">
+
+                        <label class="create-service-label">
+                            Service Name
+                        </label>
+
+                        <div class="create-service-input-wrapper">
+
+                            <i class="fa-solid fa-tag create-service-input-icon"></i>
+
+                            <input type="text" name="name" class="create-service-input"
+                                   data-validation="service-name" required minlength="2" maxlength="150"   data-validation="service-name">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="create-service-field">
+
+                        <label for="category" class="create-service-label">
+
+                            Service Category
+
+                        </label>
+
+                        <div class="create-service-input-wrapper">
+
+                            <i class="fa-solid fa-layer-group create-service-input-icon"></i>
+
+                            <select name="category" id="category" class="create-service-select" required>
+
+                                <option value="">
+                                    Select Category
+                                </option>
+
+                                <option value="it">
+                                    IT Consultancy
+                                </option>
+
+                                <option value="finance">
+                                    Finance Consultancy
+                                </option>
+
+                                <option value="healthcare">
+                                    Healthcare Consultancy
+                                </option>
+
+                                <option value="education">
+                                    Education Consultancy
+                                </option>
+
+                                <option value="research">
+                                    Research Consultancy
+                                </option>
+
+                                <option value="business">
+                                    Business Consultancy
+                                </option>
+
+                                <option value="hr">
+                                    HR Consultancy
+                                </option>
+
+                                <option value="legal">
+                                    Legal Consultancy
+                                </option>
+
+                                <option value="agriculture">
+                                    Agriculture Consultancy
+                                </option>
+
+                                <option value="manufacturing">
+                                    Manufacturing Consultancy
+                                </option>
+
+                                <option value="realEstate">
+                                    Real Estate Consultancy
+                                </option>
+
+                                <option value="marketing">
+                                    Marketing Consultancy
+                                </option>
+
+                                <option value="career">
+                                    Career Consultancy
+                                </option>
+
+                                <option value="environmental">
+                                    Environmental Consultancy
+                                </option>
+
+                                <option value="engineering">
+                                    Engineering Consultancy
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="create-service-field">
+
+                        <label class="create-service-label">
+                            Service Description
+                        </label>
+
+                        <div class="create-service-textarea-wrapper">
+
+                            <i class="fa-solid fa-align-left create-service-textarea-icon"></i>
+
+                            <textarea name="description" class="create-service-textarea" rows="5"
+                                placeholder="Describe your service..." required minlength="10"
+                                maxlength="2000"></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Price + Duration -->
+                    <div class="create-service-row">
+
+
+                        <!-- Price -->
+                        <div class="create-service-half-field">
+
+                            <label class="create-service-label">
+                                Price (₹)
+                            </label>
+
+                            <div class="create-service-input-wrapper">
+
+                                <i class="fa-solid fa-indian-rupee-sign create-service-input-icon"></i>
+
+                                <input type="number" name="price" class="create-service-input"
+                                    placeholder="Enter price" min="0" max="100000000" step="any" required>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Duration -->
+                        <div class="create-service-half-field">
+
+                            <label class="create-service-label">
+                                Duration
+                            </label>
+
+                            <div class="create-service-input-wrapper">
+
+                                <i class="fa-regular fa-clock create-service-input-icon"></i>
+
+                                <input type="text" name="duration" class="create-service-input"
+                                    placeholder="e.g. 60 minutes" required maxlength="100">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Service Images -->
+                    <div class="create-service-field">
+
+                        <label class="create-service-label">
+                            Service Images
+                        </label>
+
+                        <div class="create-service-image-upload">
+
+                            <div class="create-service-image-upload-icon">
+                                <i class="fa-solid fa-images"></i>
+                            </div>
+
+                            <div class="create-service-image-upload-content">
+
+                                <strong>
+                                    Add Service Images
+                                </strong>
+
+                                <span>
+                                    Upload up to 10 images
+                                </span>
+
+                                <label for="serviceImages" class="create-service-image-button">
+
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    Choose Images
+
+                                </label>
+
+                                <input type="file" id="serviceImages" name="images"
+                                    accept="image/jpeg,image/png,image/webp" multiple hidden>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Image Preview -->
+                        <div id="serviceImagePreview" class="create-service-image-preview">
+                        </div>
+
+                        <p class="create-service-image-note">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            Select one image as your Priority Image.
+                            It will appear on your service card.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Company -->
+                    <div class="create-service-field">
+
+                        <label class="create-service-label">
+                            Company
+                        </label>
+
+                        <div class="create-service-company">
+
+                            <div class="create-service-company-icon">
+
+                                <i class="fa-solid fa-building"></i>
+
+                            </div>
+
+                            <div class="create-service-company-info">
+
+                                <span>
+                                    Your Company
+                                </span>
+
+                                <strong>
+                                    <%= company.name %>
+                                </strong>
+
+                            </div>
+
+                            <i class="fa-solid fa-circle-check create-service-company-check"></i>
+
+                        </div>
+
+                        <p class="create-service-company-note">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            This service will automatically be linked
+                            to your company.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="create-service-actions">
+
+                        <button type="submit" class="create-service-submit">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Create Service
+
+                        </button>
+
+
+                        <a href="/professional/dashboard" class="create-service-cancel">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                            Cancel
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const imageInput =
+        document.getElementById("serviceImages");
+
+    const previewContainer =
+        document.getElementById("serviceImagePreview");
+
+    const createServiceForm =
+        document.getElementById("createServiceForm");
+
+    let selectedFiles = [];
+
+
+    /*
+     * Image selection
+     */
+    imageInput.addEventListener("change", function () {
+
+        const newFiles = Array.from(this.files);
+
+
+        /* Maximum 10 images */
+        if (selectedFiles.length + newFiles.length > 10) {
+
+            alert("You can upload a maximum of 10 images.");
+
+            this.value = "";
+
+            return;
+        }
+
+
+        /* Validate image file types */
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+
+        const invalidFile = newFiles.find(
+            file => !allowedTypes.includes(file.type)
+        );
+
+
+        if (invalidFile) {
+
+            alert("Only JPG, PNG, and WEBP images are allowed.");
+
+            this.value = "";
+
+            return;
+        }
+
+
+        selectedFiles = [
+            ...selectedFiles,
+            ...newFiles
+        ];
+
+        updateFileInput();
+
+        renderImagePreviews();
+
+    });
+
+
+    /*
+     * Render image previews
+     */
+    function renderImagePreviews() {
+
+        previewContainer.innerHTML = "";
+
+
+        selectedFiles.forEach((file, index) => {
+
+            const reader = new FileReader();
+
+
+            reader.onload = function (event) {
+
+                const imageCard =
+                    document.createElement("div");
+
+                imageCard.className =
+                    "create-service-image-preview-card";
+
+
+                imageCard.innerHTML = `
+
+                    <div class="create-service-image-wrapper">
+
+                        <img
+                            src="${event.target.result}"
+                            alt="Service Image">
+
+                        ${
+                            index === 0
+                                ? `
+                                    <span class="create-service-priority-badge">
+                                        <i class="fa-solid fa-star"></i>
+                                        Priority
+                                    </span>
+                                  `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div class="create-service-image-actions">
+
+                        <button
+                            type="button"
+                            class="create-service-remove-image"
+                            onclick="removeImage(${index})">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+
+                        <label class="create-service-priority-option">
+
+                            <input
+                                type="radio"
+                                name="priorityImage"
+                                value="${index}"
+                                ${index === 0 ? "checked" : ""}>
+
+                            <span>
+                                <i class="fa-solid fa-star"></i>
+                                Priority Image
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                `;
+
+
+                previewContainer.appendChild(imageCard);
+
+            };
+
+
+            reader.readAsDataURL(file);
+
+        });
+
+    }
+
+
+    /*
+     * Remove selected image
+     */
+    function removeImage(index) {
+
+        selectedFiles.splice(index, 1);
+
+        renderImagePreviews();
+
+        updateFileInput();
+
+    }
+
+
+    /*
+     * Keep actual file input synchronized
+     */
+    function updateFileInput() {
+
+        const dataTransfer =
+            new DataTransfer();
+
+
+        selectedFiles.forEach(file => {
+
+            dataTransfer.items.add(file);
+
+        });
+
+
+        imageInput.files =
+            dataTransfer.files;
+
+    }
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>
+

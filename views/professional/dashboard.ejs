@@ -1,0 +1,770 @@
+<%- layout("layout/boilerplate") %>
+
+
+    <div class="professional-dashboard">
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+
+            <div>
+                <span class="dashboard-label">PROFESSIONAL PANEL</span>
+
+                <h1>
+                    Welcome, <span>
+                        <%= currentUser.name %>
+                    </span>
+                </h1>
+                <p>
+                    Manage your company, services and professional profile
+                    from one place.
+                </p>
+            </div>
+
+            <div class="dashboard-badge">
+                <i class="fa-solid fa-user-tie"></i>
+                Professional
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- Bottom CTA -->
+        <div class="dashboard-cta">
+
+            <div class="cta-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <div>
+                <h3>Grow your professional presence</h3>
+
+                <p>
+                    Add quality services to reach more customers
+                    and build your consultancy profile.
+                </p>
+            </div>
+
+            <a href="/professional/services/create">
+                Add Service
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+        <br><br>
+
+
+
+        <!-- ================= PROFESSIONAL BOOKING MANAGEMENT ================= -->
+
+
+        <div class="professional-booking-dashboard animate-on-scroll">
+
+            <!-- ================= BOOKING HEADER ================= -->
+
+            <div class="booking-dashboard-header">
+
+                <div>
+
+                    <span class="services-label">
+                        BOOKING OVERVIEW
+                    </span>
+
+                    <h2>
+                        Booking Management
+                    </h2>
+
+                    <p>
+                        Keep track of your customer bookings and appointments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BOOKING STATS ================= -->
+
+            <div class="booking-stats-grid">
+
+                <!-- New Bookings -->
+
+                <div class="booking-stat-card">
+
+                    <div class="booking-stat-icon">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </div>
+
+                    <div class="booking-stat-content">
+
+                        <span>
+                            NEW BOOKINGS
+                        </span>
+
+                        <strong>
+                            <%= newBookingsCount %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pending Bookings -->
+
+                <a href="/professional/bookings?status=pending" class="professional-booking-stat-link">
+
+                    <div class="booking-stat-card">
+
+                        <div class="booking-stat-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+                        <div class="booking-stat-content">
+
+                            <span>
+                                PENDING BOOKINGS
+                            </span>
+
+                            <strong>
+                                <%= pendingBookingsCount %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Confirmed Bookings -->
+
+                <a href="/professional/bookings?status=confirmed" class="professional-booking-stat-link">
+
+                    <div class="booking-stat-card">
+
+                        <div class="booking-stat-icon">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div class="booking-stat-content">
+
+                            <span>
+                                CONFIRMED BOOKINGS
+                            </span>
+
+                            <strong>
+                                <%= confirmedBookingsCount %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Completed Bookings -->
+
+                <a href="/professional/bookings?status=completed" class="professional-booking-stat-link">
+
+                    <div class="booking-stat-card">
+
+                        <div class="booking-stat-icon">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div class="booking-stat-content">
+
+                            <span>
+                                COMPLETED BOOKINGS
+                            </span>
+
+                            <strong>
+                                <%= completedBookingsCount %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Services -->
+
+
+
+            </div>
+
+
+            <!-- ================= SEARCH BOOKINGS ================= -->
+
+            <div class="professional-booking-search-card">
+
+                <div class="professional-booking-search-header">
+
+                    <div>
+
+                        <span class="dashboard-label">
+                            SEARCH BOOKINGS
+                        </span>
+
+                        <h2>
+                            Find a Booking
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form action="/professional/bookings" method="GET"
+                    class="professional-booking-search-form nirnay-validation-form"
+                    id="professionalDashboardBookingSearchForm" novalidate>
+
+                    <!-- Text Search -->
+
+                    <div class="professional-search-field">
+
+                        <label for="professionalBookingSearch">
+                            Customer or Service
+                        </label>
+
+                        <div class="professional-search-input">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input type="text" id="professionalBookingSearch" name="search" value="<%= search %>"
+                                placeholder="Customer, email, service..."   data-validation="search" maxlength="100">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Start Date -->
+
+                    <div class="professional-search-field">
+
+                        <label for="startDate">
+                            Start Date
+                        </label>
+
+                        <div class="professional-search-input">
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                            <input type="date" id="startDate" name="startDate" value="<%= startDate %>">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- End Date -->
+
+                    <div class="professional-search-field">
+
+                        <label for="endDate">
+                            End Date
+                        </label>
+
+                        <div class="professional-search-input">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                            <input type="date" id="endDate" name="endDate" value="<%= endDate %>">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Search -->
+
+                    <button type="submit" class="professional-search-btn">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Search
+
+                    </button>
+
+
+                    <!-- Clear -->
+
+                    <% if (isSearchActive) { %>
+
+                        <a href="/professional/bookings" class="professional-search-clear">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            Clear
+
+                        </a>
+
+                        <% } %>
+
+                </form>
+
+            </div>
+
+
+            <!-- ================= SEARCH RESULTS ================= -->
+
+            <% if (isSearchActive) { %>
+
+                <div class="professional-booking-section">
+
+                    <div class="professional-booking-section-header">
+
+                        <div>
+
+                            <span class="dashboard-label">
+                                SEARCH RESULTS
+                            </span>
+
+                            <h2>
+                                Booking Search
+                            </h2>
+
+                        </div>
+
+                        <span class="professional-booking-count">
+                            <%= bookings.length %> Bookings
+                        </span>
+
+                    </div>
+
+
+                    <% if (bookings.length===0) { %>
+
+                        <div class="professional-booking-empty">
+
+                            <div class="professional-booking-empty-icon">
+
+                                <i class="fa-solid fa-calendar-xmark"></i>
+
+                            </div>
+
+                            <h3>
+                                No bookings found
+                            </h3>
+
+                            <p>
+                                Try changing your search text or date range.
+                            </p>
+
+                        </div>
+
+                        <% } else { %>
+
+                            <div class="professional-booking-list">
+
+                                <% bookings.forEach(booking=> { %>
+
+                                    <%- include("partials/bookingCard", { booking }) %>
+
+                                        <% }) %>
+
+                            </div>
+
+                            <% } %>
+
+                </div>
+
+                <% } %>
+
+
+                    <!-- ================= TODAY'S BOOKINGS ================= -->
+
+                    <div class="professional-booking-section">
+
+                        <div class="professional-booking-section-header">
+
+                            <div>
+
+                                <span class="services-label">
+                                    TODAY
+                                </span>
+
+                                <h2>
+                                    Today's Bookings
+                                </h2>
+
+                            </div>
+
+
+                            <a href="/professional/bookings" class="view-all-bookings">
+
+                                View All
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <% if (todayBookings && todayBookings.length> 0) { %>
+
+                            <div class="professional-booking-list">
+
+                                <% todayBookings.forEach(booking=> { %>
+
+                                    <%- include("partials/bookingCard", { booking }) %>
+
+                                        <% }) %>
+
+                            </div>
+
+                            <% } else { %>
+
+                                <div class="professional-booking-empty">
+
+                                    <div class="professional-booking-empty-icon">
+
+                                        <i class="fa-regular fa-calendar-xmark"></i>
+
+                                    </div>
+
+                                    <h3>
+                                        No bookings today
+                                    </h3>
+
+                                    <p>
+                                        You don't have any customer bookings scheduled for today.
+                                    </p>
+
+                                    <a href="/professional/bookings" class="professional-booking-action">
+
+                                        <i class="fa-solid fa-calendar-check"></i>
+
+                                        View All Bookings
+
+                                    </a>
+
+                                </div>
+
+                                <% } %>
+
+                    </div>
+
+
+                    <!-- ================= QUICK MANAGEMENT ================= -->
+
+                    <div class="professional-quick-management">
+
+                        <div class="professional-booking-section-header">
+
+                            <div>
+
+                                <span class="services-label">
+                                    MANAGEMENT
+                                </span>
+
+                                <h2>
+                                    Quick Management
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="dashboard-grid">
+
+
+                            <!-- ================= MY COMPANY ================= -->
+
+                            <div class="dashboard-card company-card">
+
+                                <div class="card-top">
+
+                                    <div class="dashboard-icon">
+
+                                        <i class="fa-solid fa-building"></i>
+
+                                    </div>
+
+                                    <span class="card-number">
+                                        01
+                                    </span>
+
+                                </div>
+
+
+                                <div class="card-content">
+
+                                    <% if (company) { %>
+
+                                        <h3>
+                                            My Company
+                                        </h3>
+
+                                        <p>
+                                            Manage and update your company information,
+                                            contact details, and business profile.
+                                        </p>
+
+                                        <a href="/professional/company/edit" class="dashboard-link">
+
+                                            Edit Company
+
+                                            <i class="fa-solid fa-pen-to-square"></i>
+
+                                        </a>
+
+                                        <% } else { %>
+
+                                            <h3>
+                                                Create Company
+                                            </h3>
+
+                                            <p>
+                                                Create your company profile and add your business
+                                                details, contact information, and company overview.
+                                            </p>
+
+                                            <a href="/professional/company" class="dashboard-link">
+
+                                                Create Company
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
+                                            </a>
+
+                                            <% } %>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================= MY SERVICES ================= -->
+
+                            <div class="dashboard-card services-card">
+
+                                <div class="card-top">
+
+                                    <div class="dashboard-icon">
+
+                                        <i class="fa-solid fa-layer-group"></i>
+
+                                    </div>
+
+                                    <span class="card-number">
+                                        02
+                                    </span>
+
+                                </div>
+
+
+                                <div class="card-content">
+
+                                    <h3>
+                                        My Services
+                                    </h3>
+
+                                    <p>
+                                        View all your active services and manage the
+                                        consultancy solutions you provide.
+                                    </p>
+
+                                    <a href="/professional/services" class="dashboard-link">
+
+                                        View Services
+
+                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================= MY PROFILE ================= -->
+
+                            <div class="dashboard-card profile-card">
+
+                                <div class="card-top">
+
+                                    <div class="dashboard-icon">
+
+                                        <i class="fa-solid fa-user"></i>
+
+                                    </div>
+
+                                    <span class="card-number">
+                                        03
+                                    </span>
+
+                                </div>
+
+
+                                <div class="card-content">
+
+                                    <h3>
+                                        My Profile
+                                    </h3>
+
+                                    <p>
+                                        View and update your professional profile,
+                                        personal information, and professional details.
+                                    </p>
+
+                                    <a href="/professional/profile/edit" class="dashboard-link">
+
+                                        Edit Profile
+
+                                        <i class="fa-solid fa-pen-to-square"></i>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+        </div>
+
+    </div>
+
+
+  <script>
+
+    const professionalDashboardBookingSearchForm =
+        document.getElementById(
+            "professionalDashboardBookingSearchForm"
+        );
+
+    const professionalDashboardStartDate =
+        document.getElementById("startDate");
+
+    const professionalDashboardEndDate =
+        document.getElementById("endDate");
+
+
+    /*
+     * Clear date-range validation while editing
+     */
+    professionalDashboardStartDate.addEventListener(
+        "change",
+        function () {
+
+            professionalDashboardEndDate.classList.remove(
+                "is-invalid"
+            );
+
+            const error =
+                professionalDashboardEndDate.parentNode.querySelector(
+                    ".invalid-feedback"
+                );
+
+            if (error) {
+                error.textContent = "";
+            }
+
+        }
+    );
+
+
+    professionalDashboardEndDate.addEventListener(
+        "change",
+        function () {
+
+            professionalDashboardEndDate.classList.remove(
+                "is-invalid"
+            );
+
+            const error =
+                professionalDashboardEndDate.parentNode.querySelector(
+                    ".invalid-feedback"
+                );
+
+            if (error) {
+                error.textContent = "";
+            }
+
+        }
+    );
+
+
+    /*
+     * Validate date range
+     */
+    professionalDashboardBookingSearchForm.addEventListener(
+        "submit",
+        function (event) {
+
+            const startDate =
+                professionalDashboardStartDate.value;
+
+            const endDate =
+                professionalDashboardEndDate.value;
+
+
+            /*
+             * End date cannot be earlier than start date
+             */
+            if (
+                startDate &&
+                endDate &&
+                endDate < startDate
+            ) {
+
+                event.preventDefault();
+
+                professionalDashboardEndDate.classList.add(
+                    "is-invalid"
+                );
+
+
+                let error =
+                    professionalDashboardEndDate.parentNode.querySelector(
+                        ".invalid-feedback"
+                    );
+
+
+                if (!error) {
+
+                    error = document.createElement("div");
+
+                    error.className = "invalid-feedback";
+
+                    professionalDashboardEndDate.insertAdjacentElement(
+                        "afterend",
+                        error
+                    );
+
+                }
+
+
+                error.textContent =
+                    "End date cannot be earlier than the start date.";
+
+            }
+
+        }
+    );
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

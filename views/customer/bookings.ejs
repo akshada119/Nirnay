@@ -1,0 +1,511 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="container my-5">
+
+        <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+        <div class="mb-5">
+
+            <span class="services-label">
+                CUSTOMER PANEL
+            </span>
+
+            <h1 class="mt-2">
+                My <span>Bookings</span>
+            </h1>
+
+            <p class="text-muted">
+                View and manage your consultancy bookings.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+         NO BOOKINGS
+    ========================== -->
+
+        <% if (bookings.length===0) { %>
+
+            <div class="text-center py-5">
+
+                <i class="fa-solid fa-calendar-xmark fa-3x mb-3"></i>
+
+                <h3>
+                    No bookings yet
+                </h3>
+
+                <p class="text-muted">
+                    You haven't booked any consultancy services yet.
+                </p>
+
+                <a href="/services" class="btn btn-primary mt-2">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Explore Services
+
+                </a>
+
+            </div>
+
+
+            <% } else { %>
+
+
+                <!-- =========================
+             BOOKINGS
+        ========================== -->
+
+                <div class="row g-4">
+
+                    <% bookings.forEach((booking, index)=> { %>
+
+                        <div class="col-md-6 col-lg-4">
+
+                            <div class="booking-card">
+
+
+                                <!-- =========================
+                             TOP
+                        ========================== -->
+
+                                <div class="d-flex justify-content-between align-items-center">
+
+                                    <!-- BOOKING NUMBER -->
+
+                                    <span class="service-number">
+                                        #<%= String(index + 1).padStart(2, "0" ) %>
+                                    </span>
+
+
+                                    <!-- STATUS -->
+
+                                    <% if (booking.status==="pending" ) { %>
+
+                                        <span class="badge bg-warning text-dark">
+
+                                            <i class="fa-solid fa-clock"></i>
+
+                                            Pending
+
+                                        </span>
+
+
+                                        <% } else if (booking.status==="confirmed" ) { %>
+
+                                            <span class="badge bg-success">
+
+                                                <i class="fa-solid fa-circle-check"></i>
+
+                                                Confirmed
+
+                                            </span>
+
+
+                                            <% } else if (booking.status==="completed" ) { %>
+
+                                                <span class="badge bg-primary">
+
+                                                    <i class="fa-solid fa-check-double"></i>
+
+                                                    Completed
+
+                                                </span>
+
+
+                                                <% } else if (booking.status==="cancelled" ) { %>
+
+                                                    <span class="badge bg-danger">
+
+                                                        <i class="fa-solid fa-circle-xmark"></i>
+
+                                                        Cancelled
+
+                                                    </span>
+
+                                                    <% } %>
+
+                                </div>
+
+
+                                <!-- =========================
+                             CANCELLATION INFORMATION
+                        ========================== -->
+
+                                <% if (booking.status==="cancelled" && booking.cancellationReason) { %>
+
+                                    <div class="customer-cancellation-reason">
+
+                                        <!-- CANCELLATION HEADER -->
+
+                                        <div class="customer-cancellation-header">
+
+                                            <div class="customer-cancellation-icon">
+
+                                                <i class="fa-solid fa-circle-exclamation"></i>
+
+                                            </div>
+
+                                            <div>
+
+                                                <h5>
+                                                    Booking Cancelled
+                                                </h5>
+
+                                                <p>
+                                                    <%= booking.cancellationReason %>
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <!-- CANCELLATION DATE -->
+
+                                        <% if (booking.cancelledAt) { %>
+
+                                            <div class="customer-cancellation-date">
+
+                                                <i class="fa-regular fa-calendar"></i>
+
+                                                Cancelled on
+
+                                                <%= new Date(booking.cancelledAt).toLocaleDateString("en-IN", {
+                                                    day: "2-digit" , month: "short" , year: "numeric" }) %>
+
+                                            </div>
+
+                                            <% } %>
+
+                                    </div>
+
+                                    <% } %>
+
+
+                                        <!-- =========================
+                             SERVICE
+                        ========================== -->
+
+                                        <% if (booking.service) { %>
+
+                                            <h3 class="mt-4">
+                                                <%= booking.service.name %>
+                                            </h3>
+
+                                            <span class="service-category">
+                                                <%= booking.service.category %>
+                                            </span>
+
+
+                                            <% } else { %>
+
+                                                <h3 class="mt-4">
+                                                    Service Unavailable
+                                                </h3>
+
+                                                <span class="service-category">
+                                                    Service information unavailable
+                                                </span>
+
+                                                <% } %>
+
+
+                                                    <!-- =========================
+                             BOOKING INFORMATION
+                        ========================== -->
+
+                                                    <div class="booking-card-info mt-4">
+
+
+                                                        <!-- DATE + TIME -->
+
+                                                        <% if (booking.bookingDate) { %>
+
+
+                                                            <!-- DATE -->
+
+                                                            <p>
+
+                                                                <i class="fa-solid fa-calendar"></i>
+
+                                                                <strong>
+                                                                    Date:
+                                                                </strong>
+
+                                                                <%= new
+                                                                    Date(booking.bookingDate).toLocaleDateString("en-IN",
+                                                                    { day: "2-digit" , month: "short" , year: "numeric"
+                                                                    }) %>
+
+                                                            </p>
+
+
+                                                            <!-- TIME -->
+
+                                                            <p>
+
+                                                                <i class="fa-regular fa-clock"></i>
+
+                                                                <strong>
+                                                                    Time:
+                                                                </strong>
+
+                                                                <%= new
+                                                                    Date(booking.bookingDate).toLocaleTimeString("en-IN",
+                                                                    { hour: "2-digit" , minute: "2-digit" , hour12: true
+                                                                    }) %>
+
+                                                            </p>
+
+                                                            <% } %>
+
+
+                                                                <!-- COMPANY -->
+
+                                                                <% if (booking.company) { %>
+
+                                                                    <p>
+
+                                                                        <i class="fa-solid fa-building"></i>
+
+                                                                        <strong>
+                                                                            Company:
+                                                                        </strong>
+
+                                                                        <%= booking.company.name %>
+
+                                                                    </p>
+
+                                                                    <% } %>
+
+
+                                                                        <!-- PROFESSIONAL -->
+
+                                                                        <% if (booking.professional) { %>
+
+                                                                            <p>
+
+                                                                                <i class="fa-solid fa-user-tie"></i>
+
+                                                                                <strong>
+                                                                                    Professional:
+                                                                                </strong>
+
+                                                                                <%= booking.professional.name %>
+
+                                                                            </p>
+
+                                                                            <% } %>
+
+
+                                                                                <!-- PRICE -->
+
+                                                                                <% if (booking.service &&
+                                                                                    booking.service.price !==undefined)
+                                                                                    { %>
+
+                                                                                    <p>
+
+                                                                                        <i
+                                                                                            class="fa-solid fa-indian-rupee-sign"></i>
+
+                                                                                        <strong>
+                                                                                            Price:
+                                                                                        </strong>
+
+                                                                                        ₹<%= booking.service.price %>
+
+                                                                                    </p>
+
+                                                                                    <% } %>
+
+
+                                                                                        <!-- DURATION -->
+
+                                                                                        <% if (booking.service &&
+                                                                                            booking.service.duration) {
+                                                                                            %>
+
+                                                                                            <p>
+
+                                                                                                <i
+                                                                                                    class="fa-regular fa-clock"></i>
+
+                                                                                                <strong>
+                                                                                                    Duration:
+                                                                                                </strong>
+
+                                                                                                <%= booking.service.duration
+                                                                                                    %>
+
+                                                                                            </p>
+
+                                                                                            <% } %>
+
+                                                    </div>
+
+
+                                                    <!-- =========================
+                             CUSTOMER MESSAGE
+                        ========================== -->
+
+                                                    <% if (booking.message) { %>
+
+                                                        <div class="booking-message">
+
+                                                            <small>
+                                                                Your Message
+                                                            </small>
+
+                                                            <p>
+                                                                <%= booking.message %>
+                                                            </p>
+
+                                                        </div>
+
+                                                        <% } %>
+
+
+                                                            <!-- =========================
+                             BOOKING STATUS MESSAGE
+                        ========================== -->
+
+                                                            <div class="booking-actions mt-4">
+
+
+                                                                <% if (booking.status==="pending" ) { %>
+
+                                                                    <span class="text-warning">
+
+                                                                        <i class="fa-solid fa-clock"></i>
+
+                                                                        Waiting for professional confirmation
+
+                                                                    </span>
+
+
+                                                                    <% } else if (booking.status==="confirmed" ) { %>
+
+                                                                        <span class="text-success">
+
+                                                                            <i class="fa-solid fa-circle-check"></i>
+
+                                                                            Booking Confirmed
+
+                                                                        </span>
+
+
+                                                                        <% } else if (booking.status==="completed" ) {
+                                                                            %>
+
+                                                                            <span class="text-primary">
+
+                                                                                <i class="fa-solid fa-check-double"></i>
+
+                                                                                Booking Completed
+
+                                                                            </span>
+
+
+                                                                            <% } else if (booking.status==="cancelled" )
+                                                                                { %>
+
+                                                                                <span class="text-danger">
+
+                                                                                    <i
+                                                                                        class="fa-solid fa-circle-xmark"></i>
+
+                                                                                    Booking Cancelled
+
+                                                                                </span>
+
+                                                                                <% } %>
+
+                                                            </div>
+
+
+                                                            <!-- =========================
+                             VIEW SERVICE + CANCEL
+                        ========================== -->
+
+                                                            <% if (booking.service) { %>
+
+
+                                                                <!-- VIEW SERVICE -->
+
+                                                                <div class="mt-3">
+
+                                                                    <a href="/services/<%= booking.service.slug %>"
+                                                                        class="btn btn-outline-primary w-100">
+
+                                                                        <i class="fa-solid fa-eye"></i>
+
+                                                                        View Service
+
+                                                                    </a>
+
+                                                                </div>
+
+
+                                                                <!-- CUSTOMER CANCELLATION -->
+
+                                                                <% if ( booking.status !=="completed" && booking.status
+                                                                    !=="cancelled" && (!settings ||
+                                                                    settings.allowCustomerCancellation !==false) ) { %>
+
+                                                                    <form
+                                                                        action="/customer/bookings/<%= booking._id %>/cancel"
+                                                                        method="POST" novalidate
+                                                                        class="nirnay-validation-form"
+                                                                        onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+
+                                                                        <button type="submit" class="admin-view-btn">
+
+                                                                            <i class="fa-solid fa-xmark"></i>
+
+                                                                            Cancel Booking
+
+                                                                        </button>
+
+                                                                    </form>
+
+                                                                    <% } %>
+
+                                                                        <% } %>
+
+
+                                                                            <!-- =========================
+                             WRITE REVIEW
+                        ========================== -->
+
+                                                                            <% if (booking.status==="completed" ) { %>
+
+                                                                                <a href="/review/create/<%= booking._id %>"
+                                                                                    class="dashboard-link">
+
+                                                                                    <i class="fa-solid fa-star"></i>
+
+                                                                                    Write Review
+
+                                                                                </a>
+
+                                                                                <% } %>
+
+
+                            </div>
+
+                        </div>
+
+                        <% }) %>
+
+                </div>
+
+                <% } %>
+
+    </div>
+
+    <script src="/js/nirnay-validation.js"></script>

@@ -1,0 +1,363 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="professional-my-services-page">
+
+        <div class="professional-my-services-container">
+
+            <!-- =========================
+             PAGE HEADER
+        ========================== -->
+
+            <div class="professional-my-services-header">
+
+                <div class="professional-my-services-heading">
+
+                    <span class="professional-my-services-badge">
+                        <i class="fa-solid fa-briefcase"></i>
+                        PROFESSIONAL PANEL
+                    </span>
+
+                    <h1>
+                        My Services
+                    </h1>
+
+                    <p>
+                        Manage all the consultancy services you have created
+                        and provided through Nirnay.
+                    </p>
+
+                </div>
+
+
+                <!-- CREATE SERVICE BUTTON -->
+
+                <a href="/professional/services/create" class="professional-add-service-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add New Service
+
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+             SERVICE COUNT
+        ========================== -->
+
+            <div class="professional-services-summary">
+
+                <div class="professional-services-summary-icon">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Services
+                    </span>
+
+                    <strong>
+                        <%= services.length %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+             SERVICES
+        ========================== -->
+
+            <% if (services.length===0) { %>
+
+                <!-- EMPTY STATE -->
+
+                <div class="professional-services-empty">
+
+                    <div class="professional-services-empty-icon">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                    </div>
+
+                    <h2>
+                        No Services Yet
+                    </h2>
+
+                    <p>
+                        You haven't created any services yet.
+                        Add your first service and start offering
+                        your expertise through Nirnay.
+                    </p>
+
+                    <a href="/professional/services/create" class="professional-empty-add-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Create Your First Service
+
+                    </a>
+
+                </div>
+
+
+                <% } else { %>
+
+
+                    <!-- SERVICE GRID -->
+
+                    <div class="professional-my-services-grid">
+
+                        <% services.forEach((service, index)=> { %>
+
+                            <!-- =========================
+                         SERVICE CARD
+                    ========================== -->
+
+                            <div class="professional-my-service-card">
+
+
+                                <!-- =========================
+                             PRIORITY IMAGE
+                        ========================== -->
+
+                                <% if (service.priorityImage && service.priorityImage.url) { %>
+
+                                    <img src="<%= service.priorityImage.url %>" alt="<%= service.name %>"
+                                        class="service-card-image">
+
+                                    <% } %>
+
+
+                                        <!-- =========================
+                             CARD HEADER
+                        ========================== -->
+
+                                        <div class="professional-my-service-header">
+
+                                            <span class="professional-my-service-number">
+                                                #<%= String(index + 1).padStart(2, "0" ) %>
+                                            </span>
+
+                                            <span class="professional-my-service-category">
+                                                <%= service.category %>
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- =========================
+                             SERVICE CONTENT
+                        ========================== -->
+
+                                        <div class="professional-my-service-content">
+
+                                            <h2>
+                                                <%= service.name %>
+                                            </h2>
+
+                                            <p>
+                                                <%= service.description %>
+                                            </p>
+
+                                        </div>
+
+
+                                        <!-- =========================
+                             SERVICE INFORMATION
+                        ========================== -->
+
+                                        <div class="professional-my-service-info">
+
+
+                                            <!-- PRICE -->
+
+                                            <div class="professional-my-service-info-item">
+
+                                                <div class="professional-my-service-info-icon">
+
+                                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                                                </div>
+
+                                                <div>
+
+                                                    <span>
+                                                        Price
+                                                    </span>
+
+                                                    <strong>
+                                                        ₹<%= service.price %>
+                                                    </strong>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- DURATION -->
+
+                                            <div class="professional-my-service-info-item">
+
+                                                <div class="professional-my-service-info-icon">
+
+                                                    <i class="fa-regular fa-clock"></i>
+
+                                                </div>
+
+                                                <div>
+
+                                                    <span>
+                                                        Duration
+                                                    </span>
+
+                                                    <strong>
+                                                        <%= service.duration %>
+                                                    </strong>
+
+                                                </div>
+
+                                            </div>
+
+                                            <% if (service.officeStatus) { %>
+
+                                                <div
+                                                    class="office-status <%= service.officeStatus.isOpen ? 'office-open' : 'office-closed' %>">
+
+                                                    <span class="office-status-dot"></span>
+
+                                                    <span>
+                                                        <%= service.officeStatus.message %>
+                                                    </span>
+
+                                                </div>
+
+                                                <% } %>
+
+                                                    <!-- COMPANY -->
+
+                                                    <div class="professional-my-service-info-item">
+
+                                                        <div class="professional-my-service-info-icon">
+
+                                                            <i class="fa-solid fa-building"></i>
+
+                                                        </div>
+
+                                                        <div>
+
+                                                            <span>
+                                                                Company
+                                                            </span>
+
+                                                            <strong>
+                                                                <%= service.company.name %>
+                                                            </strong>
+
+                                                        </div>
+
+                                                    </div>
+
+                                        </div>
+
+
+                                        <!-- =========================
+                             CARD FOOTER
+                        ========================== -->
+
+                                        <div class="professional-my-service-footer">
+
+
+                                            <!-- BOOKING AVAILABILITY -->
+
+                                            <% if (service.isBookingAvailable) { %>
+
+                                                <span class="professional-my-service-status service-booking-active">
+
+                                                    <i class="fa-solid fa-circle-check"></i>
+
+                                                    Bookings Available
+
+                                                </span>
+
+                                                <% } else { %>
+
+                                                    <span
+                                                        class="professional-my-service-status service-booking-unavailable">
+
+                                                        <i class="fa-solid fa-circle-xmark"></i>
+
+                                                        Bookings Unavailable
+
+                                                    </span>
+
+                                                    <% } %>
+
+
+                                                        <!-- ACTIONS -->
+
+                                                        <div class="professional-service-actions">
+
+
+                                                            <!-- ENABLE / DISABLE BOOKINGS -->
+
+                                                            <form
+                                                                action="/professional/services/<%= service._id %>/booking-availability"
+                                                                method="POST"  class="nirnay-validation-form" novalidate>
+
+                                                                <button type="submit" class="professional-booking-toggle
+                                        <%= service.isBookingAvailable
+                                            ? 'booking-toggle-active'
+                                            : 'booking-toggle-disabled'
+                                        %>">
+
+                                                                    <% if (service.isBookingAvailable) { %>
+
+                                                                        <i class="fa-solid fa-ban"></i>
+
+                                                                        Disable
+
+                                                                        <% } else { %>
+
+                                                                            <i class="fa-solid fa-check"></i>
+
+                                                                            Enable
+
+                                                                            <% } %>
+
+                                                                </button>
+
+                                                            </form>
+
+
+                                                            <!-- EDIT SERVICE -->
+
+                                                            <a href="/professional/services/<%= service._id %>/edit"
+                                                                class="professional-my-service-edit">
+
+                                                                Edit
+
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+
+                                                            </a>
+
+                                                        </div>
+
+                                        </div>
+
+                            </div>
+
+                            <% }) %>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+    </div>

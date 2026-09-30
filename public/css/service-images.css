@@ -1,0 +1,578 @@
+.service-card-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px 16px 0 0;
+}
+
+/* =========================================
+   PREMIUM SERVICE CARD IMAGE
+   ========================================= */
+
+.professional-my-service-card,
+.customer-service-card {
+  overflow: hidden;
+  position: relative;
+}
+
+/* =========================================
+   PROFESSIONAL IMAGE
+   ========================================= */
+
+.service-card-image,
+.customer-service-card-image {
+  width: 100%;
+  height: 205px;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+
+  border-radius: 18px 18px 0 0;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+/* =========================================
+   PREMIUM HOVER
+   ========================================= */
+
+.professional-my-service-card:hover .service-card-image,
+.customer-service-card:hover .customer-service-card-image {
+  transform: scale(1.025);
+  filter: brightness(0.96);
+}
+
+/* =========================================
+   IMAGE SHADOW / DEPTH
+   ========================================= */
+
+.service-card-image,
+.customer-service-card-image {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   SPACING AFTER IMAGE
+   ========================================= */
+
+.professional-my-service-card .professional-my-service-header {
+  margin-top: 18px;
+}
+
+.customer-service-card .service-card-top {
+  margin-top: 18px;
+}
+
+/* =========================================
+   PREMIUM IMAGE FALLBACK FEEL
+   ========================================= */
+
+.service-card-image[src],
+.customer-service-card-image[src] {
+  background: #f4f6ff;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .service-card-image,
+  .customer-service-card-image {
+    height: 185px;
+  }
+}
+
+@media (max-width: 576px) {
+  .service-card-image,
+  .customer-service-card-image {
+    height: 165px;
+    border-radius: 14px 14px 0 0;
+  }
+}
+
+/* =========================================
+   PREMIUM SERVICE DETAILS GALLERY
+   ========================================= */
+
+.premium-service-gallery {
+  width: 100%;
+  margin: 25px 0;
+}
+
+/* =========================================
+   MAIN IMAGE
+   ========================================= */
+
+.premium-service-main-image {
+  position: relative;
+  width: 100%;
+  height: 430px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #f4f6ff;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.premium-service-main-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.45s ease;
+}
+
+.premium-service-main-image:hover img {
+  transform: scale(1.015);
+}
+
+/* =========================================
+   IMAGE OVERLAY
+   ========================================= */
+
+.premium-image-overlay {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 35px 18px 18px;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0));
+
+  pointer-events: none;
+}
+
+/* Featured badge */
+
+.premium-image-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  color: #4b6cb7;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.premium-image-label i {
+  font-size: 11px;
+}
+
+/* Image count */
+
+.premium-image-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  backdrop-filter: blur(6px);
+}
+
+/* =========================================
+   THUMBNAILS
+   ========================================= */
+
+.premium-service-thumbnails {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 14px;
+
+  overflow-x: auto;
+
+  padding: 3px 2px 8px;
+}
+
+.premium-service-thumbnail {
+  position: relative;
+
+  flex: 0 0 82px;
+
+  width: 82px;
+  height: 62px;
+
+  padding: 0;
+
+  border: 2px solid transparent;
+
+  border-radius: 11px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.premium-service-thumbnail img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.premium-service-thumbnail:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.premium-service-thumbnail.active {
+  border-color: #4b6cb7;
+
+  box-shadow: 0 0 0 2px rgba(75, 108, 183, 0.12);
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .premium-service-main-image {
+    height: 340px;
+
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .premium-service-main-image {
+    height: 270px;
+
+    border-radius: 14px;
+  }
+
+  .premium-service-thumbnail {
+    flex-basis: 72px;
+
+    width: 72px;
+    height: 55px;
+  }
+}
+
+/* =========================================
+   CONSULTANCY SERVICE CARD IMAGE
+   ========================================= */
+
+.consultancy-service-card {
+  overflow: hidden;
+  position: relative;
+}
+
+.consultancy-service-card-image {
+  width: 100%;
+  height: 190px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px 16px 0 0;
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.consultancy-service-card:hover .consultancy-service-card-image {
+  transform: scale(1.025);
+  filter: brightness(0.96);
+}
+
+.consultancy-service-card .service-card-top {
+  margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+  .consultancy-service-card-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .consultancy-service-card-image {
+    height: 165px;
+    border-radius: 14px 14px 0 0;
+  }
+}
+
+/* =========================================================
+   PROFESSIONAL EDIT SERVICE - IMAGE MANAGEMENT
+   ========================================================= */
+
+.service-image-management {
+  width: 100%;
+}
+
+.service-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.service-image-item {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.service-image-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.service-image-preview {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background: #f8f9fc;
+}
+
+.service-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-priority-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #4b6cb7;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.service-image-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+}
+
+.service-image-actions form {
+  flex: 1;
+  margin: 0;
+}
+
+.service-image-btn {
+  width: 100%;
+  border: none;
+  padding: 9px 8px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.service-image-priority-btn {
+  background: #eef2ff;
+  color: #4b6cb7;
+}
+
+.service-image-priority-btn:hover {
+  background: #4b6cb7;
+  color: #ffffff;
+}
+
+.service-image-delete-btn {
+  background: #fff1f2;
+  color: #dc3545;
+}
+
+.service-image-delete-btn:hover {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.service-no-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 120px;
+  padding: 25px;
+  border: 1px dashed #dbe3ff;
+  border-radius: 15px;
+  background: #f8f9ff;
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.service-no-images i {
+  font-size: 22px;
+  color: #4b6cb7;
+}
+
+.service-image-upload {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  border: 1px dashed #cfd8f5;
+  border-radius: 15px;
+  background: #f8f9ff;
+}
+
+.service-image-upload-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: #4b6cb7;
+  font-size: 18px;
+}
+
+.service-image-upload-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.service-image-upload-content strong {
+  color: #222;
+  font-size: 14px;
+}
+
+.service-image-upload-content span {
+  color: #777;
+  font-size: 12px;
+}
+
+.service-image-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: #4b6cb7;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+  white-space: nowrap;
+}
+
+.service-image-upload-btn:hover {
+  background: #3b5998;
+  transform: translateY(-1px);
+}
+
+.service-image-count {
+  display: block;
+  margin-top: 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+.service-image-limit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #f8f9ff;
+  color: #666;
+  font-size: 13px;
+}
+
+.service-image-limit i {
+  color: #4b6cb7;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .service-image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .service-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-image-upload {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .service-image-upload-icon {
+    margin: 0 auto;
+  }
+
+  .service-image-upload-btn {
+    justify-content: center;
+  }
+
+  .service-image-actions {
+    flex-direction: column;
+  }
+}

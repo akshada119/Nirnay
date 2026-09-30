@@ -1,0 +1,530 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="register-page">
+
+    <!-- Left Information Section -->
+    <div class="register-info">
+
+        <div class="register-brand">
+            <i class="fa-solid fa-compass"></i>
+            <span>Nirnay</span>
+        </div>
+
+        <div class="register-content">
+
+            <span class="register-label">
+                JOIN NIRNAY
+            </span>
+
+            <h1>
+                Your journey to
+                <span>better decisions.</span>
+            </h1>
+
+            <p>
+                Create your account and connect with trusted
+                professionals across multiple consultancy
+                domains.
+            </p>
+
+            <div class="register-features">
+
+                <div>
+                    <i class="fa-solid fa-users"></i>
+
+                    <div>
+                        <strong>For Everyone</strong>
+                        <span>Customers and professionals</span>
+                    </div>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-briefcase"></i>
+
+                    <div>
+                        <strong>15 Consultancy Domains</strong>
+                        <span>Find expertise across industries</span>
+                    </div>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <div>
+                        <strong>Easy Booking</strong>
+                        <span>Connect and book professionals</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Registration Section -->
+    <div class="register-form-section">
+
+        <div class="register-card">
+
+            <div class="register-header">
+
+                <div class="register-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+                <h2>Create Your Account</h2>
+
+                <p>
+                    Join Nirnay and get started today
+                </p>
+
+            </div>
+
+
+            <form
+                action="/register"
+                method="POST"
+                id="registerForm"
+                class="nirnay-validation-form"
+                novalidate
+            >
+
+                <div class="row">
+
+                    <!-- ========================= -->
+                    <!-- FULL NAME -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                placeholder="Enter full name"
+                                autocomplete="name"
+                                minlength="2"
+                                maxlength="50"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,50}"
+                                data-validation="name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- EMAIL -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="name@example.com"
+                                autocomplete="email"
+                                maxlength="100"
+                                data-validation="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- PASSWORD -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                name="password"
+                                id="registerPassword"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                maxlength="128"
+                                data-validation="password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="register-password-toggle"
+                                id="registerPasswordToggle"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- MOBILE -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="mobile">
+                            Mobile Number
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-mobile"></i>
+
+                            <input
+                                type="text"
+                                name="mobile"
+                                id="mobile"
+                                placeholder="Enter your mobile number"
+                                autocomplete="tel"
+                                minlength="10"
+                                maxlength="10"
+                                pattern="[6-9][0-9]{9}"
+                                data-validation="mobile"
+                                inputmode="numeric"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- ADDRESS -->
+                    <!-- ========================= -->
+
+                    <div class="col-12 mb-3">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <input
+                                type="text"
+                                name="address"
+                                id="address"
+                                placeholder="Enter your address"
+                                autocomplete="street-address"
+                                minlength="5"
+                                maxlength="250"
+                                data-validation="address"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- ROLE -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="role">
+                            Register As
+                        </label>
+
+                        <div class="select-wrapper input-wrapper">
+
+                            <i class="fa-solid fa-user-tag"></i>
+
+                            <select
+                                name="role"
+                                id="role"
+                                required
+                            >
+
+                                <option value="" selected disabled>
+                                    Select account type
+                                </option>
+
+                                <option value="customer">
+                                    Customer
+                                </option>
+
+                                <option value="professional">
+                                    Professional
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- CONSULTANCY -->
+                    <!-- ========================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label for="consultancy">
+                            Consultancy
+                        </label>
+
+                        <div class="select-wrapper input-wrapper">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            <select
+                                name="consultancy"
+                                id="consultancy"
+                            >
+
+                                <option value="" selected disabled>
+                                    Select consultancy
+                                </option>
+
+                                <option value="IT">IT</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Education">Education</option>
+                                <option value="Research">Research</option>
+                                <option value="Business">Business</option>
+                                <option value="HR">HR</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Career">Career</option>
+                                <option value="Environmental">Environmental</option>
+                                <option value="Engineering">Engineering</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- EXPERIENCE -->
+                    <!-- ========================= -->
+
+                    <div class="col-12 mb-3">
+
+                        <label for="experience">
+                            Work Experience
+                        </label>
+
+                        <div class="register-input input-wrapper">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            <input
+                                type="text"
+                                name="experience"
+                                id="experience"
+                                placeholder="Example: 5 years"
+                                maxlength="100"
+                                data-validation="experience"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- BUTTON -->
+                    <!-- ========================= -->
+
+                    <div class="col-12 mt-2">
+
+                        <button
+                            type="submit"
+                            class="register-btn"
+                            id="registerBtn"
+                        >
+
+                            <span>Create Account</span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+            <div class="login-link">
+
+                <span>Already have an account?</span>
+
+                <a href="/login">
+                    Login here
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // =========================================
+    // PASSWORD VISIBILITY
+    // =========================================
+
+    const registerPassword =
+        document.getElementById("registerPassword");
+
+    const registerPasswordToggle =
+        document.getElementById("registerPasswordToggle");
+
+    if (registerPassword && registerPasswordToggle) {
+
+        registerPasswordToggle.addEventListener("click", function () {
+
+            const type =
+                registerPassword.type === "password"
+                    ? "text"
+                    : "password";
+
+            registerPassword.type = type;
+
+            this.innerHTML =
+                type === "password"
+                    ? '<i class="fa-solid fa-eye"></i>'
+                    : '<i class="fa-solid fa-eye-slash"></i>';
+
+        });
+
+    }
+
+
+    // =========================================
+    // REGISTER FORM
+    // =========================================
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const registerBtn =
+        document.getElementById("registerBtn");
+
+
+    // =========================================
+    // ROLE / CONSULTANCY
+    // =========================================
+
+    const role =
+        document.getElementById("role");
+
+    const consultancy =
+        document.getElementById("consultancy");
+
+
+    if (role && consultancy) {
+
+        function updateConsultancyRequirement() {
+
+            if (role.value === "professional") {
+
+                consultancy.required = true;
+
+            } else {
+
+                consultancy.required = false;
+
+                consultancy.classList.remove("is-invalid");
+
+            }
+
+        }
+
+
+        role.addEventListener(
+            "change",
+            updateConsultancyRequirement
+        );
+
+
+        updateConsultancyRequirement();
+
+    }
+
+
+    // =========================================
+    // MOBILE NUMBER INPUT RESTRICTION
+    // =========================================
+
+    const mobile =
+        document.getElementById("mobile");
+
+    if (mobile) {
+
+        mobile.addEventListener("input", function () {
+
+            this.value =
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
+
+        });
+
+    }
+
+</script>
+
+
+<!-- IMPORTANT:
+     Keep this AFTER the page-specific JavaScript
+     so the global validation script can handle
+     all nirnay-validation-form fields.
+-->
+
+<script src="/js/nirnay-validation.js"></script>

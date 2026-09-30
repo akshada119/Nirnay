@@ -1,0 +1,308 @@
+<%- layout("layout/boilerplate") %>
+
+    <link rel="stylesheet" href="/css/review.css">
+    <div class="container py-5 consultancy-category-page">
+
+        <!-- Category Header -->
+        <div class="consultancy-category-header text-center mb-5">
+
+            <span class="consultancy-category-label">
+                <i class="fa-solid <%= category.icon %>"></i>
+                <%= category.name %>
+            </span>
+
+            <h1 class="mt-3">
+                Find the Right
+                <span>Professional</span>
+            </h1>
+
+            <p>
+                <%= category.description %>
+            </p>
+
+        </div>
+
+
+        <!-- Services -->
+        <% if (services.length===0) { %>
+
+            <!-- Empty State -->
+            <div class="consultancy-empty-state text-center">
+
+                <div class="consultancy-empty-icon">
+                    <i class="fa-solid <%= category.icon %>"></i>
+                </div>
+
+                <h3>
+                    No Services Available Yet
+                </h3>
+
+                <p>
+                    There are currently no professionals offering
+                    <%= category.name.toLowerCase() %> services.
+                </p>
+
+                <a href="/consultancy" class="consultancy-back-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Explore Other Categories
+                </a>
+
+            </div>
+
+
+            <% } else { %>
+
+
+                <!-- Service Cards -->
+                <div class="row g-4">
+
+                    <% services.forEach((service, index)=> { %>
+
+                        <div class="col-12 col-md-6 col-lg-4">
+
+                            <div class="consultancy-service-card">
+
+
+                                <!-- Priority Image -->
+                                <% if (service.priorityImage && service.priorityImage.url) { %>
+
+                                    <img src="<%= service.priorityImage.url %>" alt="<%= service.name %>"
+                                        class="consultancy-service-card-image" data-bs-toggle="modal"
+                                        data-bs-target="#imageModal-<%= service._id %>">
+
+                                    <% } %>
+
+                                        <!-- Card Top -->
+                                        <div class="consultancy-service-top">
+
+                                            <span class="consultancy-service-number">
+                                                #<%= String(index + 1).padStart(2, "0" ) %>
+                                            </span>
+
+                                            <span class="consultancy-service-category">
+
+                                                <i class="fa-solid <%= category.icon %>"></i>
+
+                                                <%= service.category %>
+
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- Service Content -->
+                                        <div class="consultancy-service-content">
+
+
+                                            <!-- Service Name -->
+                                            <h3>
+                                                <%= service.name %>
+                                            </h3>
+
+
+                                            <!-- Reviews -->
+                                            <!-- REVIEW SUMMARY -->
+                                            <div class="consultancy-review-summary">
+
+                                                <% if (service.reviewCount> 0) { %>
+
+                                                    <div class="consultancy-card-rating">
+
+                                                        <div class="consultancy-card-stars">
+                                                            <% for (let i=1; i <=5; i++) { %>
+
+                                                                <% if (i <=Math.round(service.averageRating)) { %>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <% } else { %>
+                                                                        <i class="fa-regular fa-star"></i>
+                                                                        <% } %>
+
+                                                                            <% } %>
+                                                        </div>
+
+                                                        <strong>
+                                                            <%= Number(service.averageRating).toFixed(1) %>
+                                                        </strong>
+
+                                                        <span>
+                                                            · <%= service.reviewCount %>
+                                                                <%= service.reviewCount===1 ? "review" : "reviews" %>
+                                                        </span>
+
+                                                    </div>
+
+                                                    <% } else { %>
+
+                                                        <div class="consultancy-card-no-rating">
+                                                            <i class="fa-regular fa-star"></i>
+                                                            <span>No reviews yet</span>
+                                                        </div>
+
+                                                        <% } %>
+
+
+                                                            <!-- ALWAYS SHOW THIS BUTTON -->
+                                                            <a href="/services/<%= service.slug %>#service-reviews"
+                                                                class="consultancy-view-reviews">
+                                                                View all reviews
+                                                                <i class="fa-solid fa-arrow-right"></i>
+                                                            </a>
+
+                                            </div>
+
+                                            <% if (service.company && service.company.address) { %>
+
+                                                <div class="service-card-address">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                    <span>
+                                                        <%= service.company.address %>
+                                                    </span>
+                                                </div>
+
+                                                <% } %>
+
+                                                    <!-- Description -->
+                                                    <p>
+                                                        <%= service.description %>
+                                                    </p>
+
+
+                                                    <!-- Professional -->
+                                                    <% if (service.professional) { %>
+
+                                                        <div class="consultancy-professional">
+
+                                                            <div class="consultancy-professional-icon">
+
+                                                                <i class="fa-solid fa-user-tie"></i>
+
+                                                            </div>
+
+                                                            <div>
+
+                                                                <small>
+                                                                    Professional
+                                                                </small>
+
+                                                                <strong>
+
+                                                                    <a
+                                                                        href="/professional/<%= service.professional.slug %>">
+                                                                        <%= service.professional.name %>
+                                                                    </a>
+
+                                                                </strong>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <% } %>
+
+
+                                                            <!-- Company -->
+                                                            <% if (service.company) { %>
+
+                                                                <div class="consultancy-company">
+
+                                                                    <i class="fa-solid fa-building"></i>
+
+                                                                    <span>
+                                                                        <%= service.company.name %>
+                                                                    </span>
+
+                                                                </div>
+
+                                                                <% } %>
+
+
+                                        </div>
+
+
+                                        <!-- Office Status -->
+                                        <% if (service.officeStatus) { %>
+
+                                            <div class="consultancy-office-status
+                                <%= service.officeStatus.isOpen
+                                    ? 'consultancy-office-open'
+                                    : 'consultancy-office-closed' %>">
+
+                                                <span class="consultancy-office-dot"></span>
+
+                                                <span class="consultancy-office-message">
+                                                    <%= service.officeStatus.message %>
+                                                </span>
+
+                                            </div>
+
+                                            <% } %>
+
+
+                                                <!-- Card Footer -->
+                                                <div class="consultancy-service-footer">
+
+
+                                                    <!-- Price -->
+                                                    <div class="consultancy-price">
+
+                                                        <small>
+                                                            Starting from
+                                                        </small>
+
+                                                        <strong>
+                                                            ₹<%= service.price %>
+                                                        </strong>
+
+                                                    </div>
+
+
+                                                    <!-- View Service -->
+                                                    <a href="/services/<%= service.slug %>"
+                                                        class="consultancy-view-btn">
+
+                                                        View Service
+
+                                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                                    </a>
+
+
+                                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <% if (service.priorityImage && service.priorityImage.url) { %>
+
+                            <div class="modal fade" id="imageModal-<%= service._id %>" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+
+                                    <div class="modal-content image-popup-content">
+
+                                        <button type="button" class="btn-close image-popup-close"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                        </button>
+
+                                        <div class="modal-body image-popup-body">
+
+                                            <img src="<%= service.priorityImage.url %>" alt="<%= service.name %>"
+                                                class="full-service-image">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <% } %>
+
+                                <% }) %>
+
+                </div>
+
+                <% } %>
+
+    </div>

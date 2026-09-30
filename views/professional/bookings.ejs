@@ -1,0 +1,552 @@
+<%- layout("layout/boilerplate") %>
+
+
+    <div class="professional-dashboard">
+
+        <!-- ==========================================
+     PAGE HEADER
+=========================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    PROFESSIONAL PANEL
+                </span>
+
+                <h1>
+                    Booking <span>Management</span>
+                </h1>
+
+                <p>
+                    View, manage and update bookings received from your customers.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                Bookings
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+     BOOKING STATISTICS
+=========================================== -->
+
+        <div class="dashboard-grid professional-booking-stats">
+
+            <!-- New -->
+
+            <a href="/professional/bookings?new=true" class="professional-booking-stat-link">
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="dashboard-icon">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            New
+                        </h3>
+
+                        <p>
+                            New bookings that you haven't viewed yet.
+                        </p>
+
+                        <strong class="booking-stat-number">
+                            <%= newBookingsCount %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- Pending -->
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <span class="card-number">
+                        02
+                    </span>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Pending
+                    </h3>
+
+                    <p>
+                        Bookings waiting for your confirmation.
+                    </p>
+
+                    <strong class="booking-stat-number">
+                        <%= pendingBookingsCount %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Confirmed -->
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <span class="card-number">
+                        03
+                    </span>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Confirmed
+                    </h3>
+
+                    <p>
+                        Bookings that you have confirmed.
+                    </p>
+
+                    <strong class="booking-stat-number">
+                        <%= confirmedBookingsCount %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Completed -->
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-check-double"></i>
+
+                    </div>
+
+                    <span class="card-number">
+                        04
+                    </span>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Completed
+                    </h3>
+
+                    <p>
+                        Successfully completed bookings.
+                    </p>
+
+                    <strong class="booking-stat-number">
+                        <%= completedBookingsCount %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+     SEARCH
+=========================================== -->
+
+        <div class="professional-booking-search-card">
+
+            <div class="professional-booking-search-header">
+
+                <div>
+
+                    <span class="dashboard-label">
+                        SEARCH BOOKINGS
+                    </span>
+
+                    <h2>
+                        Find a Booking
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form action="/professional/bookings" method="GET"
+                class="professional-booking-search-form nirnay-validation-form" id="professionalBookingSearchForm"
+                novalidate>
+
+                <!-- Text Search -->
+
+                <div class="professional-search-field">
+
+                    <label for="professionalBookingSearch">
+                        Customer or Service
+                    </label>
+
+                    <div class="professional-search-input">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="text" id="professionalBookingSearch" name="search" value="<%= search %>"
+                            placeholder="Customer, email, service..." maxlength="100"     data-validation="search"
+>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Start Date -->
+
+                <div class="professional-search-field">
+
+                    <label for="startDate">
+                        Start Date
+                    </label>
+
+                    <div class="professional-search-input">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <input type="date" id="startDate" name="startDate" value="<%= startDate %>">
+
+                    </div>
+
+                </div>
+
+
+                <!-- End Date -->
+
+                <div class="professional-search-field">
+
+                    <label for="endDate">
+                        End Date
+                    </label>
+
+                    <div class="professional-search-input">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <input type="date" id="endDate" name="endDate" value="<%= endDate %>">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Search -->
+
+                <button type="submit" class="professional-search-btn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Search
+
+                </button>
+
+
+                <!-- Clear -->
+
+                <% if (newFilter==="true" ) { %>
+
+                    <span class="dashboard-label">
+                        NEW BOOKINGS
+                    </span>
+
+                    <h2>
+                        New Bookings
+                    </h2>
+
+                    <% } else if (status==="pending" ) { %>
+
+                        <span class="dashboard-label">
+                            PENDING BOOKINGS
+                        </span>
+
+                        <h2>
+                            Pending Bookings
+                        </h2>
+
+                        <% } else if (status==="confirmed" ) { %>
+
+                            <span class="dashboard-label">
+                                CONFIRMED BOOKINGS
+                            </span>
+
+                            <h2>
+                                Confirmed Bookings
+                            </h2>
+
+                            <% } else if (status==="completed" ) { %>
+
+                                <span class="dashboard-label">
+                                    COMPLETED BOOKINGS
+                                </span>
+
+                                <h2>
+                                    Completed Bookings
+                                </h2>
+
+                                <% } else if (isSearchActive) { %>
+
+                                    <span class="dashboard-label">
+                                        SEARCH RESULTS
+                                    </span>
+
+                                    <h2>
+                                        Booking Search
+                                    </h2>
+
+                                    <% } else { %>
+
+                                        <span class="dashboard-label">
+                                            ALL BOOKINGS
+                                        </span>
+
+                                        <h2>
+                                            All Bookings
+                                        </h2>
+
+                                        <% } %>
+
+            </form>
+
+        </div>
+
+
+        <!-- ==========================================
+ ALL BOOKINGS
+
+
+=========================================== -->
+
+
+        <div class="professional-booking-section">
+
+            <div class="professional-booking-section-header">
+
+                <div>
+
+                    <% if (isSearchActive) { %>
+
+                        <span class="dashboard-label">
+                            SEARCH RESULTS
+                        </span>
+
+                        <h2>
+                            Booking Search
+                        </h2>
+
+                        <% } else { %>
+
+                            <span class="dashboard-label">
+                                ALL BOOKINGS
+                            </span>
+
+                            <h2>
+                                All Bookings
+                            </h2>
+
+                            <% } %>
+
+                </div>
+
+                <span class="professional-booking-count">
+                    <%= bookings.length %> Bookings
+                </span>
+
+            </div>
+
+
+            <% if (bookings.length===0) { %>
+
+                <div class="professional-booking-empty">
+
+                    <div class="professional-booking-empty-icon">
+
+                        <i class="fa-solid fa-calendar-xmark"></i>
+
+                    </div>
+
+                    <% if (isSearchActive) { %>
+
+                        <h3>
+                            No bookings found
+                        </h3>
+
+                        <p>
+                            Try changing your search text or date range.
+                        </p>
+
+                        <% } else { %>
+
+                            <h3>
+                                No bookings yet
+                            </h3>
+
+                            <p>
+                                You don't have any bookings from customers yet.
+                            </p>
+
+                            <% } %>
+
+                </div>
+
+                <% } else { %>
+
+                    <div class="professional-booking-list">
+
+                        <% bookings.forEach(booking=> { %>
+
+                            <%- include("partials/bookingCard", { booking }) %>
+
+                                <% }) %>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+    </div>
+
+
+ <script>
+
+    const professionalBookingSearchForm =
+        document.getElementById("professionalBookingSearchForm");
+
+    const professionalStartDate =
+        document.getElementById("startDate");
+
+    const professionalEndDate =
+        document.getElementById("endDate");
+
+
+    /*
+     * Clear date-range validation while editing
+     */
+    professionalStartDate.addEventListener("change", function () {
+
+        professionalEndDate.classList.remove("is-invalid");
+
+        const error =
+            professionalEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.textContent = "";
+        }
+
+    });
+
+
+    professionalEndDate.addEventListener("change", function () {
+
+        professionalEndDate.classList.remove("is-invalid");
+
+        const error =
+            professionalEndDate.parentNode.querySelector(".invalid-feedback");
+
+        if (error) {
+            error.textContent = "";
+        }
+
+    });
+
+
+    /*
+     * Validate start/end date range
+     */
+    professionalBookingSearchForm.addEventListener("submit", function (event) {
+
+        const startDate =
+            professionalStartDate.value;
+
+        const endDate =
+            professionalEndDate.value;
+
+
+        if (startDate && endDate && endDate < startDate) {
+
+            event.preventDefault();
+
+            professionalEndDate.classList.add("is-invalid");
+
+
+            let error =
+                professionalEndDate.parentNode.querySelector(
+                    ".invalid-feedback"
+                );
+
+
+            if (!error) {
+
+                error = document.createElement("div");
+
+                error.className = "invalid-feedback";
+
+                professionalEndDate.insertAdjacentElement(
+                    "afterend",
+                    error
+                );
+
+            }
+
+
+            error.textContent =
+                "End date cannot be earlier than the start date.";
+
+        }
+
+    });
+
+</script>
+<script src="/js/nirnay-validation.js"></script>

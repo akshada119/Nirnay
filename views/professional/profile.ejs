@@ -1,0 +1,759 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="professional-profile-page">
+
+    <div class="professional-profile-container">
+
+        <!-- Header -->
+        <div class="professional-profile-header">
+
+            <div>
+
+                <span class="professional-profile-label">
+                    PROFESSIONAL PROFILE
+                </span>
+
+                <h1>
+                    My <span>Profile</span>
+                </h1>
+
+                <p>
+                    Manage your professional information, company and services.
+                </p>
+
+            </div>
+
+            <a
+                href="/professional/dashboard"
+                class="professional-profile-back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- Profile Card -->
+        <div class="professional-profile-card">
+
+
+            <!-- ==========================================
+                 PROFILE TOP
+            =========================================== -->
+
+            <div class="professional-profile-top">
+
+                <div class="professional-profile-avatar">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+
+                <div class="professional-profile-user">
+
+                    <h2>
+                        <%= user.name %>
+                    </h2>
+
+                    <span>
+                        <i class="fa-solid fa-user-tie"></i>
+                        Professional
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="professional-profile-divider"></div>
+
+
+            <!-- ==========================================
+                 PERSONAL INFORMATION
+            =========================================== -->
+
+            <div class="professional-profile-section">
+
+                <div class="professional-profile-section-heading">
+
+                    <div class="professional-profile-section-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Personal Information
+                        </h3>
+
+                        <p>
+                            Your basic personal information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="professional-profile-info-grid">
+
+
+                    <!-- Name -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Full Name
+                        </span>
+
+                        <strong>
+                            <%= user.name %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Email Address
+                        </span>
+
+                        <strong>
+                            <%= user.email %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Mobile -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Mobile Number
+                        </span>
+
+                        <strong>
+                            <%= user.mobile %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Location
+                        </span>
+
+                        <strong>
+                            <%= user.location || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Address -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Address
+                        </span>
+
+                        <strong>
+                            <%= user.address %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="professional-profile-divider"></div>
+
+
+            <!-- ==========================================
+                 PROFESSIONAL INFORMATION
+            =========================================== -->
+
+            <div class="professional-profile-section">
+
+                <div class="professional-profile-section-heading">
+
+                    <div class="professional-profile-section-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Professional Information
+                        </h3>
+
+                        <p>
+                            Your professional background and expertise
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="professional-profile-info-grid">
+
+
+                    <!-- Consultancy -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Consultancy
+                        </span>
+
+                        <strong>
+                            <%= user.consultancy || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Category
+                        </span>
+
+                        <strong>
+                            <%= user.category || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Specialization -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Specialization
+                        </span>
+
+                        <strong>
+                            <%= user.specialization || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Experience -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Experience
+                        </span>
+
+                        <strong>
+                            <%= user.experience || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Skills -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Skills
+                        </span>
+
+                        <strong>
+                            <%= user.skills || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            Professional Description
+                        </span>
+
+                        <strong>
+                            <%= user.professionalDescription || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- About -->
+                    <div class="professional-profile-info">
+
+                        <span class="professional-profile-info-label">
+                            About
+                        </span>
+
+                        <strong>
+                            <%= user.about || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="professional-profile-divider"></div>
+
+
+            <!-- ==========================================
+                 COMPANY INFORMATION
+            =========================================== -->
+
+            <div class="professional-profile-section">
+
+                <div class="professional-profile-section-heading">
+
+                    <div class="professional-profile-section-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Company Information
+                        </h3>
+
+                        <p>
+                            Information about your consultancy company
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <% if (company) { %>
+
+                    <div class="professional-profile-info-grid">
+
+
+                        <!-- Company Name -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Name
+                            </span>
+
+                            <strong>
+                                <%= company.name %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Category -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Category
+                            </span>
+
+                            <strong>
+                                <%= company.category %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Email
+                            </span>
+
+                            <strong>
+                                <%= company.email %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Mobile -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Mobile
+                            </span>
+
+                            <strong>
+                                <%= company.mobile %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- City -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                City
+                            </span>
+
+                            <strong>
+                                <%= company.city %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Address -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Address
+                            </span>
+
+                            <strong>
+                                <%= company.address %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Website -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Website
+                            </span>
+
+                            <strong>
+
+                                <% if (company.website) { %>
+
+                                    <%= company.website %>
+
+                                <% } else { %>
+
+                                    Not provided
+
+                                <% } %>
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="professional-profile-info">
+
+                            <span class="professional-profile-info-label">
+                                Company Description
+                            </span>
+
+                            <strong>
+                                <%= company.description %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% } else { %>
+
+
+                    <!-- No Company -->
+                    <div class="professional-profile-empty">
+
+                        <div class="professional-profile-empty-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                No Company Added
+                            </h4>
+
+                            <p>
+                                Create your company profile to showcase your business.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="/professional/company"
+                            class="professional-profile-company-btn"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                            Create Company
+                        </a>
+
+                    </div>
+
+
+                <% } %>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="professional-profile-divider"></div>
+
+
+            <!-- ==========================================
+                 SERVICES
+            =========================================== -->
+
+            <div class="professional-profile-section">
+
+                <div class="professional-profile-section-heading">
+
+                    <div class="professional-profile-section-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            My Services
+                        </h3>
+
+                        <p>
+                            Services offered by you
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="professional-profile-services-header">
+
+                    <div>
+
+                        <span>
+                            Total Services
+                        </span>
+
+                        <strong>
+                            <%= services.length %>
+                        </strong>
+
+                    </div>
+
+                    <a
+                        href="/professional/services"
+                        class="professional-profile-services-btn"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                        View Services
+                    </a>
+
+                </div>
+
+
+                <% if (services.length > 0) { %>
+
+                    <div class="professional-profile-services-list">
+
+                        <% services.slice(0, 3).forEach(service => { %>
+
+                            <div class="professional-profile-service-item">
+
+                                <div class="professional-profile-service-icon">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </div>
+
+                                <div class="professional-profile-service-content">
+
+                                    <h4>
+                                        <%= service.name %>
+                                    </h4>
+
+                                    <span>
+                                        <%= service.category %>
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="/services/<%= service.slug %>"
+                                    class="professional-profile-service-view"
+                                >
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        <% }) %>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="professional-profile-empty">
+
+                        <div class="professional-profile-empty-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                No Services Added
+                            </h4>
+
+                            <p>
+                                Add services to showcase your professional expertise.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="professional-profile-divider"></div>
+
+
+            <!-- ==========================================
+                 ACCOUNT
+            =========================================== -->
+
+            <div class="professional-profile-section">
+
+                <div class="professional-profile-section-heading">
+
+                    <div class="professional-profile-section-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Account
+                        </h3>
+
+                        <p>
+                            Your Nirnay account information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="professional-profile-account">
+
+
+                    <!-- Status -->
+                    <div class="professional-profile-account-status">
+
+                        <div class="professional-profile-status-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Account Status
+                            </span>
+
+                            <strong>
+                                <%= user.accountStatus || "Active" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Role -->
+                    <div class="professional-profile-account-role">
+
+                        <span>
+                            Account Type
+                        </span>
+
+                        <strong>
+                            Professional
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Member Since -->
+                    <div class="professional-profile-account-role">
+
+                        <span>
+                            Member Since
+                        </span>
+
+                        <strong>
+                            <%= new Date(user.createdAt).toLocaleDateString("en-IN", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }) %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                 FOOTER
+            =========================================== -->
+
+            <div class="professional-profile-footer">
+
+                <a
+                    href="/professional/dashboard"
+                    class="professional-profile-cancel"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+
+
+                <a
+                    href="/professional/profile/edit"
+                    class="professional-profile-edit"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Profile
+                </a>
+
+
+                <a
+                    href="/account/change-password"
+                    class="professional-profile-password"
+                >
+                    <i class="fa-solid fa-key"></i>
+                    Change Password
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

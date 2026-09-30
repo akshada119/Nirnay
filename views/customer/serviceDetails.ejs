@@ -1,0 +1,1204 @@
+<%- layout("layout/boilerplate") %>
+
+    <link rel="stylesheet" href="/css/service-reviews.css">
+
+    <div class="container py-5 service-details-page">
+
+        <!-- Back Button -->
+        <a href="/services" class="btn btn-outline-secondary mb-4">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Services
+        </a>
+
+
+        <!-- =========================================================
+         MAIN SERVICE LAYOUT
+    ========================================================== -->
+
+        <div class="row g-4">
+
+
+            <!-- =========================================================
+             SERVICE INFORMATION
+        ========================================================== -->
+
+            <div class="col-lg-8">
+
+                <div class="service-details-card">
+
+                    <!-- Category -->
+
+                    <span class="service-details-category">
+                        <%= service.category %>
+                    </span>
+
+
+                    <!-- Service Name -->
+
+                    <h1 class="service-details-title">
+                        <%= service.name %>
+                    </h1>
+
+
+                    <!-- Description -->
+
+                    <p class="service-details-description">
+                        <%= service.description %>
+                    </p>
+
+
+                    <hr>
+
+
+                    <!-- =================================================
+                     PREMIUM SERVICE GALLERY
+                ================================================== -->
+
+                    <div class="premium-service-gallery">
+
+                        <% if (service.priorityImage && service.priorityImage.url) { %>
+
+                            <!-- MAIN IMAGE -->
+
+                            <div class="premium-service-main-image">
+
+                                <img src="<%= service.priorityImage.url %>" alt="<%= service.name %>"
+                                    id="mainServiceImage">
+
+                                <div class="premium-image-overlay">
+
+                                    <span class="premium-image-label">
+                                        <i class="fa-solid fa-star"></i>
+                                        Featured
+                                    </span>
+
+
+                                    <% if (service.images && service.images.length> 1) { %>
+
+                                        <span class="premium-image-count">
+                                            <i class="fa-solid fa-images"></i>
+                                            <%= service.images.length %>
+                                        </span>
+
+                                        <% } %>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- THUMBNAILS -->
+
+                            <% if (service.images && service.images.length> 1) { %>
+
+                                <div class="premium-service-thumbnails">
+
+                                    <% service.images.forEach((image, index)=> { %>
+
+                                        <% if (image.url !==service.priorityImage.url) { %>
+
+                                            <button type="button" class="premium-service-thumbnail"
+                                                onclick="changeMainImage('<%= image.url %>', this)">
+
+                                                <img src="<%= image.url %>"
+                                                    alt="<%= service.name %> image <%= index + 1 %>">
+
+                                            </button>
+
+                                            <% } %>
+
+                                                <% }) %>
+
+                                </div>
+
+                                <% } %>
+
+
+                                    <% } else if (service.images && service.images.length> 0) { %>
+
+
+                                        <!-- =================================================
+                             FALLBACK FOR SERVICES WITHOUT PRIORITY IMAGE
+                        ================================================== -->
+
+                                        <div class="premium-service-main-image">
+
+                                            <img src="<%= service.images[0].url %>" alt="<%= service.name %>"
+                                                id="mainServiceImage">
+
+                                        </div>
+
+
+                                        <% if (service.images.length> 1) { %>
+
+                                            <div class="premium-service-thumbnails">
+
+                                                <% service.images.forEach((image, index)=> { %>
+
+                                                    <button type="button" class="premium-service-thumbnail"
+                                                        onclick="changeMainImage('<%= image.url %>', this)">
+
+                                                        <img src="<%= image.url %>"
+                                                            alt="<%= service.name %> image <%= index + 1 %>">
+
+                                                    </button>
+
+                                                    <% }) %>
+
+                                            </div>
+
+                                            <% } %>
+
+
+                                                <% } %>
+
+                    </div>
+
+
+                    <!-- =================================================
+                     PRICE + DURATION
+                ================================================== -->
+
+                    <div class="row g-4">
+
+                        <!-- PRICE -->
+
+                        <div class="col-sm-6">
+
+                            <div class="detail-box">
+
+                                <div class="detail-icon">
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Service Price
+                                    </small>
+
+                                    <h4>
+                                        ₹<%= service.price %>
+                                    </h4>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DURATION -->
+
+                        <div class="col-sm-6">
+
+                            <div class="detail-box">
+
+                                <div class="detail-icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Duration
+                                    </small>
+
+                                    <h4>
+                                        <%= service.duration %>
+                                    </h4>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                     PROFESSIONAL INFORMATION
+                ================================================== -->
+
+                    <% if (service.professional) { %>
+
+                        <hr class="my-4">
+
+
+                        <div class="professional-service-info">
+
+                            <h3 class="mb-4">
+                                <i class="fa-solid fa-user-tie"></i>
+                                Professional Information
+                            </h3>
+
+
+                            <!-- PROFESSIONAL NAME -->
+
+                            <div class="provider-section">
+
+                                <div class="provider-icon">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Professional
+                                    </small>
+
+                                    <h5>
+
+                                        <a href="/professional/<%= service.professional.slug %>">
+
+                                            <%= service.professional.name %>
+
+                                        </a>
+
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- SPECIALIZATION -->
+
+                            <% if (service.professional.specialization) { %>
+
+                                <div class="provider-info">
+
+                                    <i class="fa-solid fa-star"></i>
+
+                                    <span>
+
+                                        <strong>
+                                            Specialization:
+                                        </strong>
+
+                                        <%= service.professional.specialization %>
+
+                                    </span>
+
+                                </div>
+
+                                <% } %>
+
+
+                                    <!-- EXPERIENCE -->
+
+                                    <% if (service.professional.experience) { %>
+
+                                        <div class="provider-info">
+
+                                            <i class="fa-solid fa-clock"></i>
+
+                                            <span>
+
+                                                <strong>
+                                                    Experience:
+                                                </strong>
+
+                                                <%= service.professional.experience %>
+
+                                            </span>
+
+                                        </div>
+
+                                        <% } %>
+
+
+                                            <!-- LOCATION -->
+
+                                            <% if (service.professional.location) { %>
+
+                                                <div class="provider-info">
+
+                                                    <i class="fa-solid fa-location-dot"></i>
+
+                                                    <span>
+
+                                                        <strong>
+                                                            Location:
+                                                        </strong>
+
+                                                        <%= service.professional.location %>
+
+                                                    </span>
+
+                                                </div>
+
+                                                <% } %>
+
+
+                                                    <!-- CONSULTANCY -->
+
+                                                    <% if (service.professional.consultancy) { %>
+
+                                                        <div class="provider-info">
+
+                                                            <i class="fa-solid fa-building"></i>
+
+                                                            <span>
+
+                                                                <strong>
+                                                                    Consultancy:
+                                                                </strong>
+
+                                                                <%= service.professional.consultancy %>
+
+                                                            </span>
+
+                                                        </div>
+
+                                                        <% } %>
+
+
+                                                            <!-- SKILLS -->
+
+                                                            <% if (service.professional.skills) { %>
+
+                                                                <div class="provider-info">
+
+                                                                    <i class="fa-solid fa-list-check"></i>
+
+                                                                    <span>
+
+                                                                        <strong>
+                                                                            Skills:
+                                                                        </strong>
+
+                                                                        <%= service.professional.skills %>
+
+                                                                    </span>
+
+                                                                </div>
+
+                                                                <% } %>
+
+
+                                                                    <!-- PROFESSIONAL DESCRIPTION -->
+
+                                                                    <% if (service.professional.professionalDescription)
+                                                                        { %>
+
+                                                                        <div class="professional-description">
+
+                                                                            <h5>
+                                                                                Professional Description
+                                                                            </h5>
+
+                                                                            <p>
+                                                                                <%= service.professional.professionalDescription
+                                                                                    %>
+                                                                            </p>
+
+                                                                        </div>
+
+                                                                        <% } %>
+
+
+                                                                            <!-- ABOUT -->
+
+                                                                            <% if (service.professional.about) { %>
+
+                                                                                <div class="professional-description">
+
+                                                                                    <h5>
+                                                                                        About Professional
+                                                                                    </h5>
+
+                                                                                    <p>
+                                                                                        <%= service.professional.about
+                                                                                            %>
+                                                                                    </p>
+
+                                                                                </div>
+
+                                                                                <% } %>
+
+
+                        </div>
+
+                        <% } %>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================================
+             PROVIDER INFORMATION
+        ========================================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="provider-card">
+
+                    <h3>
+                        Service Provider
+                    </h3>
+
+
+                    <!-- =================================================
+                     COMPANY
+                ================================================== -->
+
+                    <% if (service.company) { %>
+
+                        <div class="provider-section">
+
+                            <div class="provider-icon">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+
+                            <div>
+
+                                <small>
+                                    Company
+                                </small>
+
+                                <h5>
+                                    <%= service.company.name %>
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMPANY CATEGORY -->
+
+                        <% if (service.company.category) { %>
+
+                            <div class="provider-info">
+
+                                <i class="fa-solid fa-layer-group"></i>
+
+                                <span>
+                                    <%= service.company.category %>
+                                </span>
+
+                            </div>
+
+                            <% } %>
+
+
+                                <!-- COMPANY LOCATION -->
+
+                                <% if (service.company.city) { %>
+
+                                    <div class="provider-info">
+
+                                        <i class="fa-solid fa-location-dot"></i>
+
+                                        <span>
+                                            <%= service.company.city %>
+                                        </span>
+
+                                    </div>
+
+                                    <% } %>
+
+
+                                        <!-- COMPANY MOBILE -->
+
+                                        <% if (service.company.mobile) { %>
+
+                                            <div class="provider-info">
+
+                                                <i class="fa-solid fa-phone"></i>
+
+                                                <span>
+                                                    <%= service.company.mobile %>
+                                                </span>
+
+                                            </div>
+
+                                            <% } %>
+
+
+                                                <!-- COMPANY EMAIL -->
+
+                                                <% if (service.company.email) { %>
+
+                                                    <div class="provider-info">
+
+                                                        <i class="fa-solid fa-envelope"></i>
+
+                                                        <span>
+                                                            <%= service.company.email %>
+                                                        </span>
+
+                                                    </div>
+
+                                                    <% } %>
+
+                                                        <% } %>
+
+
+                                                            <!-- =================================================
+                     PROFESSIONAL
+                ================================================== -->
+
+                                                            <% if (service.professional) { %>
+
+                                                                <hr>
+
+                                                                <div class="provider-section">
+
+                                                                    <div class="provider-icon">
+                                                                        <i class="fa-solid fa-user-tie"></i>
+                                                                    </div>
+
+                                                                    <div>
+
+                                                                        <small>
+                                                                            Professional
+                                                                        </small>
+
+                                                                        <h5>
+
+                                                                            <a
+                                                                                href="/professional/<%= service.professional.slug %>">
+                                                                                <%= service.professional.name %>
+                                                                            </a>
+
+                                                                        </h5>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                                <!-- SPECIALIZATION -->
+
+                                                                <% if (service.professional.specialization) { %>
+
+                                                                    <div class="provider-info">
+
+                                                                        <i class="fa-solid fa-star"></i>
+
+                                                                        <span>
+                                                                            <%= service.professional.specialization %>
+                                                                        </span>
+
+                                                                    </div>
+
+                                                                    <% } %>
+
+
+                                                                        <!-- EXPERIENCE -->
+
+                                                                        <% if (service.professional.experience) { %>
+
+                                                                            <div class="provider-info">
+
+                                                                                <i class="fa-solid fa-clock"></i>
+
+                                                                                <span>
+                                                                                    <%= service.professional.experience
+                                                                                        %>
+                                                                                </span>
+
+                                                                            </div>
+
+                                                                            <% } %>
+
+                                                                                <% } %>
+
+
+                                                                                    <!-- =================================================
+                     SERVICE BOOKING AVAILABILITY
+                ================================================== -->
+
+                                                                                    <div
+                                                                                        class="service-booking-section">
+
+
+                                                                                        <!-- =================================================
+                         ADMIN HAS DISABLED ALL BOOKINGS
+                    ================================================== -->
+
+                                                                                        <% if ( settings &&
+                                                                                            settings.allowBookings===false
+                                                                                            ) { %>
+
+                                                                                            <div
+                                                                                                class="booking-unavailable-message">
+
+                                                                                                <div
+                                                                                                    class="booking-status-icon">
+
+                                                                                                    <i
+                                                                                                        class="fa-solid fa-circle-info"></i>
+
+                                                                                                </div>
+
+                                                                                                <div>
+
+                                                                                                    <strong>
+                                                                                                        Bookings
+                                                                                                        Temporarily
+                                                                                                        Unavailable
+                                                                                                    </strong>
+
+                                                                                                    <span>
+                                                                                                        New bookings are
+                                                                                                        temporarily
+                                                                                                        unavailable.
+                                                                                                        Please try again
+                                                                                                        later.
+                                                                                                    </span>
+
+                                                                                                </div>
+
+                                                                                            </div>
+
+
+                                                                                            <!-- =================================================
+                         PROFESSIONAL HAS DISABLED SERVICE
+                    ================================================== -->
+
+                                                                                            <% } else if
+                                                                                                (service.isAvailable===false)
+                                                                                                { %>
+
+                                                                                                <div
+                                                                                                    class="booking-unavailable-message">
+
+                                                                                                    <div
+                                                                                                        class="booking-status-icon">
+
+                                                                                                        <i
+                                                                                                            class="fa-solid fa-circle-xmark"></i>
+
+                                                                                                    </div>
+
+                                                                                                    <div>
+
+                                                                                                        <strong>
+                                                                                                            Service
+                                                                                                            Currently
+                                                                                                            Unavailable
+                                                                                                        </strong>
+
+                                                                                                        <span>
+                                                                                                            This
+                                                                                                            professional
+                                                                                                            is currently
+                                                                                                            not
+                                                                                                            accepting
+                                                                                                            new bookings
+                                                                                                            for this
+                                                                                                            service.
+                                                                                                        </span>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+
+
+                                                                                                <!-- =================================================
+                         SERVICE IS AVAILABLE
+                    ================================================== -->
+
+                                                                                                <% } else { %>
+
+                                                                                                    <div
+                                                                                                        class="service-booking-available">
+
+                                                                                                        <div
+                                                                                                            class="booking-status-icon">
+
+                                                                                                            <i
+                                                                                                                class="fa-solid fa-circle-check"></i>
+
+                                                                                                        </div>
+
+                                                                                                        <div>
+
+                                                                                                            <strong>
+                                                                                                                Available
+                                                                                                                for
+                                                                                                                Booking
+                                                                                                            </strong>
+
+                                                                                                            <span>
+                                                                                                                This
+                                                                                                                service
+                                                                                                                is
+                                                                                                                currently
+                                                                                                                accepting
+                                                                                                                bookings.
+                                                                                                            </span>
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                    <!-- BOOK SERVICE BUTTON -->
+
+                                                                                                    <a href="/customer/book/<%= service.slug %>"
+                                                                                                        class="book-service-btn">
+
+                                                                                                        <i
+                                                                                                            class="fa-solid fa-calendar-check"></i>
+
+                                                                                                        Book This
+                                                                                                        Service
+
+                                                                                                    </a>
+
+                                                                                                    <% } %>
+
+
+                                                                                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- END MAIN SERVICE ROW -->
+
+
+        <!-- =========================================================
+         CUSTOMER REVIEWS
+         IMPORTANT:
+         This is OUTSIDE .col-lg-8,
+         OUTSIDE .col-lg-4,
+         and OUTSIDE .provider-card.
+    ========================================================== -->
+
+        <!-- =========================================================
+     CUSTOMER REVIEWS
+========================================================= -->
+
+        <section class="service-reviews-section" id="service-reviews">
+
+            <!-- =====================================================
+         REVIEWS HEADER
+    ====================================================== -->
+
+            <div class="service-reviews-header">
+
+                <div>
+
+                    <span class="services-label">
+                        CUSTOMER REVIEWS
+                    </span>
+
+                    <h2>
+                        What our customers say
+                    </h2>
+
+                    <p>
+                        Real experiences from customers
+                        who used this service.
+                    </p>
+
+                </div>
+
+
+                <% if (reviewCount> 0) { %>
+
+                    <div class="service-rating-summary">
+
+                        <div class="rating-number">
+
+                            <%= Number(averageRating).toFixed(1) %>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="rating-stars">
+
+                                <% for (let i=1; i <=5; i++) { %>
+
+                                    <% if (i <=Math.round(averageRating)) { %>
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        <% } else { %>
+
+                                            <i class="fa-regular fa-star"></i>
+
+                                            <% } %>
+
+                                                <% } %>
+
+                            </div>
+
+
+                            <span>
+
+                                <%= reviewCount %>
+
+                                    <%= reviewCount===1 ? "review" : "reviews" %>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <% } %>
+
+            </div>
+
+
+            <!-- =====================================================
+         VIEW ALL REVIEWS BUTTON
+    ====================================================== -->
+
+            <% if (reviewCount> 0) { %>
+
+                <a href="#service-reviews" class="consultancy-view-reviews">
+                    View all reviews
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+
+                <% } %>
+
+
+                    <!-- =====================================================
+         EMPTY STATE
+    ====================================================== -->
+
+                    <% if (reviews.length===0) { %>
+
+                        <div class="reviews-empty">
+
+                            <div class="reviews-empty-icon">
+
+                                <i class="fa-regular fa-star"></i>
+
+                            </div>
+
+
+                            <h3>
+                                No reviews yet
+                            </h3>
+
+
+                            <p>
+                                Be the first customer to share your
+                                experience with this service.
+                            </p>
+
+                        </div>
+
+
+                        <% } else { %>
+
+
+                            <!-- =================================================
+             REVIEWS
+        ================================================== -->
+
+                            <div class="reviews-grid">
+
+
+                                <% reviews.forEach(review=> { %>
+
+                                    <div class="customer-review-card">
+
+
+                                        <!-- =====================================
+                         REVIEWER
+                    ====================================== -->
+
+                                        <div class="customer-review-top">
+
+
+                                            <div class="reviewer-info">
+
+
+                                                <div class="reviewer-avatar">
+
+                                                    <i class="fa-solid fa-user"></i>
+
+                                                </div>
+
+
+                                                <div>
+
+                                                    <h4>
+
+                                                        <%= review.customer ? review.customer.name : "Nirnay Customer"
+                                                            %>
+
+                                                    </h4>
+
+
+                                                    <span>
+                                                        Verified Customer
+                                                    </span>
+
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <!-- DATE -->
+
+                                            <div class="review-date">
+
+                                                <%= new Date( review.createdAt ).toLocaleDateString("en-IN") %>
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <!-- =====================================
+                         RATING
+                    ====================================== -->
+
+                                        <div class="customer-review-rating">
+
+
+                                            <% for (let i=1; i <=5; i++) { %>
+
+
+                                                <% if (i <=review.rating) { %>
+
+                                                    <i class="fa-solid fa-star"></i>
+
+                                                    <% } else { %>
+
+                                                        <i class="fa-regular fa-star"></i>
+
+                                                        <% } %>
+
+
+                                                            <% } %>
+
+
+                                                                <span>
+
+                                                                    <%= Number(review.rating).toFixed(1) %>
+
+                                                                </span>
+
+
+                                        </div>
+
+
+                                        <!-- =====================================
+                         COMMENT
+                    ====================================== -->
+
+                                        <p class="customer-review-comment">
+
+                                            "<%= review.comment %>"
+
+                                        </p>
+
+
+                                        <!-- =====================================
+                         VERIFIED BOOKING
+                    ====================================== -->
+
+                                        <div class="review-verified">
+
+                                            <i class="fa-solid fa-circle-check"></i>
+
+                                            Verified booking
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <% }) %>
+
+
+                            </div>
+
+
+                            <!-- =================================================
+             PAGINATION
+        ================================================== -->
+
+                            <% if (totalPages> 1) { %>
+
+                                <div class="reviews-pagination">
+
+                                    <!-- PREVIOUS -->
+
+                                    <% if (page> 1) { %>
+
+                                        <a href="/services/<%= service.slug %>?page=<%= page - 1 %>#service-reviews"
+                                            class="review-page-btn">
+                                            <i class="fa-solid fa-chevron-left"></i>
+                                            Previous
+                                        </a>
+
+                                        <% } else { %>
+
+                                            <span class="review-page-btn disabled">
+                                                <i class="fa-solid fa-chevron-left"></i>
+                                                Previous
+                                            </span>
+
+                                            <% } %>
+
+
+                                                <!-- PAGE NUMBERS -->
+
+                                                <div class="review-page-numbers">
+
+
+                                                    <% for (let pageNumber=1; pageNumber <=totalPages; pageNumber++) {
+                                                        %>
+
+
+                                                        <% if ( pageNumber===1 || pageNumber===totalPages ||
+                                                            Math.abs(pageNumber - page) <=1 ) { %>
+
+
+                                                            <% if (pageNumber===page) { %>
+
+                                                                <span class="review-page-number active">
+
+                                                                    <%= pageNumber %>
+
+                                                                </span>
+
+                                                                <% } else { %>
+
+                                                                    <a href="/services/<%= service.slug %>?page=<%= pageNumber %>#service-reviews"
+                                                                        class="review-page-number">
+
+                                                                        <%= pageNumber %>
+
+                                                                    </a>
+
+                                                                    <% } %>
+
+
+                                                                        <% } else if ( pageNumber===2 && page> 3
+                                                                            ) { %>
+
+                                                                            <span class="review-page-dots">
+                                                                                ...
+                                                                            </span>
+
+
+                                                                            <% } else if ( pageNumber===totalPages - 1
+                                                                                && page < totalPages - 2 ) { %>
+
+                                                                                <span class="review-page-dots">
+                                                                                    ...
+                                                                                </span>
+
+                                                                                <% } %>
+
+
+                                                                                    <% } %>
+
+
+                                                </div>
+
+
+                                                <!-- NEXT -->
+
+                                                <% if (page < totalPages) { %>
+
+                                                    <a href="/services/<%= service.slug %>?page=<%= page + 1 %>#service-reviews"
+                                                        class="review-page-btn">
+                                                        Next
+                                                        <i class="fa-solid fa-chevron-right"></i>
+                                                    </a>
+
+                                                    <% } else { %>
+
+                                                        <span class="review-page-btn disabled">
+                                                            Next
+                                                            <i class="fa-solid fa-chevron-right"></i>
+                                                        </span>
+
+                                                        <% } %>
+
+
+                                </div>
+
+                                <% } %>
+
+
+                                    <% } %>
+
+
+        </section>
+
+
+    </div>
+
+
+
+    <!-- =============================================================
+     SERVICE IMAGE JAVASCRIPT
+============================================================== -->
+
+    <script>
+
+        function changeMainImage(imageUrl, thumbnail) {
+
+            const mainImage =
+                document.getElementById("mainServiceImage");
+
+
+            if (!mainImage) return;
+
+
+            mainImage.style.opacity = "0";
+
+
+            setTimeout(() => {
+
+                mainImage.src = imageUrl;
+
+
+                mainImage.onload = () => {
+
+                    mainImage.style.opacity = "1";
+
+                };
+
+
+            }, 150);
+
+
+            /* Remove active state */
+
+            document
+                .querySelectorAll(".premium-service-thumbnail")
+                .forEach(item => {
+
+                    item.classList.remove("active");
+
+                });
+
+
+            /* Add active state */
+
+            if (thumbnail) {
+
+                thumbnail.classList.add("active");
+
+            }
+
+        }
+
+    </script>

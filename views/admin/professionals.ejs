@@ -1,0 +1,293 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    PROFESSIONAL MANAGEMENT
+                </span>
+
+                <h1>
+                    Professionals
+                </h1>
+
+                <p>
+                    View and manage all registered professionals
+                    on the NIRNAY platform.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+                <%= professionals.length %> Professionals
+
+            </div>
+
+        </div>
+
+        <form action="/admin/professionals" method="GET" class="professional-search-panel nirnay-validation-form" id="professionalSearchForm" novalidate>
+
+            <div class="professional-search-input-wrapper">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text" name="search" value="<%= search || '' %>" placeholder="Search professionals..."
+                    maxlength="100"   data-validation="search">
+
+            </div>
+
+
+            <button type="submit" class="professional-search-button">
+
+                <i class="fa-solid fa-search"></i>
+
+                Search
+
+            </button>
+
+
+            <% if (search) { %>
+
+                <a href="/admin/professionals" class="professional-clear-button">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                    Clear
+
+                </a>
+
+                <% } %>
+
+        </form>
+
+
+        <div class="admin-table-card">
+
+            <div class="admin-table-header">
+
+                <div>
+
+                    <h3>
+                        All Professionals
+                    </h3>
+
+                    <p>
+                        Recently registered professionals appear first.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <% if (professionals.length===0) { %>
+
+                <div class="admin-empty-state">
+
+                    <div class="admin-empty-icon">
+
+                        <i class="fa-solid fa-user-tie"></i>
+
+                    </div>
+
+                    <h3>
+                        No Professionals Found
+                    </h3>
+
+                    <p>
+                        There are currently no registered professionals.
+                    </p>
+
+                </div>
+
+                <% } else { %>
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Professional</th>
+
+                                    <th>Email</th>
+
+                                    <th>Mobile</th>
+
+                                    <th>Consultancy</th>
+
+                                    <th>Experience</th>
+
+                                    <th>Joined</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% professionals.forEach(professional=> { %>
+
+                                    <tr>
+
+                                        <!-- Professional -->
+
+                                        <td>
+
+                                            <div class="admin-user-cell">
+
+                                                <div class="admin-user-avatar">
+
+                                                    <i class="fa-solid fa-user-tie"></i>
+
+                                                </div>
+
+
+                                                <div>
+
+                                                    <strong>
+
+                                                        <% if (professional.slug) { %>
+
+                                                            <a href="/professional/<%= professional.slug %>"
+                                                                class="admin-details-link">
+
+                                                                <%= professional.name %>
+
+                                                            </a>
+
+                                                            <% } else { %>
+
+                                                                <%= professional.name %>
+
+                                                                    <% } %>
+
+                                                    </strong>
+
+
+                                                    <span>
+
+                                                        Professional
+
+                                                    </span>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <!-- Email -->
+
+                                        <td>
+
+                                            <span class="admin-email">
+
+                                                <%= professional.email %>
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- Mobile -->
+
+                                        <td>
+
+                                            <%= professional.mobile || "Not provided" %>
+
+                                        </td>
+
+
+                                        <!-- Consultancy -->
+
+                                        <td>
+
+                                            <span class="admin-consultancy">
+
+                                                <%= professional.consultancy || "Not specified" %>
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- Experience -->
+
+                                        <td>
+
+                                            <span class="admin-experience">
+
+                                                <%= professional.experience || "Not specified" %>
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- Joined -->
+
+                                        <td>
+
+                                            <%= professional.createdAt ? new Date( professional.createdAt
+                                                ).toLocaleDateString("en-IN") : "N/A" %>
+
+                                        </td>
+
+
+                                        <!-- Action -->
+
+                                        <td>
+
+                                            <a href="/admin/professionals/<%= professional._id %>"
+                                                class="admin-view-btn">
+
+                                                View
+
+                                                <i class="fa-solid fa-arrow-right"></i>
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+    </div>
+
+
+   <script>
+
+    // ===============================
+    // PROFESSIONAL SEARCH
+    // ===============================
+
+    const professionalSearchForm =
+        document.getElementById("professionalSearchForm");
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>

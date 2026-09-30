@@ -1,0 +1,821 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="container my-5">
+
+<!-- PAGE HEADER -->
+
+<div class="mb-5">
+<span class="services-label">
+    PROFESSIONAL PANEL
+</span>
+
+<h1 class="mt-2">
+    Booking <span>Details</span>
+</h1>
+
+<p class="text-muted">
+    View complete information about this consultancy booking.
+</p>
+
+
+</div>
+
+<!-- BACK -->
+
+<div class="mb-4">
+
+
+<a href="/professional/bookings" class="dashboard-link">
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Back to Bookings
+
+</a>
+
+
+</div>
+
+<!-- BOOKING DETAILS CARD -->
+
+<div class="professional-booking-details">
+
+
+<!-- =========================
+     BOOKING INFORMATION
+========================== -->
+
+<div class="booking-details-section">
+
+    <div class="booking-details-heading">
+
+        <i class="fa-solid fa-calendar-check"></i>
+
+        <div>
+            <h3>Booking Information</h3>
+
+            <p>
+                Complete appointment information
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="booking-details-grid">
+
+        <!-- BOOKING ID -->
+
+        <div class="booking-detail-item">
+
+            <span class="booking-detail-label">
+                Booking ID
+            </span>
+
+            <strong>
+                #<%= booking._id %>
+            </strong>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <% if (booking.bookingDate) { %>
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Appointment Date
+                </span>
+
+                <strong>
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <%= new Date(booking.bookingDate).toLocaleDateString(
+                        "en-IN",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    ) %>
+
+                </strong>
+
+            </div>
+
+
+            <!-- TIME -->
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Appointment Time
+                </span>
+
+                <strong>
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    <%= new Date(booking.bookingDate).toLocaleTimeString(
+                        "en-IN",
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            hour12: true
+                        }
+                    ) %>
+
+                </strong>
+
+            </div>
+
+        <% } %>
+
+
+        <!-- STATUS -->
+
+        <div class="booking-detail-item">
+
+            <span class="booking-detail-label">
+                Status
+            </span>
+
+            <div>
+
+                <% if (booking.status === "pending") { %>
+
+                    <span class="badge bg-warning text-dark">
+                        <i class="fa-solid fa-clock"></i>
+                        Pending
+                    </span>
+
+                <% } else if (booking.status === "confirmed") { %>
+
+                    <span class="badge bg-success">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Confirmed
+                    </span>
+
+                <% } else if (booking.status === "completed") { %>
+
+                    <span class="badge bg-primary">
+                        <i class="fa-solid fa-check-double"></i>
+                        Completed
+                    </span>
+
+                <% } else if (booking.status === "cancelled") { %>
+
+                    <span class="badge bg-danger">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        Cancelled
+                    </span>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+
+        <!-- CREATED DATE -->
+
+        <div class="booking-detail-item">
+
+            <span class="booking-detail-label">
+                Booking Created
+            </span>
+
+            <strong>
+
+                <%= new Date(booking.createdAt).toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                ) %>
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CUSTOMER INFORMATION
+========================== -->
+
+<% if (booking.customer) { %>
+
+    <div class="booking-details-section">
+
+        <div class="booking-details-heading">
+
+            <i class="fa-solid fa-user"></i>
+
+            <div>
+
+                <h3>Customer Information</h3>
+
+                <p>
+                    Information about the customer
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-details-grid">
+
+            <!-- NAME -->
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Name
+                </span>
+
+                <strong>
+                    <%= booking.customer.name %>
+                </strong>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Email
+                </span>
+
+                <strong>
+                    <%= booking.customer.email %>
+                </strong>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <% if (booking.customer.mobile) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Mobile
+                    </span>
+
+                    <strong>
+                        <%= booking.customer.mobile %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+
+            <!-- ADDRESS -->
+
+            <% if (booking.customer.address) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Address
+                    </span>
+
+                    <strong>
+                        <%= booking.customer.address %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+<% } %>
+
+
+<!-- =========================
+     SERVICE INFORMATION
+========================== -->
+
+<% if (booking.service) { %>
+
+    <div class="booking-details-section">
+
+        <div class="booking-details-heading">
+
+            <i class="fa-solid fa-briefcase"></i>
+
+            <div>
+
+                <h3>Service Information</h3>
+
+                <p>
+                    Details of the booked consultancy service
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-details-grid">
+
+            <!-- SERVICE NAME -->
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Service
+                </span>
+
+                <strong>
+                    <%= booking.service.name %>
+                </strong>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <% if (booking.service.category) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Category
+                    </span>
+
+                    <strong>
+                        <%= booking.service.category %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+
+            <!-- PRICE -->
+
+            <% if (booking.service.price !== undefined) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Price
+                    </span>
+
+                    <strong>
+                        ₹<%= booking.service.price %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+
+            <!-- DURATION -->
+
+            <% if (booking.service.duration) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Duration
+                    </span>
+
+                    <strong>
+                        <%= booking.service.duration %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <% if (booking.service.description) { %>
+
+            <div class="booking-detail-description">
+
+                <span class="booking-detail-label">
+                    Service Description
+                </span>
+
+                <p>
+                    <%= booking.service.description %>
+                </p>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+<% } %>
+
+
+<!-- =========================
+     COMPANY INFORMATION
+========================== -->
+
+<% if (booking.company) { %>
+
+    <div class="booking-details-section">
+
+        <div class="booking-details-heading">
+
+            <i class="fa-solid fa-building"></i>
+
+            <div>
+
+                <h3>Company Information</h3>
+
+                <p>
+                    Company providing the consultancy service
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-details-grid">
+
+            <div class="booking-detail-item">
+
+                <span class="booking-detail-label">
+                    Company
+                </span>
+
+                <strong>
+                    <%= booking.company.name %>
+                </strong>
+
+            </div>
+
+
+            <% if (booking.company.email) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Email
+                    </span>
+
+                    <strong>
+                        <%= booking.company.email %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+
+            <% if (booking.company.mobile) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Mobile
+                    </span>
+
+                    <strong>
+                        <%= booking.company.mobile %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+
+            <% if (booking.company.address) { %>
+
+                <div class="booking-detail-item">
+
+                    <span class="booking-detail-label">
+                        Address
+                    </span>
+
+                    <strong>
+                        <%= booking.company.address %>
+                    </strong>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+<% } %>
+
+
+<!-- =========================
+     CUSTOMER MESSAGE
+========================== -->
+
+<% if (booking.message) { %>
+
+    <div class="booking-details-section">
+
+        <div class="booking-details-heading">
+
+            <i class="fa-solid fa-message"></i>
+
+            <div>
+
+                <h3>Customer Message</h3>
+
+                <p>
+                    Message provided while booking
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-customer-message">
+
+            <p>
+                <%= booking.message %>
+            </p>
+
+        </div>
+
+    </div>
+
+<% } %>
+
+
+   <!-- =========================
+     ACTIONS
+========================== -->
+
+<div class="booking-details-actions">
+
+<% if (booking.status === "pending") { %>
+
+
+<!-- Confirm Booking -->
+<form
+    action="/professional/bookings/<%= booking._id %>/confirm"
+    method="POST"    class="nirnay-validation-form" novalidate>
+
+    <button
+        type="submit"
+        class="btn btn-success">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        Confirm Booking
+
+    </button>
+
+</form>
+
+
+<!-- Cancel Booking -->
+<form
+    action="/professional/bookings/<%= booking._id %>/cancel"
+    method="POST"
+    class="professional-cancellation-form   nirnay-validation-form"
+    id="professionalCancellationFormPending" novalidate>
+
+    <div class="professional-cancellation-field">
+
+        <label
+            for="cancellationReasonPending"
+            class="professional-cancellation-label">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            Cancellation Reason
+
+        </label>
+
+        <textarea
+            id="cancellationReasonPending"
+            name="cancellationReason"
+            class="professional-cancellation-textarea"
+            rows="4"
+            minlength="3"
+            maxlength="500"
+             data-validation="cancellation-reason"
+            placeholder="Please provide a reason for cancelling this booking..."
+            required></textarea>
+
+        <small class="professional-cancellation-help">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Please provide a clear reason. This information may be
+            visible to the customer.
+
+        </small>
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-outline-danger">
+
+        <i class="fa-solid fa-xmark"></i>
+
+        Cancel Booking
+
+    </button>
+
+</form>
+
+
+<% } %>
+
+<% if (booking.status === "confirmed") { %>
+
+<!-- Mark Completed -->
+<form
+    action="/professional/bookings/<%= booking._id %>/complete"
+    method="POST"    class="nirnay-validation-form" novalidate>
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+
+        <i class="fa-solid fa-check-double"></i>
+
+        Mark Completed
+
+    </button>
+
+</form>
+
+
+<!-- Cancel Booking -->
+<form
+    action="/professional/bookings/<%= booking._id %>/cancel"
+    method="POST"
+    class="professional-cancellation-form nirnay-validation-form"
+    id="professionalCancellationFormConfirmed" novalidate>
+
+    <div class="professional-cancellation-field">
+
+        <label
+            for="cancellationReasonConfirmed"
+            class="professional-cancellation-label">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            Cancellation Reason
+
+        </label>
+
+        <textarea
+            id="cancellationReasonConfirmed"
+            name="cancellationReason"
+            class="professional-cancellation-textarea"
+            rows="4"
+            minlength="3"
+            maxlength="500"
+             data-validation="cancellation-reason"
+            placeholder="Please provide a reason for cancelling this booking..."
+            required></textarea>
+
+        <small class="professional-cancellation-help">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Please provide a clear reason. This information may be
+            visible to the customer.
+
+        </small>
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-outline-danger">
+
+        <i class="fa-solid fa-xmark"></i>
+
+        Cancel Booking
+
+    </button>
+
+</form>
+
+<% } %>
+
+<% if (booking.status === "cancelled" && booking.cancellationReason) { %>
+
+
+<!-- Cancellation Information -->
+<div class="professional-cancellation-info">
+
+    <div class="professional-cancellation-info-heading">
+
+        <i class="fa-solid fa-circle-xmark"></i>
+
+        <div>
+            <strong>Cancellation Reason</strong>
+
+            <% if (booking.cancelledAt) { %>
+
+                <small>
+                    Cancelled on
+                    <%= new Date(booking.cancelledAt).toLocaleDateString(
+                        "en-IN",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    ) %>
+                </small>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+    <p>
+        <%= booking.cancellationReason %>
+    </p>
+
+</div>
+
+
+<% } %>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+    /*
+     * Professional cancellation form
+     *
+     * Both pending and confirmed cancellation forms
+     * use the centralized Nirnay validation system.
+     */
+
+    const cancellationForms = document.querySelectorAll(
+        ".professional-cancellation-form"
+    );
+
+
+    cancellationForms.forEach(function (form) {
+
+        const cancellationReason = form.querySelector(
+            'textarea[name="cancellationReason"]'
+        );
+
+
+        /*
+         * Prevent empty textarea references
+         * if a cancellation form is rendered differently.
+         */
+        if (!cancellationReason) {
+            return;
+        }
+
+
+        /*
+         * Keep page-specific form behavior here.
+         * Validation is handled by nirnay-validation.js.
+         */
+
+    });
+
+</script>
+
+
+<script src="/js/nirnay-validation.js"></script>

@@ -1,0 +1,251 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="customer-profile-page">
+
+    <div class="customer-profile-container">
+
+        <!-- Header -->
+        <div class="customer-profile-header">
+
+            <div>
+                <span class="customer-profile-label">
+                    CUSTOMER PROFILE
+                </span>
+
+                <h1>
+                    My <span>Profile</span>
+                </h1>
+
+                <p>
+                    Manage your personal information and account details.
+                </p>
+            </div>
+
+            <a href="/customer/dashboard" class="customer-profile-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- Profile Card -->
+        <div class="customer-profile-card">
+
+            <!-- Profile Top -->
+            <div class="customer-profile-top">
+
+                <div class="customer-profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="customer-profile-user">
+
+                    <h2>
+                        <%= user.name %>
+                    </h2>
+
+                    <span>
+                        <i class="fa-solid fa-user"></i>
+                        Customer
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="customer-profile-divider"></div>
+
+
+            <!-- Personal Information -->
+            <div class="customer-profile-section">
+
+                <div class="customer-profile-section-heading">
+
+                    <div class="customer-profile-section-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h3>Personal Information</h3>
+
+                        <p>
+                            Your basic account information
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="customer-profile-info-grid">
+
+                    <!-- Name -->
+                    <div class="customer-profile-info">
+
+                        <span class="customer-profile-info-label">
+                            Full Name
+                        </span>
+
+                        <strong>
+                            <%= user.name %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="customer-profile-info">
+
+                        <span class="customer-profile-info-label">
+                            Email Address
+                        </span>
+
+                        <strong>
+                            <%= user.email %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Mobile -->
+                    <div class="customer-profile-info">
+
+                        <span class="customer-profile-info-label">
+                            Mobile Number
+                        </span>
+
+                        <strong>
+                            <%= user.mobile %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="customer-profile-info">
+
+                        <span class="customer-profile-info-label">
+                            Location
+                        </span>
+
+                        <strong>
+                            <%= user.location || "Not provided" %>
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Address -->
+                    <div class="customer-profile-info">
+
+                        <span class="customer-profile-info-label">
+                            Address
+                        </span>
+
+                        <strong>
+                            <%= user.address %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="customer-profile-divider"></div>
+
+
+            <!-- Account -->
+            <div class="customer-profile-section">
+
+                <div class="customer-profile-section-heading">
+
+                    <div class="customer-profile-section-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+                        <h3>Account</h3>
+
+                        <p>
+                            Your Nirnay account information
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="customer-profile-account">
+
+                    <div class="customer-profile-account-status">
+
+                        <div class="customer-profile-status-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Account Status</span>
+
+                            <strong>
+                                <%= user.accountStatus || "Active" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="customer-profile-account-role">
+
+                        <span>Account Type</span>
+
+                        <strong>
+                            Customer
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="customer-profile-footer">
+
+                <a
+                    href="/customer/dashboard"
+                    class="customer-profile-cancel"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+
+                <a
+                    href="/customer/profile/edit"
+                    class="customer-profile-edit"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Profile
+                </a>
+
+                <a
+                    href="/account/change-password"
+                    class="customer-profile-password"
+                >
+                    <i class="fa-solid fa-key"></i>
+                    Change Password
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

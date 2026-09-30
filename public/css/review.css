@@ -1,0 +1,1591 @@
+/* =========================================================
+   NIRNAY - CUSTOMER REVIEW PAGE
+   ========================================================= */
+
+.review-page {
+  min-height: calc(100vh - 80px);
+  padding: 55px 20px 70px;
+  background: #f8f9fc;
+  font-family: "Quicksand", sans-serif;
+}
+
+.review-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.review-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 22px;
+
+  color: #3b5998;
+  text-decoration: none;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.review-back-link i {
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.review-back-link:hover {
+  color: #4b6cb7;
+}
+
+.review-back-link:hover i {
+  transform: translateX(-3px);
+}
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.review-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+
+  padding: 38px;
+
+  box-shadow: 0 12px 35px rgba(59, 89, 152, 0.07);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.review-card-header {
+  text-align: center;
+
+  padding-bottom: 30px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.review-header-icon {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef2ff;
+  color: #4b6cb7;
+
+  border-radius: 17px;
+
+  font-size: 22px;
+}
+
+.review-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #4b6cb7;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.review-card-header h1 {
+  margin: 0;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.review-card-header p {
+  max-width: 590px;
+
+  margin: 10px auto 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SERVICE CARD
+   ========================================================= */
+
+.review-service-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 28px;
+  padding: 18px;
+
+  background: #f8f9fc;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.review-service-icon {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef2ff;
+  color: #4b6cb7;
+
+  border-radius: 13px;
+
+  font-size: 18px;
+}
+
+.review-service-info {
+  min-width: 0;
+}
+
+.review-service-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #9ca3af;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.review-service-info h2 {
+  margin: 0;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+
+  word-break: break-word;
+}
+
+.review-professional,
+.review-company {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 7px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.review-company {
+  margin-left: 14px;
+}
+
+.review-professional-icon {
+  color: #4b6cb7;
+}
+
+.review-company i {
+  color: #4b6cb7;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.review-form {
+  margin-top: 30px;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.review-rating-section,
+.review-comment-section {
+  padding: 26px 0;
+}
+
+.review-rating-section {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.review-section-heading {
+  text-align: center;
+}
+
+.review-field-label {
+  display: block;
+
+  color: #4b6cb7;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.review-section-heading h3 {
+  margin: 7px 0 3px;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.review-section-heading p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   STARS
+   ========================================================= */
+
+.review-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.review-star {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background: #f8f9fc;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  color: #d1d5db;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.review-star:hover {
+  color: #4b6cb7;
+
+  background: #eef2ff;
+
+  border-color: #cdd7f5;
+
+  transform: translateY(-3px);
+}
+
+.review-star.active {
+  color: #4b6cb7;
+
+  background: #eef2ff;
+
+  border-color: #bfcaf0;
+
+  box-shadow: 0 5px 14px rgba(75, 108, 183, 0.12);
+}
+
+.review-star:focus-visible {
+  outline: 3px solid #eef2ff;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RATING RESULT
+   ========================================================= */
+
+.review-rating-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 42px;
+
+  margin: 17px auto 0;
+  padding: 8px 14px;
+
+  width: fit-content;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  border-radius: 10px;
+}
+
+.review-rating-result-icon {
+  color: #9ca3af;
+}
+
+.review-rating-result.has-rating {
+  color: #3b5998;
+
+  background: #eef2ff;
+}
+
+.review-rating-result.has-rating .review-rating-result-icon {
+  color: #4b6cb7;
+}
+
+.review-rating-result small {
+  display: block;
+
+  margin-left: 3px;
+
+  color: #6b7280;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.review-rating-result.rating-error {
+  color: #b42318;
+
+  background: #fff5f5;
+
+  border: 1px solid #f1d4d1;
+}
+
+.review-rating-result.rating-error .review-rating-result-icon {
+  color: #dc3545;
+}
+
+/* =========================================================
+   REQUIRED RATING STATE
+   ========================================================= */
+
+.review-stars.rating-required .review-star {
+  border-color: #e8b4b0;
+}
+
+.review-stars.rating-required {
+  animation: reviewShake 0.3s ease;
+}
+
+@keyframes reviewShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* =========================================================
+   COMMENT SECTION
+   ========================================================= */
+
+.review-comment-section {
+  padding-bottom: 28px;
+}
+
+.review-comment-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 13px;
+}
+
+.review-comment-heading h3 {
+  margin: 6px 0 3px;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.review-comment-heading p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.review-character-count {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.review-character-count.character-warning {
+  color: #b7791f;
+}
+
+.review-character-count.character-danger {
+  color: #dc3545;
+}
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+.review-textarea-wrapper {
+  position: relative;
+
+  display: flex;
+
+  min-height: 170px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.review-textarea-wrapper:hover {
+  border-color: #d2d9ec;
+}
+
+.review-textarea-wrapper.is-focused {
+  border-color: #4b6cb7;
+
+  box-shadow: 0 0 0 3px #eef2ff;
+}
+
+.review-textarea-icon {
+  width: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 17px;
+
+  color: #4b6cb7;
+
+  background: #f8f9fc;
+
+  border-right: 1px solid #e5e7eb;
+}
+
+.review-textarea-wrapper textarea {
+  width: 100%;
+  min-height: 170px;
+
+  padding: 16px;
+
+  resize: vertical;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: #3b5998;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.7;
+}
+
+.review-textarea-wrapper textarea::placeholder {
+  color: #a1a7b3;
+}
+
+.review-textarea-wrapper textarea:focus {
+  outline: none;
+}
+
+.review-textarea-wrapper.textarea-error {
+  border-color: #dc3545;
+
+  box-shadow: 0 0 0 3px #fff1f1;
+}
+
+/* =========================================================
+   COMMENT HELPER
+   ========================================================= */
+
+.review-comment-helper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 9px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.review-comment-helper i {
+  color: #4b6cb7;
+  font-size: 11px;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.review-submit-btn {
+  width: 100%;
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: #4b6cb7;
+  color: #ffffff;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(75, 108, 183, 0.18);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.review-submit-btn:hover {
+  background: #3b5998;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 11px 24px rgba(59, 89, 152, 0.22);
+}
+
+.review-submit-btn:active {
+  transform: translateY(0);
+}
+
+.review-submit-btn i {
+  transition: transform 0.2s ease;
+}
+
+.review-submit-btn:hover i {
+  transform: translateX(4px);
+}
+
+.review-submit-btn:disabled {
+  opacity: 0.75;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.review-submit-btn.is-submitting {
+  cursor: wait;
+}
+
+/* =========================================================
+   SECURITY / TRUST NOTE
+   ========================================================= */
+
+.review-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 18px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.review-security-note i {
+  color: #4b6cb7;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .review-page {
+    padding: 35px 15px 50px;
+  }
+
+  .review-card {
+    padding: 26px 20px;
+
+    border-radius: 20px;
+  }
+
+  .review-card-header h1 {
+    font-size: 23px;
+  }
+
+  .review-card-header p {
+    font-size: 13px;
+  }
+
+  .review-service-card {
+    align-items: flex-start;
+  }
+
+  .review-company {
+    display: flex;
+    margin-left: 0;
+  }
+
+  .review-star {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+
+    font-size: 19px;
+  }
+
+  .review-stars {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-page {
+    padding: 25px 12px 40px;
+  }
+
+  .review-card {
+    padding: 22px 15px;
+
+    border-radius: 18px;
+  }
+
+  .review-header-icon {
+    width: 52px;
+    height: 52px;
+
+    font-size: 20px;
+  }
+
+  .review-card-header h1 {
+    font-size: 21px;
+  }
+
+  .review-card-header p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .review-service-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .review-service-icon {
+    width: 43px;
+    height: 43px;
+
+    font-size: 16px;
+  }
+
+  .review-service-info h2 {
+    font-size: 15px;
+  }
+
+  .review-stars {
+    gap: 5px;
+  }
+
+  .review-star {
+    width: 43px;
+    height: 43px;
+
+    font-size: 17px;
+  }
+
+  .review-comment-heading {
+    display: block;
+  }
+
+  .review-character-count {
+    display: block;
+
+    margin-top: 8px;
+  }
+
+  .review-textarea-wrapper {
+    min-height: 150px;
+  }
+
+  .review-textarea-wrapper textarea {
+    min-height: 150px;
+
+    padding: 13px;
+
+    font-size: 13px;
+  }
+
+  .review-textarea-icon {
+    width: 40px;
+  }
+
+  .review-submit-btn {
+    min-height: 50px;
+    font-size: 13px;
+  }
+}
+/* =========================================================
+   NIRNAY SERVICE REVIEWS
+   ========================================================= */
+
+.service-reviews-section {
+  width: 100%;
+  margin-top: 32px;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 21px;
+  box-shadow: 0 8px 25px rgba(59, 89, 152, 0.05);
+}
+
+/* =========================================================
+   REVIEWS HEADER
+   ========================================================= */
+
+.service-reviews-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 28px;
+}
+
+.service-reviews-header > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-reviews-header .services-label {
+  display: inline-block;
+  margin-bottom: 7px;
+}
+
+.service-reviews-header h2 {
+  margin: 0 0 7px;
+  color: #3b5998;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.service-reviews-header p {
+  margin: 0;
+  color: #6b7280;
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   OVERALL RATING
+   ========================================================= */
+
+.service-rating-summary {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 145px;
+  padding: 13px 16px;
+
+  background: #f8f9fc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.rating-number {
+  color: #3b5998;
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #4b6cb7;
+  font-size: 12px;
+}
+
+.service-rating-summary span {
+  display: block;
+  margin-top: 5px;
+
+  color: #6b7280;
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   REVIEWS GRID
+   ========================================================= */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================================================
+   REVIEW CARD
+   ========================================================= */
+
+.customer-review-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  background: #f8f9fc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.customer-review-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #d5dcf2;
+
+  box-shadow: 0 8px 22px rgba(59, 89, 152, 0.08);
+}
+
+/* =========================================================
+   CUSTOMER INFORMATION
+   ========================================================= */
+
+.customer-review-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reviewer-info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewer-avatar {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef2ff;
+  color: #4b6cb7;
+
+  border-radius: 12px;
+
+  font-size: 13px;
+}
+
+.reviewer-info > div:last-child {
+  min-width: 0;
+}
+
+.reviewer-info h4 {
+  margin: 0;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reviewer-info span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #9ca3af;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.review-date {
+  flex-shrink: 0;
+
+  color: #9ca3af;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   REVIEW RATING
+   ========================================================= */
+
+.customer-review-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  margin: 17px 0 12px;
+
+  color: #4b6cb7;
+
+  font-size: 12px;
+}
+
+.customer-review-rating span {
+  margin-left: 6px;
+
+  color: #3b5998;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   REVIEW COMMENT
+   ========================================================= */
+
+.customer-review-comment {
+  min-height: 64px;
+
+  margin: 0;
+
+  color: #5f6980;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   VERIFIED BOOKING
+   ========================================================= */
+
+.review-verified {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: auto;
+  padding-top: 13px;
+
+  border-top: 1px solid #e5e7eb;
+
+  color: #15803d;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.review-verified i {
+  font-size: 11px;
+}
+
+/* =========================================================
+   EMPTY REVIEWS
+   ========================================================= */
+
+.reviews-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 230px;
+
+  padding: 35px 20px;
+
+  background: #f8f9fc;
+  border: 1px dashed #d8deeb;
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+.reviews-empty-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  background: #eef2ff;
+  color: #4b6cb7;
+
+  border-radius: 15px;
+
+  font-size: 20px;
+}
+
+.reviews-empty h3 {
+  margin: 0 0 7px;
+
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.reviews-empty p {
+  max-width: 430px;
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .service-reviews-section {
+    padding: 24px 20px;
+  }
+
+  .service-reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .service-rating-summary {
+    width: 100%;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .service-reviews-section {
+    margin-top: 24px;
+    padding: 20px 15px;
+    border-radius: 17px;
+  }
+
+  .service-reviews-header h2 {
+    font-size: 21px;
+  }
+
+  .service-reviews-header p {
+    font-size: 12px;
+  }
+
+  .customer-review-card {
+    padding: 17px;
+  }
+
+  .customer-review-top {
+    gap: 8px;
+  }
+
+  .reviewer-avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .reviewer-info h4 {
+    font-size: 12px;
+  }
+
+  .review-date {
+    font-size: 9px;
+  }
+}
+/* =========================================================
+   CONSULTANCY CARD - REVIEW SUMMARY
+   ========================================================= */
+
+.consultancy-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 8px;
+  margin-bottom: 10px;
+
+  font-family: "Quicksand", sans-serif;
+}
+
+.consultancy-service-content .consultancy-card-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  color: #f5b301;
+  font-size: 12px;
+}
+
+.consultancy-card-rating strong {
+  color: #3b5998;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.consultancy-card-rating span {
+  color: #6b7280;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* No reviews */
+
+.consultancy-card-no-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 8px;
+  margin-bottom: 10px;
+
+  color: #9ca3af;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.consultancy-card-no-rating i {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* =========================================================
+   CONSULTANCY CARD - VIEW ALL REVIEWS
+   ========================================================= */
+
+.consultancy-view-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 2px;
+
+  color: #4b6cb7;
+  text-decoration: none;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.consultancy-view-reviews i {
+  font-size: 10px;
+
+  transition: transform 0.2s ease;
+}
+
+.consultancy-view-reviews:hover {
+  color: #3b5998;
+}
+
+.consultancy-view-reviews:hover i {
+  transform: translateX(3px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.consultancy-view-reviews {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 6px;
+
+    color: #4b6cb7 !important;
+    text-decoration: none !important;
+
+    font-family: "Quicksand", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.consultancy-view-reviews:hover {
+    color: #3b5998 !important;
+}
+
+.consultancy-view-reviews i {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.consultancy-view-reviews:hover i {
+    transform: translateX(3px);
+}
+/* =========================================================
+   REVIEW PAGINATION
+========================================================= */
+
+.reviews-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT BUTTONS
+========================================================= */
+
+.review-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 0 16px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #3b5998;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover */
+
+.review-page-btn:hover {
+    background: #eef2ff;
+    color: #4b6cb7;
+    border-color: #4b6cb7;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(75, 108, 183, 0.12);
+}
+
+
+/* Disabled */
+
+.review-page-btn.disabled {
+    color: #9ca3af;
+    background: #f8f9fc;
+    border-color: #e5e7eb;
+
+    cursor: not-allowed;
+    pointer-events: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   PAGE NUMBERS WRAPPER
+========================================================= */
+
+.review-page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL PAGE NUMBER
+========================================================= */
+
+.review-page-number {
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #3b5998;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Page number hover */
+
+a.review-page-number:hover {
+    background: #eef2ff;
+    color: #4b6cb7;
+    border-color: #4b6cb7;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 14px rgba(75, 108, 183, 0.12);
+}
+
+
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+.review-page-number.active {
+    background: #4b6cb7;
+    color: #ffffff;
+
+    border-color: #4b6cb7;
+
+    box-shadow: 0 6px 16px rgba(75, 108, 183, 0.22);
+
+    cursor: default;
+}
+
+
+/* =========================================================
+   THREE DOTS
+========================================================= */
+
+.review-page-dots {
+    width: 30px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #6b7280;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .reviews-pagination {
+        gap: 8px;
+        margin-top: 28px;
+        padding-top: 20px;
+    }
+
+
+    .review-page-btn {
+        min-height: 40px;
+        padding: 0 12px;
+
+        font-size: 12px;
+    }
+
+
+    .review-page-numbers {
+        gap: 5px;
+    }
+
+
+    .review-page-number {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+    }
+
+
+    .review-page-dots {
+        width: 24px;
+        height: 36px;
+    }
+
+}
+

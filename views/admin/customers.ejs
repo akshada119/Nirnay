@@ -1,0 +1,210 @@
+<%- layout("layout/adminLayout") %>
+
+    <div class="professional-dashboard">
+
+        <!-- Page Header -->
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="dashboard-label">
+                    USER MANAGEMENT
+                </span>
+
+                <h1>
+                    Customers
+                </h1>
+
+                <p>
+                    View and manage all registered customers
+                    on the NIRNAY platform.
+                </p>
+
+            </div>
+
+            <div class="dashboard-badge">
+
+                <i class="fa-solid fa-users"></i>
+
+                <%= customers.length %> Customers
+
+            </div>
+
+        </div>
+
+
+        <!-- Customers Card -->
+        <div class="admin-table-card">
+
+            <div class="admin-table-header">
+
+                <div>
+
+                    <h3>
+                        All Customers
+                    </h3>
+
+                    <p>
+                        Recently registered customers appear first.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <% if (customers.length===0) { %>
+
+                <div class="admin-empty-state">
+
+                    <div class="admin-empty-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h3>
+                        No Customers Found
+                    </h3>
+
+                    <p>
+                        There are currently no registered customers.
+                    </p>
+
+                </div>
+
+                <% } else { %>
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Customer
+                                    </th>
+
+
+                                    <th>
+                                        Email
+                                    </th>
+
+                                    <th>
+                                        Mobile
+                                    </th>
+
+                                    <th>
+                                        Joined
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% customers.forEach(item=> { %>
+
+                                    <% const customer=item.customer; %>
+                                        <% const bookings=item.bookings; %>
+
+                                            <tr>
+
+                                                <!-- Customer -->
+                                                <td>
+
+                                                    <div class="admin-user-cell">
+
+                                                        <div class="admin-user-avatar">
+
+                                                            <i class="fa-solid fa-user"></i>
+
+                                                        </div>
+
+                                                        <div>
+
+                                                            <strong>
+                                                                <%= customer.name %>
+                                                            </strong>
+
+                                                            <span>
+                                                                Customer
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </td>
+
+
+
+
+                                            
+
+                                                <!-- Companies -->
+
+                                                
+
+                                                <!-- Email -->
+                                                <td>
+
+                                                    <span class="admin-email">
+                                                        <%= customer.email %>
+                                                    </span>
+
+                                                </td>
+
+
+                                                <!-- Mobile -->
+                                                <td>
+
+                                                    <%= customer.mobile || "Not provided" %>
+
+                                                </td>
+
+
+                                                <!-- Joined -->
+                                                <td>
+
+                                                    <%= customer.createdAt ? new
+                                                        Date(customer.createdAt).toLocaleDateString("en-IN") : "N/A" %>
+
+                                                </td>
+
+
+                                                <!-- Action -->
+                                                <td>
+
+                                                    <a href="/admin/customers/<%= customer._id %>"
+                                                        class="admin-view-btn">
+
+                                                        View
+
+                                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                                    </a>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+    </div>

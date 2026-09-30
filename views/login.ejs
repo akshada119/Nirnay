@@ -1,0 +1,197 @@
+<%- layout("layout/boilerplate") %>
+
+    <div class="login-page">
+
+        <!-- Left Section -->
+        <div class="login-info">
+
+            <div class="login-brand">
+                <i class="fa-solid fa-compass"></i>
+                <span>Nirnay</span>
+            </div>
+
+            <div class="login-content">
+                <span class="login-label">WELCOME BACK</span>
+
+                <h1>
+                    Make better
+                    <span>decisions.</span>
+                </h1>
+
+                <p>
+                    Connect with trusted professionals and access
+                    the right consultancy services for your needs.
+                </p>
+
+                <div class="login-features">
+
+                    <div>
+                        <i class="fa-solid fa-user-check"></i>
+                        <span>Trusted Professionals</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Secure & Reliable</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Easy Booking</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Right Section -->
+        <div class="login-form-section">
+
+            <div class="login-card">
+
+                <div class="login-card-header">
+                    <div class="login-icon">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </div>
+
+                    <h2>Welcome Back</h2>
+
+                    <p>
+                        Login to continue to your account
+                    </p>
+                </div>
+
+
+                <form action="/login" method="POST" id="loginForm" class="nirnay-validation-form" novalidate>
+                    <!-- Email -->
+                    <div class="login-form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input type="email" name="email" id="email" placeholder="Enter your email"
+                                autocomplete="email" data-validation="email" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="login-form-group">
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <a href="#">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" name="password" id="password" placeholder="Enter your password"
+                                autocomplete="current-password" required minlength="8" data-validation="password"
+                                maxlength="128">
+
+                            <button type="button" class="password-toggle" id="togglePassword">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember -->
+                    <div class="remember-me">
+
+                        <label>
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button type="submit" class="login-btn" id="loginBtn">
+                        <span>Login</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+
+                <!-- Register -->
+                <div class="register-link">
+
+                    <span>Don't have an account?</span>
+
+                    <a href="/register">
+                        Create an account
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Password visibility
+        const togglePassword = document.getElementById("togglePassword");
+        const password = document.getElementById("password");
+
+        togglePassword.addEventListener("click", function () {
+
+            const type =
+                password.getAttribute("type") === "password"
+                    ? "text"
+                    : "password";
+
+            password.setAttribute("type", type);
+
+            this.innerHTML =
+                type === "password"
+                    ? '<i class="fa-solid fa-eye"></i>'
+                    : '<i class="fa-solid fa-eye-slash"></i>';
+
+        });
+
+
+        // Loading state
+        const loginForm = document.getElementById("loginForm");
+        const loginBtn = document.getElementById("loginBtn");
+
+        loginForm.addEventListener("submit", function () {
+
+            loginBtn.disabled = true;
+
+            loginBtn.innerHTML = `
+            <span>Signing in...</span>
+            <i class="fa-solid fa-spinner fa-spin"></i>
+        `;
+
+        });
+
+    </script>
+
+    <script src="/js/nirnay-validation.js"></script>

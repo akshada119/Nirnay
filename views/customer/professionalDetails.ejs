@@ -1,0 +1,176 @@
+<%- layout("layout/boilerplate") %>
+
+<div class="container my-5">
+
+    <div class="professional-details-page">
+
+        <a href="/services" class="back-link">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+
+        <div class="professional-details-card">
+
+            <div class="professional-details-header">
+
+                <div class="professional-avatar">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span class="professional-label">
+
+                        PROFESSIONAL
+
+                    </span>
+
+
+                    <h1>
+
+                        <%= professional.name %>
+
+                    </h1>
+
+
+                    <% if (professional.specialization) { %>
+
+                        <p>
+
+                            <%= professional.specialization %>
+
+                        </p>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+
+            <div class="professional-information">
+
+                <% if (professional.consultancy) { %>
+
+                    <div class="professional-info-item">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        <div>
+
+                            <span>Consultancy</span>
+
+                            <strong>
+
+                                <%= professional.consultancy %>
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
+
+                <% if (professional.experience) { %>
+
+                    <div class="professional-info-item">
+
+                        <i class="fa-solid fa-award"></i>
+
+                        <div>
+
+                            <span>Experience</span>
+
+                            <strong>
+
+                                <%= professional.experience %>
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
+
+                <% if (professional.location) { %>
+
+                    <div class="professional-info-item">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+
+                            <span>Location</span>
+
+                            <strong>
+
+                                <%= professional.location %>
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+
+            <% if (professional.professionalDescription) { %>
+
+                <div class="professional-description">
+
+                    <h3>
+
+                        About
+
+                    </h3>
+
+                    <p>
+
+                        <%= professional.professionalDescription %>
+
+                    </p>
+
+                </div>
+
+            <% } %>
+
+
+            <% if (professional.skills) { %>
+
+                <div class="professional-skills">
+
+                    <h3>
+
+                        Skills
+
+                    </h3>
+
+                    <p>
+
+                        <%= professional.skills %>
+
+                    </p>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+</div>

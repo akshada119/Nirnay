@@ -1,0 +1,487 @@
+<%- layout("layout/boilerplate") %>
+
+
+    <div class="container my-5">
+
+        <div class="mb-5">
+
+            <span class="services-label">
+                PROFESSIONAL PANEL
+            </span>
+
+            <h1>Edit Company</h1>
+
+            <p>
+                Update your company information and keep your professional
+                profile up to date.
+            </p>
+
+        </div>
+
+
+        <div class="company-form-card">
+
+            <form action="/professional/company/edit" method="POST" class="nirnay-validation-form" id="editCompanyForm"
+                novalidate>
+
+                <!-- Company Name -->
+                <div class="mb-4">
+
+                    <label for="name" class="form-label">
+                        Company Name
+                    </label>
+
+                    <input type="text" id="name" name="name" class="form-control" value="<%= company.name || '' %>"
+                        required minlength="2" maxlength="150"   data-validation="company-name">
+
+                </div>
+
+
+                <!-- Description -->
+                <div class="mb-4">
+
+                    <label for="description" class="form-label">
+                        Company Description
+                    </label>
+
+                    <textarea id="description" name="description" class="form-control" rows="5" required minlength="10"
+                        maxlength="2000"><%= company.description || '' %></textarea>
+
+                </div>
+
+
+                <!-- Category -->
+                <div class="mb-4">
+
+                    <label for="category" class="form-label">
+                        Category
+                    </label>
+
+                    <select id="category" name="category" class="form-select" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="IT" <%=company.category==="IT" ? "selected" : "" %>>
+                            IT
+                        </option>
+
+                        <option value="Finance" <%=company.category==="Finance" ? "selected" : "" %>>
+                            Finance
+                        </option>
+
+                        <option value="Healthcare" <%=company.category==="Healthcare" ? "selected" : "" %>>
+                            Healthcare
+                        </option>
+
+                        <option value="Education" <%=company.category==="Education" ? "selected" : "" %>>
+                            Education
+                        </option>
+
+                        <option value="Research" <%=company.category==="Research" ? "selected" : "" %>>
+                            Research
+                        </option>
+
+                        <option value="Business" <%=company.category==="Business" ? "selected" : "" %>>
+                            Business
+                        </option>
+
+                        <option value="HR" <%=company.category==="HR" ? "selected" : "" %>>
+                            HR
+                        </option>
+
+                        <option value="Legal" <%=company.category==="Legal" ? "selected" : "" %>>
+                            Legal
+                        </option>
+
+                        <option value="Agriculture" <%=company.category==="Agriculture" ? "selected" : "" %>>
+                            Agriculture
+                        </option>
+
+                        <option value="Manufacturing" <%=company.category==="Manufacturing" ? "selected" : "" %>>
+                            Manufacturing
+                        </option>
+
+                        <option value="Real Estate" <%=company.category==="Real Estate" ? "selected" : "" %>>
+                            Real Estate
+                        </option>
+
+                        <option value="Marketing" <%=company.category==="Marketing" ? "selected" : "" %>>
+                            Marketing
+                        </option>
+
+                        <option value="Career" <%=company.category==="Career" ? "selected" : "" %>>
+                            Career
+                        </option>
+
+                        <option value="Environmental" <%=company.category==="Environmental" ? "selected" : "" %>>
+                            Environmental
+                        </option>
+
+                        <option value="Engineering" <%=company.category==="Engineering" ? "selected" : "" %>>
+                            Engineering
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="mb-4">
+
+                    <label for="email" class="form-label">
+                        Email
+                    </label>
+
+                    <input type="email" id="email" name="email" class="form-control" value="<%= company.email || '' %>"
+                        required maxlength="100">
+
+                </div>
+
+
+                <!-- Mobile -->
+                <div class="mb-4">
+
+                    <label for="mobile" class="form-label">
+                        Mobile
+                    </label>
+
+                    <input type="tel" id="mobile" name="mobile" class="form-control" value="<%= company.mobile || '' %>"
+                        required minlength="10" maxlength="10" pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.">
+
+                </div>
+
+
+                <!-- Address -->
+                <div class="mb-4">
+
+                    <label for="address" class="form-label">
+                        Address
+                    </label>
+
+                    <textarea id="address" name="address" class="form-control" rows="3" required minlength="5"
+                        maxlength="250"><%= company.address || '' %></textarea>
+
+                </div>
+
+
+                <!-- City -->
+                <div class="mb-4">
+
+                    <label for="city" class="form-label">
+                        City
+                    </label>
+
+                    <input type="text" id="city" name="city" class="form-control" value="<%= company.city || '' %>"
+                        required minlength="2" maxlength="100" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,100}"
+                        title="City name can contain letters, spaces, apostrophes, dots, and hyphens.">
+
+                </div>
+
+                <!-- Office Hours -->
+                <div class="office-hours-section mb-5">
+
+                    <div class="mb-4">
+                        <h3 class="office-hours-title">
+                            <i class="fa-regular fa-clock"></i>
+                            Office Hours
+                        </h3>
+
+                        <p class="office-hours-description">
+                            Set your company's weekly working hours. Customers will see
+                            your live availability on the consultancy page.
+                        </p>
+                    </div>
+
+
+                    <!-- Monday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Monday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="mondayOpen" name="officeHours[monday][isOpen]" value="true"
+                                <%=company.officeHours?.monday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="mondayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[monday][open]"
+                                value="<%= company.officeHours?.monday?.open || '09:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[monday][close]"
+                                value="<%= company.officeHours?.monday?.close || '18:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Tuesday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Tuesday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="tuesdayOpen" name="officeHours[tuesday][isOpen]" value="true"
+                                <%=company.officeHours?.tuesday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="tuesdayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[tuesday][open]"
+                                value="<%= company.officeHours?.tuesday?.open || '09:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[tuesday][close]"
+                                value="<%= company.officeHours?.tuesday?.close || '18:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Wednesday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Wednesday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="wednesdayOpen" name="officeHours[wednesday][isOpen]" value="true"
+                                <%=company.officeHours?.wednesday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="wednesdayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[wednesday][open]"
+                                value="<%= company.officeHours?.wednesday?.open || '09:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[wednesday][close]"
+                                value="<%= company.officeHours?.wednesday?.close || '18:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Thursday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Thursday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="thursdayOpen" name="officeHours[thursday][isOpen]" value="true"
+                                <%=company.officeHours?.thursday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="thursdayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[thursday][open]"
+                                value="<%= company.officeHours?.thursday?.open || '09:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[thursday][close]"
+                                value="<%= company.officeHours?.thursday?.close || '18:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Friday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Friday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="fridayOpen" name="officeHours[friday][isOpen]" value="true"
+                                <%=company.officeHours?.friday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="fridayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[friday][open]"
+                                value="<%= company.officeHours?.friday?.open || '09:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[friday][close]"
+                                value="<%= company.officeHours?.friday?.close || '18:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Saturday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Saturday
+                        </div>
+
+                        <div class="office-day-toggle">
+                            <input type="checkbox" id="saturdayOpen" name="officeHours[saturday][isOpen]" value="true"
+                                <%=company.officeHours?.saturday?.isOpen !==false ? "checked" : "" %>
+                            >
+
+                            <label for="saturdayOpen">
+                                Open
+                            </label>
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[saturday][open]"
+                                value="<%= company.officeHours?.saturday?.open || '10:00' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[saturday][close]"
+                                value="<%= company.officeHours?.saturday?.close || '14:00' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Sunday -->
+                    <div class="office-day-row">
+
+                        <div class="office-day-name">
+                            Sunday
+                        </div>
+
+                        <div class="office-day-toggle">
+
+                            <input type="checkbox" id="sundayOpen" name="officeHours[sunday][isOpen]" value="true"
+                                <%=company.officeHours?.sunday?.isOpen===true ? "checked" : "" %>
+                            >
+
+                            <label for="sundayOpen">
+                                Open
+                            </label>
+
+                        </div>
+
+                        <div class="office-time-group">
+
+                            <input type="time" name="officeHours[sunday][open]"
+                                value="<%= company.officeHours?.sunday?.open || '' %>" class="form-control">
+
+                            <span>to</span>
+
+                            <input type="time" name="officeHours[sunday][close]"
+                                value="<%= company.officeHours?.sunday?.close || '' %>" class="form-control">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Website -->
+                <div class="mb-4">
+
+                    <label for="website" class="form-label">
+                        Website
+                    </label>
+
+                    <input type="url" id="website" name="website" class="form-control"
+                        value="<%= company.website || '' %>" placeholder="https://example.com" maxlength="255">
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="d-flex gap-3">
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Changes
+                    </button>
+
+                    <a href="/professional/company" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form =
+            document.getElementById("editCompanyForm");
+
+        const mobile =
+            document.getElementById("mobile");
+
+
+        /*
+         * Allow only digits in mobile number
+         */
+        mobile.addEventListener("input", function () {
+
+            this.value =
+                this.value.replace(/\D/g, "").slice(0, 10);
+
+        });
+
+    });
+
+</script>
+
+<script src="/js/nirnay-validation.js"></script>
