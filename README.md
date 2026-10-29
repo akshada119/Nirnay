@@ -1,0 +1,1 @@
+Nirnay is a web-based consultancy platform connecting customers with professional service providers through service discovery, online bookings, business management, and subscription-based professional services.
